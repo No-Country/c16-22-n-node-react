@@ -4,47 +4,68 @@ Figma: https://www.figma.com/file/MLpNO7bHRWnEaZGo5faFGx/UX-%7C-No-Country-%7C-N
 
 Se trabajará en la rama develop por lo cual deben usar este comando antes de ingresar a cualquier carpeta
 
-# Para ingresar a la rama develop
+-Para ingresar a la rama develop
 git checkout develop
 
 Ingresar y trabajar en la carpeta front:
 
-# Cambiar a la carpeta front
+-Cambiar a la carpeta front
 cd front
 
-# Crear una subrama en front
+-Crear una subrama en front
 git checkout -b feature/NOMBRE-DE-LA-RAMA (Ejm: git checkout -b feature/header)
 
-# Realizar cambios y confirmar en la subrama
-# (Por ejemplo, crear o modificar archivos en la carpeta front)
+-Realizar cambios y confirmar en la subrama
+-(Por ejemplo, crear o modificar archivos en la carpeta front)
 git add .
 git commit -m "Agrega cambios en la subrama feature/header"
 
-# Volver a la rama develop
-git checkout develop
+-Volver a la rama front
+git checkout front
 
-# Fusionar los cambios de la subrama de front a develop
+-Fusionar los cambios de la subrama de front a front
 git merge feature/NOMBRE-DE-LA-RAMA (Ejm: git merge feature/header)
 
+-Fusionar cambios de la rama front a develop
+git checkout develop
+git merge front
 
 Ingresar y trabajar en la carpeta back:
 
-# Cambiar a la carpeta back
+-Cambiar a la carpeta back
 cd back
 
-# Crear una subrama en back
+-Crear una subrama en back
 git checkout -b feature/NOMBRE-RAMA (Ejm: git checkout feature/database)
 
-# Realizar cambios y confirmar en la subrama
-# (Por ejemplo, crear o modificar archivos en la carpeta back)
+-Realizar cambios y confirmar en la subrama
+-(Por ejemplo, crear o modificar archivos en la carpeta back)
 git add .
 git commit -m "Agrega cambios en la subrama feature/database"
 
-# Volver a la rama develop
-git checkout develop
+-Volver a la rama back
+git checkout back
 
-# Fusionar los cambios de la subrama de back a develop
+-Fusionar los cambios de la subrama de back a back
 git merge feature/NOMBRE-RAMA (Ejm: git merge feature/database)
+
+-Fusionar cambios de la rama front a develop
+git checkout develop
+git merge back
+
+-Para actualizar tu copia local con los cambios más recientes del repositorio remoto, puedes usar el siguiente comando:
+git pull origin main (necesitas estar en la rama main)  ó git pull origin develop (necesitas estar en la rama develop)
+
+-Para llevar los cambios de la rama develop a la rama main:
+Asegúrate de estar en la rama main
+git checkout main
+
+Fusiona los cambios de develop en main
+git merge develop
+
+Empuja los cambios a la rama main en el repositorio remoto
+git push origin main
+
 
 MVP: Web app para buscar profesionales que ofrezcan servicios en CABA. Esta app busca centralizar la información de profesionales matriculados y recomendados para los usuarios. 
 A su vez, ofrece un sistema de calificación y opiniones de otros usuarios que ayudan a elegir el mejor servicio posible y la posibilidad de contactar con el profesional desde whatsapp. 
