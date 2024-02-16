@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 const { randomUUID } = require('crypto');
 
 const userSchema = new Schema(
@@ -42,4 +42,4 @@ const userSchema = new Schema(
     },
 )
 
-module.exports = mongoose.model(user, userSchema)
+module.exports = model('user', userSchema)

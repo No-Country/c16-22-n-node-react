@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const professionalSchema = require('../config/professionalSchema');
+const { professional } = require('../models');
 
 
 const dbConnect = () => {

@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 const { randomUUID } = require('crypto');
 
 const professionalSchema = new Schema(
@@ -46,4 +46,4 @@ const professionalSchema = new Schema(
     }
 )
 
-module.exports = mongoose.model(professional, professionalSchema)
+module.exports = model('professional', professionalSchema)
