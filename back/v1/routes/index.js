@@ -10,7 +10,6 @@ function routerApi(app) {
     router.use('/professional', professionalRouter);
     router.use('/category', categoryRouter);
 
-
     router.route("/").get((req, res) => {
       res.send(`<h2>Hello from ${req.baseUrl}</h2>
         <h2>Welcome to the server for ServiYA</h2>

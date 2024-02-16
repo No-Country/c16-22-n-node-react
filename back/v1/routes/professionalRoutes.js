@@ -1,24 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Get all professionals");
-});
+const professionalController = require("../controllers/professionalController");
 
-router.get("/:professionalId", (req, res) => {
-  res.send("Get an existing professional");
-});
+router.get("/", professionalController.getAllProfessionals);
 
-router.patch("/:professionalId", (req, res) => {
-  res.send("Update an existing professional");
-});
+router.get("/:professionalId", professionalController.getOneProfessional);
 
-router.post("/", (req, res) => {
-  res.send("Create a new professional");
-});
+router.patch("/:professionalId", professionalController.updateOneProfessional);
 
-router.delete("/:professionalId", (req, res) => {
-  res.send("Delete an existing professional");
-});
+router.post("/", professionalController.createNewProfessional);
+
+router.delete("/:professionalId", professionalController.deleteOneProfessional);
 
 module.exports = router;
