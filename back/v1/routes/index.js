@@ -2,10 +2,12 @@ const express = require("express");
 const usersRouter = require("./userRoutes");
 const categoryRouter = require("./categoryRoutes");
 const professionalRouter = require("./professionalRoutes");
+const chatRouter = require("./chatRouter");
 
 function routerApi(app) {
     const router = express.Router();
     app.use('/api/v1', router);
+    router.use('/chat', chatRouter)
     router.use('/users', usersRouter);
     router.use('/professional', professionalRouter);
     router.use('/category', categoryRouter);
