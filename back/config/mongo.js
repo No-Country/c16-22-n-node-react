@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 const { professional } = require('../database/models');
 
-const dbConnect = () => {
-    const DB_URI = process.env.ATLAS_URI;
-    mongoose.connect(DB_URI)
-        .then(() => console.log('****conexión a la db exitosa****')
-        )
-        .catch(err => console.log('****conexión a la db errónea****'))
+const dbConnect = async () => {
+    try {
+        const DB_URI = process.env.ATLAS_URI;
+        const connection = await mongoose.connect(DB_URI);
+
+        console.log(`*conexión a la db exitosa* ${connection.connection.host}`)
+    } catch(error) {
+        console.log(error)
+        console.log('****conexión a la db errónea****')
+    }
 }
 
 module.exports = dbConnect;
