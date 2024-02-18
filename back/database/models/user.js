@@ -9,7 +9,10 @@ const userSchema = new Schema(
         },
         name: String,
         lastName: String,
-        nickname: String,
+        nickname: {
+            type: String,
+            unique: true,
+        },
         email: {
             type: String,
             unique: true,
@@ -35,6 +38,7 @@ const userSchema = new Schema(
         },
         payment: String,
         hidden: Boolean,
+        date: { type: Date, default: Date.now }
     },
     {
         timestamps: true,

@@ -1,27 +1,39 @@
 const professionalService = require("../services/professionalService");
-const getAllProfessionals = (req, res) => {
-    const allProfessionals = professionalService.getAllProfessionals();
-    res.send("Get all Professionals");
+
+const getAllProfessionals = async (req, res) => {
+  const allProfessionals = await professionalService.getAllProfessionals();
+  // res.send("Get all Professionals");
+  res.send(allProfessionals);
 };
 
-const getOneProfessional = (req, res) => {
-  const professional = professionalService.getOneProfessional();
-    res.send("Get an existing Professional");
+const getOneProfessional = async (req, res) => {
+  const id = req.params.professionalId;
+  const professional = await professionalService.getOneProfessional(id);
+  // res.send("Get an existing Professional");
+  res.send(professional);
 };
 
-const createNewProfessional = (req, res) => {
-    const createdProfessional = professionalService.createNewProfessional();
-  res.send("Create a new Professional");
+const createNewProfessional = async (req, res) => {
+  const { body } = req
+  const createdProfessional = await professionalService.createNewProfessional(body);
+  console.log(createdProfessional)
+  res.send(createdProfessional);
+  // res.send("Create a new Professional");
 };
 
-const updateOneProfessional = (req, res) => {
-    const updatedProfessional = professionalService.updateOneProfessional();
-  res.send("Update an existing Professional");
+const updateOneProfessional = async (req, res) => {
+  id = req.params.professionalId
+  const { body } = req;
+  const updatedProfessional = await professionalService.updateOneProfessional(id, body);
+  // res.send("Update an existing Professional");
+  res.send(updatedProfessional)
 };
 
-const deleteOneProfessional = (req, res) => {
-    const deletedProfessional = professionalService.deleteOneProfessional();
-  res.send("Delete an existing Professional");
+const deleteOneProfessional = async (req, res) => {
+  const id = req.params.professionalId;
+  const deletedProfessional = await professionalService.deleteOneProfessional(id);
+  // res.send("Delete an existing Professional");
+  res.send(deletedProfessional);
 };
 
 module.exports = {

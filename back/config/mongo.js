@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { professional } = require('../database/models');
+
 
 const dbConnect = () => {
     const DB_URI = process.env.ATLAS_URI;

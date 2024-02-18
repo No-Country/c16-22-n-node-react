@@ -26,9 +26,9 @@ const deleteOneCategory = (req, res) => {
 };
 
 module.exports = {
-  getAllCategories,
-  getOneCategory,
-  createNewCategory,
-  updateOneCategory,
-  deleteOneCategory,
+    getAllCategories,
+    getOneCategory,
+    createNewCategory,
+    updateOneCategory,
+    deleteOneCategory,
 };
