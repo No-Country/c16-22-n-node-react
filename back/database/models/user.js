@@ -56,14 +56,17 @@ const userSchema = new Schema(
   {
     timestamps: true,
     versionKey: false,
+    methods: {
+        matchPassword(enteredPassword) {
+        console.log(this.password);
+        console.log(this)
+        return bcrypt.compareSync(enteredPassword, this.password)
+      }
+    }
   }
 );
 
-userSchema.methods.matchPassword = async (enteredPassword) => {
-  return await bcrypt.compare(enteredPassword, this.password)
-}
-
-// Before saving we should perform the encryption
+// Before saving to we should perform the encryption
 userSchema.pre('save', async function (next) {
   if (!this.isModified) {
     next()

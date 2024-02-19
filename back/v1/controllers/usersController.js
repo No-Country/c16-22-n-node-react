@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const usersService = require("../services/usersService");
 const User = require("../../database/models").userModel;
+const generateToken = require('../../config/generateToken');
 
 const getAllUsers = (req, res) => {
   const allUsers = usersService.getAllUsers();
@@ -56,6 +57,8 @@ const authenticateUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne( { email } );
+
+  console.log(user)
 
   if(user && (await user.matchPassword(password))) {
     res.send({
