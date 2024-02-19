@@ -1,8 +1,8 @@
-const moongose = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-const messageModel = moongose.Schema({
+const messageModel = Schema({
   sender: {
-    type: moongose.SchemaTypes.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
   },
   content: {
@@ -10,13 +10,13 @@ const messageModel = moongose.Schema({
     trim: true,
   },
   chat: {
-    type: moongose.SchemaTypes.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "Chat"
   },
 }, {
     timestamps: true
 });
 
-const Message = moongose.model("Message", messageModel);
+const Message = model("Message", messageModel);
 
 module.exports = Message;
