@@ -19,13 +19,26 @@ const createNewUser = asyncHandler( async(req, res) => {
     res.status(400);
     throw new Error("Please enter all the fields");
   }
-  
+
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
+
   const createdUser = await usersService.createNewUser({
     name,
     email,
     password,
     pic
   });
+
+  if(!createdUser) {
+    res.status(400);
+    throw new Error("Failed to create the user");
+  }
+
   res.status(201).send({ status: "OK", data: createdUser });
 });
 

@@ -6,12 +6,12 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: true,
-      unique: true,
+      // unique: true,
     },
     lastName: String,
     nickname: {
       type: String,
-      unique: true,
+      // unique: true,
     },
     email: {
       type: String,
@@ -20,7 +20,7 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      unique: true,
+      // unique: true,
       required: true,
     },
     role: {
@@ -41,10 +41,10 @@ const userSchema = new Schema(
         date: { type: Date, default: Date.now },
       },
     ],
-    contact: {
-      type: String,
-      unique: true,
-    },
+    // contact: {
+    //   type: String,
+    //   // unique: true,
+    // },
     payment: String,
     hidden: Boolean,
     pic: {
