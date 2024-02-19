@@ -3,10 +3,33 @@ const usersService = require("../services/usersService");
 const User = require("../../database/models").userModel;
 const generateToken = require('../../config/generateToken');
 
-const getAllUsers = (req, res) => {
-  const allUsers = usersService.getAllUsers();
-  res.send({status: "OK", data: {}});
-};
+const getAllUsers = asyncHandler (async (req, res) => {
+  // const allUsers = usersService.getAllUsers();
+  // res.send({status: "OK", data: {}});
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { name: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  const users = await User.find({
+    $and: [
+      keyword,
+      {
+        _id: { $ne: req.user._id }
+      } 
+    ]
+  });
+  
+  res.send(
+    {
+      status: "OK",
+      data: users
+  });
+});
 
 const getOneUser = (req, res) => {
   const user = usersService.getOneUser();
@@ -58,8 +81,6 @@ const authenticateUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne( { email } );
 
-  console.log(user)
-
   if(user && (await user.matchPassword(password))) {
     res.send({
       ...user,
@@ -70,6 +91,22 @@ const authenticateUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid Email or Password")
   }
 });
+
+// const searchUser = async (req, res) => {
+//   const keyword = req.query.search
+//     ? {
+//         $or: [
+//           { name: { $regex: req.query.search, $options: "i" } },
+//           { email: { $regex: req.query.search, $options: "i" } },
+//         ],
+//       }
+//     : {};
+
+//   const users = (await User.find(keyword)).findIndex({
+//     _id: { $ne: req.user._id },
+//   });
+//   res.send(users);
+// };
 
 module.exports = {
   getAllUsers,
