@@ -5,13 +5,12 @@ import axios from "axios";
 
 
 function Login() {
+  const navigate = useNavigate();
 
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
   // const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   const submitHandler = async () => {
     setLoading(true);

@@ -2,6 +2,8 @@ const asyncHandler = require("express-async-handler");
 const usersService = require("../services/usersService");
 const User = require("../../database/models").userModel;
 const generateToken = require('../../config/generateToken');
+const { json } = require("body-parser");
+const { stringify } = require("querystring");
 
 const getAllUsers = asyncHandler (async (req, res) => {
   // const allUsers = usersService.getAllUsers();
@@ -15,20 +17,9 @@ const getAllUsers = asyncHandler (async (req, res) => {
       }
     : {};
 
-  const users = await User.find({
-    $and: [
-      keyword,
-      {
-        _id: { $ne: req.user._id }
-      } 
-    ]
-  });
-  
-  res.send(
-    {
-      status: "OK",
-      data: users
-  });
+  const users = await User.find(keyword).find({ _id: { $ne: req.user._id }});
+  console.log(users)
+  res.status(200).send(users);
 });
 
 const getOneUser = (req, res) => {
