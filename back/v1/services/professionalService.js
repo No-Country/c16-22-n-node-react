@@ -13,7 +13,6 @@ const getOneProfessional = async (id) => {
     console.log(err);
     return 'Error retrieving a professional';
   }
-
 };
 
 const createNewProfessional = async (body) => {
@@ -67,13 +66,13 @@ const createNewProfessional = async (body) => {
       contact,
       payment,
       hidden
-    }
+    };
 
     const data = await professionalModel.create(newProfessional);
     return data;
   } catch (err) {
     console.error(err);
-    return ('error creating')
+    return ('Error creating professionals: ' + err.message);
   };
 };
 
@@ -100,7 +99,7 @@ const deleteOneProfessional = async (id) => {
     return result;
   } catch (err) {
     console.log(err);
-    return err;
+    return 'Error while deleting category: ' + err.message;
   }
 };
 

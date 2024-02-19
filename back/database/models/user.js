@@ -3,10 +3,6 @@ const { randomUUID } = require('crypto');
 
 const userSchema = new Schema(
     {
-        userId: {
-            type: 'UUID',
-            default: () => randomUUID()
-        },
         name: String,
         lastName: String,
         nickname: {

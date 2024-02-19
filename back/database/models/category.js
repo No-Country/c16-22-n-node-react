@@ -1,13 +1,17 @@
 const { Schema, model } = require("mongoose");
-const { randomUUID } = require('crypto');
 
 const categorySchema = new Schema({
-    categoryId: {
-        type: 'UUID',
-        default: () => randomUUID()
+    category: {
+        type: String,
+        unique: true,
     },
-    category: String,
     detail: String,
-})
+},
+    {
+        timestamps: true,
+        versionKey: false,
+    }
+
+)
 
 module.exports = model('category', categorySchema);
