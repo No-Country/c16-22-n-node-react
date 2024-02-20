@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const protect = require("../middleware/authorization");
+const { protect } = require("../middleware/authorization");
 const chatController = require("../controllers/chatController");
 
 router.get('/', protect, chatController.getAllChats);

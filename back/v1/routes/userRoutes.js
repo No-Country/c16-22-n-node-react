@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const usersController = require("../controllers/usersController");
-const protect = require("../middleware/authorization")
+const { protect } = require("../middleware/authorization")
 
 router.get("/", protect, usersController.getAllUsers);
 

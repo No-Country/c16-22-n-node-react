@@ -1,12 +1,10 @@
-import { Card, Avatar } from 'flowbite-react'
+import { Card } from 'flowbite-react';
 
 function UserListItem({user, handleFunction}) {
     return (
-      <Card onClick={handleFunction}>
-        <Avatar img={user.pic}>
-            <div>{user.name}</div>
-            <div>{user.email}</div>
-        </Avatar>
+      <Card onClick={handleFunction} imgSrc={user.pic}>
+        <h5>{user.name}</h5>
+        <h5>{user.email}</h5>
       </Card>
     );
 }
