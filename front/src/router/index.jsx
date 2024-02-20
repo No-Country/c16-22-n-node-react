@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/home/Home";
+import Home from "../pages/Home";
+import { AuthProvider } from "../context/AuthContext";
 
 
 
@@ -7,10 +8,14 @@ import Home from "../pages/home/Home";
 export const router = createBrowserRouter ([
      //  ubicar rutas aqui ejemplo:
 
-    {
-         path: "/",
-         element: <Home />,
-    },
+     {
+          path: "/",
+          element: <Home />,
+      },
+<AuthProvider>
+
+  
+     </AuthProvider>
     // {
     //     path: "/about",
     //     element: <About />,
