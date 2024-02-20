@@ -14,19 +14,18 @@ const getOneProfessional = async (req, res) => {
 };
 
 const createNewProfessional = async (req, res) => {
-  const { body } = req
-  const createdProfessional = await professionalService.createNewProfessional(body);
-  console.log(createdProfessional)
+  const { body, files } = requestAnimationFrame
+  const createdProfessional = await professionalService.createNewProfessional(body, files);
   res.send(createdProfessional);
   // res.send("Create a new Professional");
 };
 
 const updateOneProfessional = async (req, res) => {
-  id = req.params.professionalId
-  const { body } = req;
-  const updatedProfessional = await professionalService.updateOneProfessional(id, body);
+  id = req.params.professionalId;
+  const { body, files } = req;
+  const updatedProfessional = await professionalService.updateOneProfessional(id, body, files);
   // res.send("Update an existing Professional");
-  res.send(updatedProfessional)
+  res.send(updatedProfessional);
 };
 
 const deleteOneProfessional = async (req, res) => {

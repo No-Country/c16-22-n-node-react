@@ -3,7 +3,7 @@ const models = {
     professionalModel: require('./professional'),
     userModel: require('./user'),
     messageModel: require('./message'),
-    chatModel: require('./chat')
+    chatModel: require('./chat'),
 }
 
 module.exports = models;

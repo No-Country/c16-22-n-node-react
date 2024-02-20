@@ -1,4 +1,4 @@
-const { Schema, model, set } = require("mongoose");
+const { Schema, model, set, mongoose } = require("mongoose");
 
 set('useUnifiedTopology', true, { timezone: 'UTC-3 (Argentina)' });
 
@@ -23,7 +23,8 @@ const professionalSchema = new Schema(
             place: String,
         }],
         gallery: [{
-            url: String,
+            imageId: String,
+            imageUrl: String,
         }],
         comments: [{
             user: String,
