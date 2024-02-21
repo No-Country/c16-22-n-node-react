@@ -49,5 +49,4 @@ io.on("connection", (socket) => {
   console.log("User connected to socket.io");
 });
 
-dbConnect();
 cloudinaryConfig();
