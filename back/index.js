@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const { Server } = require("socket.io");
+const fileUpload = require("express-fileupload");
+const { cloudinaryConfig } = require('./config/cloudinary');
 
 const dbConnect = require('./config/mongo');
 
@@ -14,6 +17,11 @@ const PORT = process.env.PORT || 3001;
 app = express();
 
 app.use(express.json());
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: "./storage"  //./uploads
+}))
+app.use(express.static("storage"));
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
@@ -40,3 +48,6 @@ const io = require("socket.io")(server, {
 io.on("connection", (socket) => {
   console.log("User connected to socket.io");
 });
+
+dbConnect();
+cloudinaryConfig();
