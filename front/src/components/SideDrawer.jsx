@@ -7,7 +7,7 @@ import UserListItem from '../components/UserListItem'
 
 
 function SideDrawer() {
-    const { user } = ChatState();
+    const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState();
     const navigate = useNavigate();
 
     const [search, setSearch] = useState("")
@@ -45,8 +45,28 @@ function SideDrawer() {
       }
     }
 
-    const accessChat = (userId) => {
+    const accessChat = async (userId) => {
+      try {
+        setLoadingChat(true);
 
+        const config = {
+          headers: {
+            "Accept": "application/json",
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${user.token}`
+          },
+        }
+
+        const response = await axios.post("http://localhost:3001/api/v1/chat", {userId}, config);
+        
+        const { data } = response;
+        
+        if(!chats.find((chat) => chat._id === data._id)) setChats([data, ...chats]);
+        setSelectedChat(data);
+        setLoadingChat(false);
+      } catch(error) {
+        // display a toast, error fetching chat
+      }
     }
   return (
     <div>
@@ -69,6 +89,9 @@ function SideDrawer() {
           />
         ))
       )}
+      {
+        loadingChat && <div>Loading Chat...</div>
+      }
       <Button onClick={logoutHandler}>Logout</Button>
     </div>
   );

@@ -16,7 +16,7 @@ const getOneProfessional = async (req, res) => {
 const createNewProfessional = async (req, res) => {
   const { body } = req
   const createdProfessional = await professionalService.createNewProfessional(body);
-  console.log(createdProfessional)
+  // console.log(createdProfessional)
   res.send(createdProfessional);
   // res.send("Create a new Professional");
 };

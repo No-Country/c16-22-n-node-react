@@ -3,6 +3,7 @@ const usersRouter = require("./userRoutes");
 const categoryRouter = require("./categoryRoutes");
 const professionalRouter = require("./professionalRoutes");
 const chatRouter = require("./chatRouter");
+const messagesRouter = require("./messagesRouter")
 
 function routerApi(app) {
     const router = express.Router();
@@ -11,6 +12,7 @@ function routerApi(app) {
     router.use('/users', usersRouter);
     router.use('/professional', professionalRouter);
     router.use('/category', categoryRouter);
+    router.use('/messages', messagesRouter)
 
     router.route("/").get((req, res) => {
       res.send(`<h2>Hello from ${req.baseUrl}</h2>

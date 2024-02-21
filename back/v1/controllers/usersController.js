@@ -18,7 +18,7 @@ const getAllUsers = asyncHandler (async (req, res) => {
     : {};
 
   const users = await User.find(keyword).find({ _id: { $ne: req.user._id }});
-  console.log(users)
+  // console.log(users)
   res.status(200).send(users);
 });
 
@@ -82,22 +82,6 @@ const authenticateUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid Email or Password")
   }
 });
-
-// const searchUser = async (req, res) => {
-//   const keyword = req.query.search
-//     ? {
-//         $or: [
-//           { name: { $regex: req.query.search, $options: "i" } },
-//           { email: { $regex: req.query.search, $options: "i" } },
-//         ],
-//       }
-//     : {};
-
-//   const users = (await User.find(keyword)).findIndex({
-//     _id: { $ne: req.user._id },
-//   });
-//   res.send(users);
-// };
 
 module.exports = {
   getAllUsers,

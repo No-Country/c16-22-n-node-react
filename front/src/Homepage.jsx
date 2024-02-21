@@ -13,7 +13,7 @@ function Homepage() {
     if (user) {
       navigate("/chat");
     }
-  }, []);
+  });
 
   return (
     <Card>

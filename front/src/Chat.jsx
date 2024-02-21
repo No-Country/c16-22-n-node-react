@@ -1,7 +1,5 @@
-import {useEffect, useState} from 'react';
-import socketIOClient from 'socket.io-client';
+import {useState} from 'react';
 import { Button, Card } from "flowbite-react";
-import axios from 'axios';
 import SideDrawer from './components/SideDrawer';
 import MyChats from './components/MyChats';
 import ChatBox from './components/ChatBox';
@@ -32,15 +30,16 @@ function Chat() {
   //   });
   //   socket.emit("message", "Hello From the Client!");
   // }, [endpoint]);
+  const [fetchAgain, setFetchAgain] = useState(false);
   const { user } = ChatState();
-  
 
   return (
     <div>
       { user && <SideDrawer></SideDrawer>}
       <Button>Chat</Button>
       <Card>
-        {user && <MyChats></MyChats>}
+        { user && (<MyChats fetchAgain={fetchAgain}></MyChats>)}
+        { user && (<ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}></ChatBox> )}
       </Card>
       {/* <p>{response}</p> */}
     </div>
