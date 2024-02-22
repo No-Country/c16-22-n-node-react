@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const { Server } = require("socket.io");
 const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
+const { pathname: root } = new URL('../src', import.meta.url)
+
 
 const dbConnect = require('./config/mongo');
 
@@ -27,7 +29,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: './' });
+  res.sendFile("index.html", { root: root });
 });
 console.log(process.env.VERCEL_PUBLIC_DIR);
 
@@ -36,8 +38,6 @@ v1Router(app);
 const server = app.listen(PORT, () => {
   console.log(`listening on ${PORT}`);
 })
-
-dbConnect();
 
 // io.listen(3002, () => {
 //     console.log("Listening WebSocket server on 3002");;
