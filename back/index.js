@@ -27,7 +27,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: process.env.VERCEL_PUBLIC_DIR || __dirname });
+  res.sendFile("index.html", { root: './' });
 });
 console.log(process.env.VERCEL_PUBLIC_DIR);
 
