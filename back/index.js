@@ -19,7 +19,7 @@ app = express();
 app.use(express.json());
 app.use(fileUpload({
   useTempFiles: true,
-  tempFileDir: "./storage"  //./uploads
+  tempFileDir: "./storage"
 }))
 app.use(express.static("storage"));
 app.use(cors());
@@ -29,7 +29,7 @@ app.use(morgan('dev'));
 v1Router(app);
 
 const server = app.listen(PORT, () => {
-    console.log(`listening on ${PORT}`);
+  console.log(`listening on ${PORT}`);
 })
 
 dbConnect();
