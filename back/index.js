@@ -26,6 +26,10 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
+app.get("/", (req, res) => {
+  res.sendFile("index.html", { root: __dirname });
+});
+
 v1Router(app);
 
 const server = app.listen(PORT, () => {
