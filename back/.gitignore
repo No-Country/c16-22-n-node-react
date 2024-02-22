@@ -27,3 +27,6 @@ dist-ssr
 
 # Contentlayer
 .contentlayer
+node_modules
+.env
+.vercel
