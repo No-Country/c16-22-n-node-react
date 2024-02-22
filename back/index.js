@@ -29,6 +29,7 @@ app.use(morgan('dev'));
 app.get("/", (req, res) => {
   res.sendFile("index.html", { root: process.env.VERCEL_PUBLIC_DIR || __dirname });
 });
+console.log(process.env.VERCEL_PUBLIC_DIR);
 
 v1Router(app);
 
