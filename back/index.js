@@ -5,7 +5,6 @@ const morgan = require('morgan');
 const { Server } = require("socket.io");
 const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
-const { pathname: root } = new URL('../src', import.meta.url)
 
 
 const dbConnect = require('./config/mongo');
@@ -29,7 +28,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: root });
+  res.sendFile("index.html", { root: __dirname });
 });
 console.log(process.env.VERCEL_PUBLIC_DIR);
 
