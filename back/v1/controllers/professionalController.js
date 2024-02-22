@@ -14,7 +14,7 @@ const getOneProfessional = async (req, res) => {
 };
 
 const createNewProfessional = async (req, res) => {
-  const { body, files } = requestAnimationFrame
+  const { body, files } = req;
   const createdProfessional = await professionalService.createNewProfessional(body, files);
   res.send(createdProfessional);
   // res.send("Create a new Professional");
