@@ -78,9 +78,9 @@ const Categories = () => {
   ];
 
   return (
-        <div className="grid grid-rows-2 grid-cols-6 my-20">
+        <div className="max-w-[1440px] w-full mx-auto gap-12  flex flex-wrap justify-center my-20">
         {categories.map((category) => (
-            <div key={category.id} className="card m-4 rounded-2xl border-solid border-2 py-5">
+            <div key={category.id} className="card cursor-pointer  w-48 rounded-2xl border-solid border-2 py-5">
             <Link to={`/categorias/${category.name}`}>
             <img src={category.src} alt={category.name} className="colored-img h-20 m-auto"/>
             </Link>
