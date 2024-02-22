@@ -1,0 +1,15 @@
+.colored-img {
+    filter: invert(45%) sepia(57%) saturate(549%) hue-rotate(194deg) brightness(89%) contrast(87%);
+}
+
+.card{
+    background-color: #FAFAFA;
+    border-color: #055286;
+}
+
+.color-text{
+    color: #055286; 
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal
+}
