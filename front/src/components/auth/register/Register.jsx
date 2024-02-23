@@ -7,6 +7,8 @@ const Register = () => {
 
 return(
   <>
+
+
   </>
 )
 };
