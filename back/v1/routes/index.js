@@ -6,13 +6,13 @@ const chatRouter = require("./chatRouter");
 const messagesRouter = require("./messagesRouter")
 
 function routerApi(app) {
-    const router = express.Router();
-    app.use('/api/v1', router);
-    router.use('/chat', chatRouter)
-    router.use('/users', usersRouter);
-    router.use('/professional', professionalRouter);
-    router.use('/category', categoryRouter);
-    router.use('/messages', messagesRouter)
+  const router = express.Router();
+  app.use('/api/v1', router);
+  router.use('/chat', chatRouter)
+  router.use('/users', usersRouter);
+  router.use('/professional', professionalRouter);
+  router.use('/category', categoryRouter);
+  router.use('/messages', messagesRouter)
 
   router.route("/").get((req, res) => {
     // cambiar este html por un objeto JSON con toda la información
@@ -31,6 +31,7 @@ function routerApi(app) {
         `
     );
   });
+
 }
 
 module.exports = routerApi;

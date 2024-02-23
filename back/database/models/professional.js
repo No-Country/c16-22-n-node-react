@@ -13,9 +13,9 @@ const professionalSchema = new Schema(
         },
         password: String,
         category: String,
-        validations: String,
+        aptitudes: String,
         description: String,
-        pricePerHour: String,
+        consultPrice: Number,
         timeAvailability: String,
         geographicAvailability: String,
         bookings: [{
@@ -28,6 +28,7 @@ const professionalSchema = new Schema(
         }],
         comments: [{
             user: String,
+            rating: Number,
             body: String,
             date: Date
         }],
