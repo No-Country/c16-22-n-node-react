@@ -2,9 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const path = require("path");
 const { Server } = require("socket.io");
 const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
+const publicDir = path.resolve(process.cwd(), "public");
 
 
 const dbConnect = require('./config/mongo');
@@ -22,7 +24,8 @@ app.use(fileUpload({
   useTempFiles: true,
   tempFileDir: "./storage"
 }))
-app.use(express.static("storage"));
+// app.use(express.static("storage"));
+app.use(express.static(publicDir));
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
@@ -30,7 +33,6 @@ app.use(morgan('dev'));
 app.get("/", (req, res) => {
   res.sendFile("index.html", { root: __dirname || process.env.VERCEL_PUBLIC_DIR });
 });
-console.log(process.env.VERCEL_PUBLIC_DIR);
 
 v1Router(app);
 
