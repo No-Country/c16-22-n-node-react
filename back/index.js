@@ -5,10 +5,6 @@ const morgan = require('morgan');
 const { Server } = require("socket.io");
 const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
-<<<<<<< HEAD
-const { pathname: root } = new URL('./', import.meta.url)
-=======
->>>>>>> feature/back
 
 
 const dbConnect = require('./config/mongo');
