@@ -1,4 +1,5 @@
 
+
 import Perfil from "../../../../public/login/perfil.svg";
 import Serviya from "../../../../public/login/serviya.svg";
 import { handleRegister } from "../../../hanldeloginAndRegister/HandleLogAndReg";
