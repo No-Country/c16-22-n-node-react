@@ -23,7 +23,7 @@ app = express();
 app.use(express.json());
 app.use(fileUpload({
   useTempFiles: true,
-  tempFileDir: "./public"
+  tempFileDir: "public"
 }))
 // app.use(express.static("storage"));
 console.log()
