@@ -69,7 +69,8 @@ const createNewProfessional = async (body, files) => {
       data = await updateOneProfessional(data._id, {}, files);
     }
     data = {
-      message: 'algo'
+      message: 'algo',
+      data: data
     }
     return data;
   } catch (err) {
