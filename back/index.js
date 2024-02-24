@@ -6,7 +6,7 @@ const path = require("path");
 const { Server } = require("socket.io");
 // const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
-// const publicDir = path.resolve(process.cwd(), "var/task/public");
+//esta variable no se usa en local, sólo lo utiliza vercel para encontrar la carpeta pública al parecer!!!
 const publicDirVercel = path.resolve(__dirname, "public");
 
 const dbConnect = require('./config/mongo');
