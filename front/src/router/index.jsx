@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
-import { AuthProvider } from "../context/AuthContext";
 
 
 
@@ -12,10 +11,7 @@ export const router = createBrowserRouter ([
           path: "/",
           element: <Home />,
       },
-     <AuthProvider>
 
-  
-     </AuthProvider>
     // {
     //     path: "/about",
     //     element: <About />,
