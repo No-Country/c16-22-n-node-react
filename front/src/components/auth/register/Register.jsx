@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+
 import Perfil from "../../../../public/login/perfil.svg";
 import Serviya from "../../../../public/login/serviya.svg";
-import axios from "axios";
-import useStoreLogin from "../../../store/useStoreLogin";
+
+
 import {handleRegister } from "../../../hanldeloginAndRegister/HandleLogAndReg";
 
 const Register = () => {
