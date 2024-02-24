@@ -2,10 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const path = require("path");
 const { Server } = require("socket.io");
 const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
-
+//esta variable no se usa en local, 
+// sólo lo utiliza vercel para encontrar la carpeta pública al parecer!!!
+const publicDirVercel = path.resolve(__dirname, "public");
 
 const dbConnect = require('./config/mongo');
 
@@ -19,18 +22,19 @@ app = express();
 
 app.use(express.json());
 app.use(fileUpload({
-  useTempFiles: true,
-  tempFileDir: "./storage"
+  // useTempFiles: true,
+  // tempFileDir: "public"
 }))
-app.use(express.static("storage"));
+// app.use(express.static("storage"));
+console.log()
+app.use(express.static('./back/public'));
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: __dirname });
+  res.sendFile("index.html", { root: './public' });
 });
-console.log(process.env.VERCEL_PUBLIC_DIR);
 
 v1Router(app);
 
