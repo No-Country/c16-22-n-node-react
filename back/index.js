@@ -6,17 +6,7 @@ const path = require("path");
 const { Server } = require("socket.io");
 // const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
-const publicDir = path.resolve(process.cwd(), "var/task/public");
-const publicDirVercel = path.resolve(__dirname, "public");
 
-console.log('-------local----------')
-console.log(process.cwd())
-console.log(publicDir)
-console.log('-------vercel----------')
-console.log(publicDirVercel)
-console.log('./public')
-console.log('---------------__dirname-----------------')
-console.log(__dirname)
 // console.log(process.cwd())
 console.log('----------------')
 const dbConnect = require('./config/mongo');
