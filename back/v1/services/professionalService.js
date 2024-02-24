@@ -68,7 +68,9 @@ const createNewProfessional = async (body, files) => {
       // console.log(files);
       data = await updateOneProfessional(data._id, {}, files);
     }
-    data = 'algo'
+    data = {
+      message: 'algo'
+    }
     return data;
   } catch (err) {
     console.error(err);
