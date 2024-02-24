@@ -69,7 +69,7 @@ const createNewProfessional = async (body, files) => {
       data = await updateOneProfessional(data._id, {}, files);
     }
     data = {
-      message: 'algo',
+      message: files,
       data: data
     }
     return data;
