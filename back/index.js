@@ -7,7 +7,7 @@ const { Server } = require("socket.io");
 // const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
 const publicDir = path.resolve(process.cwd(), "var/task/public");
-const publicDirVercel = path.resolve(process.cwd(), "public");
+const publicDirVercel = path.resolve(__dirname, "public");
 
 console.log('-------local----------')
 console.log(process.cwd())
@@ -36,13 +36,13 @@ app.use(express.json());
 // }))
 // app.use(express.static("storage"));
 console.log()
-app.use(express.static('public'));
+app.use(express.static('./back/public'));
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: 'public' });
+  res.sendFile("index.html", { root: './public' });
 });
 
 v1Router(app);
