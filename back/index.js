@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require("path");
 const { Server } = require("socket.io");
-const fileUpload = require("express-fileupload");
+// const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
 const publicDir = path.resolve(process.cwd(), "public");
 
@@ -20,18 +20,19 @@ const PORT = process.env.PORT || 3001;
 app = express();
 
 app.use(express.json());
-app.use(fileUpload({
-  useTempFiles: true,
-  tempFileDir: "./storage"
-}))
+// app.use(fileUpload({
+//   useTempFiles: true,
+//   tempFileDir: "./storage"
+// }))
 // app.use(express.static("storage"));
+console.log()
 app.use(express.static(publicDir));
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: __dirname || process.env.VERCEL_PUBLIC_DIR });
+  res.sendFile("index.html", { root: publicDir || process.env.VERCEL_PUBLIC_DIR });
 });
 
 v1Router(app);

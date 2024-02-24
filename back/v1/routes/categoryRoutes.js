@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const fileUpload = require("express-fileupload");
 
 const categoryController = require("../controllers/categoryController");
 
@@ -7,9 +8,15 @@ router.get("/", categoryController.getAllCategories);
 
 router.get("/:categoryId", categoryController.getOneCategory);
 
-router.patch("/:categoryId", categoryController.updateOneCategory);
+router.patch("/:categoryId", fileUpload({
+    useTempFiles: true,
+    tempFileDir: "./storage"
+}), categoryController.updateOneCategory);
 
-router.post("/", categoryController.createNewCategory);
+router.post("/", fileUpload({
+    useTempFiles: true,
+    tempFileDir: "./storage"
+}), categoryController.createNewCategory);
 
 router.delete("/:categoryId", categoryController.deleteOneCategory);
 
