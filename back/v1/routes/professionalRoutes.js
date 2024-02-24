@@ -15,7 +15,7 @@ router.patch("/:professionalId", fileUpload({
 
 router.post("/", fileUpload({
     useTempFiles: true,
-    tempFileDir: "./public"
+    tempFileDir: "./back/public"
 }), professionalController.createNewProfessional);
 
 router.delete("/:professionalId", professionalController.deleteOneProfessional);
