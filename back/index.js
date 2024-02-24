@@ -38,7 +38,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: publicDirVercel });
+  res.sendFile("index.html", { root: './' });
 });
 
 v1Router(app);
