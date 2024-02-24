@@ -72,7 +72,7 @@ const createNewProfessional = async (body, files) => {
       // console.log(files);
       data = await updateOneProfessional(data._id, {}, files);
       data = {
-        message: files.image1.tempFilePath,
+        message: 'un mensaje',
         data: data
       }
     }
