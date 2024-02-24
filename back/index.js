@@ -7,8 +7,13 @@ const { Server } = require("socket.io");
 // const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
 const publicDir = path.resolve(process.cwd(), "public");
-
-
+console.log('-------local----------')
+console.log(process.cwd())
+console.log(publicDir)
+console.log('-------vercel----------')
+console.log(process.env.VERCEL_URL)
+// console.log(process.cwd())
+console.log('----------------')
 const dbConnect = require('./config/mongo');
 
 const v1Router = require("./v1/routes");
@@ -32,7 +37,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: publicDir || process.env.VERCEL_PUBLIC_DIR });
+  res.sendFile("index.html", { root: publicDir || process.env.VERCEL_URL });
 });
 
 v1Router(app);
