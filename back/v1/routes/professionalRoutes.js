@@ -10,12 +10,12 @@ router.get("/:professionalId", professionalController.getOneProfessional);
 
 router.patch("/:professionalId", fileUpload({
     useTempFiles: true,
-    tempFileDir: "./storage"
+    tempFileDir: "./public"
 }), professionalController.updateOneProfessional);
 
 router.post("/", fileUpload({
     useTempFiles: true,
-    tempFileDir: "./storage"
+    tempFileDir: "./public"
 }), professionalController.createNewProfessional);
 
 router.delete("/:professionalId", professionalController.deleteOneProfessional);

@@ -10,12 +10,12 @@ router.get("/:categoryId", categoryController.getOneCategory);
 
 router.patch("/:categoryId", fileUpload({
     useTempFiles: true,
-    tempFileDir: "./storage"
+    tempFileDir: "./public"
 }), categoryController.updateOneCategory);
 
 router.post("/", fileUpload({
     useTempFiles: true,
-    tempFileDir: "./storage"
+    tempFileDir: "./public"
 }), categoryController.createNewCategory);
 
 router.delete("/:categoryId", categoryController.deleteOneCategory);
