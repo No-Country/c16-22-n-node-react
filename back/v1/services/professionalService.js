@@ -64,7 +64,7 @@ const createNewProfessional = async (body, files) => {
     let data = await professionalModel.create(newProfessional);
     if (!!files) {
       // si hay imágenes se actualiza gallery del profesional 
-      data = updateOneProfessional(data._id, {}, files);
+      data = await updateOneProfessional(data._id, {}, files);
     }
     return data;
   } catch (err) {
