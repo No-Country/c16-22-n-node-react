@@ -1,12 +1,9 @@
-const { Schema, model } = require("mongoose");
-const { randomUUID } = require('crypto');
+const { Schema, model, set, mongoose } = require("mongoose");
+
+set('useUnifiedTopology', true, { timezone: 'UTC-3 (Argentina)' });
 
 const professionalSchema = new Schema(
     {
-        professionalId: {
-            type: 'UUID',
-            default: () => randomUUID()
-        },
         name: String,
         lastName: String,
         company: String,
@@ -16,29 +13,31 @@ const professionalSchema = new Schema(
         },
         password: String,
         category: String,
-        validations: String,
+        aptitudes: String,
         description: String,
-        pricePerHour: String,
+        consultPrice: Number,
         timeAvailability: String,
         geographicAvailability: String,
         bookings: [{
-            date: { type: Date, default: Date.now },
+            date: Date,
             place: String,
         }],
         gallery: [{
-            url: String,
+            imageId: String,
+            imageUrl: String,
         }],
         comments: [{
             user: String,
+            rating: Number,
             body: String,
-            date: { type: Date, default: Date.now },
+            date: Date
         }],
         contact: {
             type: String,
             unique: true,
         },
         payment: String,
-        hidden: Boolean,
+        hidden: Boolean
     },
     {
         timestamps: true,
