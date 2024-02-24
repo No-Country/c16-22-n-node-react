@@ -8,11 +8,13 @@ const { Server } = require("socket.io");
 const { cloudinaryConfig } = require('./config/cloudinary');
 const publicDir = path.resolve(process.cwd(), "var/task/public");
 const publicDirVercel = path.resolve(process.cwd(), "public");
+
 console.log('-------local----------')
 console.log(process.cwd())
 console.log(publicDir)
 console.log('-------vercel----------')
 console.log(publicDirVercel)
+console.log('/public')
 // console.log(process.cwd())
 console.log('----------------')
 const dbConnect = require('./config/mongo');
@@ -32,7 +34,7 @@ app.use(express.json());
 // }))
 // app.use(express.static("storage"));
 console.log()
-app.use(express.static(publicDirVercel));
+app.use(express.static('/public'));
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
