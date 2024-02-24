@@ -61,21 +61,14 @@ const createNewProfessional = async (body, files) => {
       payment,
       hidden
     };
-    if (!!files) {
-      console.log('------------------------------files----------------------------------')
-      console.log(files.image1.tempFilePath);
-    }
     let data = await professionalModel.create(newProfessional);
     if (!!files) {
       // si hay imágenes se actualiza gallery del profesional 
       // console.log('------------------------------files----------------------------------')
       // console.log(files);
       data = await updateOneProfessional(data._id, {}, files);
-      data = {
-        message: 'un mensaje',
-        data: data
-      }
     }
+    data = 'algo'
     return data;
   } catch (err) {
     console.error(err);
