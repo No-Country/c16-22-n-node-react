@@ -4,60 +4,19 @@ import Perfil from "../../../../public/login/perfil.svg";
 import Serviya from "../../../../public/login/serviya.svg";
 import axios from "axios";
 import useStoreLogin from "../../../store/useStoreLogin";
+import {handleRegister } from "../../../hanldeloginAndRegister/HandleLogAndReg";
 
 const Register = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [info, setInfo] = useState();
-  const {setLogin} = useStoreLogin();
-  const { register, handleSubmit, reset } = useForm();
-
-  useEffect(() => {
-    if (info) {
-      setLoading(true);
-
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-        },
-      };
-
-      axios
-        .post(
-          "http://localhost:3001/api/v1/users",
-          {
-            name:info.name,
-            email: info.email,
-            password: info.password,
-          },
-          config
-        )
-        .then((response) => {
-          console.log(response, "success");
-          setLoading(true);
-          setOpenModal(false);
-          setLogin(true)
-        })
-        .catch((error) => console.log(error))
-        .finally(setLoading(false));
-    }
-  }, [info]);
-
-  // manejo de datos del formulario de capturan en el data
-  // hacer pruebas en el formulario
-  const onSubmit = async ({name, email, password, }) => {
-    console.log(name, email, password);
-    setInfo({name, email, password });
-    setLoading(true); // Set loading to true before making the API call
-    reset();
-  };
-
-  const handleModalClick = (e) => {
-    if (e.target.classList.contains("modal-container")) {
-      setOpenModal(false); //
-    }
-  };
-
+  const {
+    onSubmit,
+    handleSubmit,
+    register,
+    handleModalClick,
+    info,
+    loading,
+    openModal,
+    setOpenModal,
+  } = handleRegister();
   return (
     <>
       <button
@@ -100,12 +59,12 @@ const Register = () => {
                          <div className="font-bold flex flex-col gap-2 ">
                   <label
                     className=" shadow-lg border-[#7C7C7C] p-1
-      border-solid border-2 w-32 rounded-xl 
+      border-solid border-2 w-fit px-2 rounded-xl 
       text-[#7C7C7C] text-sm text-center 
      "
                     htmlFor="email"
                   >
-                    Nombre
+                   Ingresar Nombre
                   </label>
                   <input
                     {...register("name", {required:true})}
@@ -118,12 +77,12 @@ const Register = () => {
                 <div className="font-bold flex flex-col gap-2 ">
                   <label
                     className=" shadow-lg border-[#7C7C7C] p-1
-      border-solid border-2 w-32 rounded-xl 
+      border-solid border-2 w-fit px-2 rounded-xl 
       text-[#7C7C7C] text-sm text-center 
      "
                     htmlFor="email"
                   >
-                   Correo
+                   Ingresar Correo
                   </label>
                   <input
                     {...register("email", {required:true})}
@@ -137,12 +96,12 @@ const Register = () => {
                 <div className=" font-bold flex flex-col gap-2">
                   <label
                     className=" shadow-lg border-[#7C7C7C] p-1
-      border-solid border-2 w-32 rounded-xl 
+      border-solid border-2 w-fit px-2 rounded-xl 
       text-[#7C7C7C] text-sm text-center 
      "
                     htmlFor="password"
                   >
-                  Contraseña
+                  Ingresar Contraseña
                   </label>
                   <input
                     {...register("password", {required:true})}
@@ -156,9 +115,9 @@ const Register = () => {
                 </div>
                 <button
                   type="submit"
-                  className="font-bold shadow-lg cursor-pointer w-[130px] h-[45px] bg-[#055286]
-              rounded-2xl p-4 text-md  text-white flex justify-center items-center font-roboto 
-                hover:opacity-80 transition"
+                  className="font-bold shadow-lg cursor-pointer   bg-[#E8C900]
+                  rounded-2xl px-4 py-3 text-md  text-black flex justify-center items-center font-roboto 
+                    hover:opacity-80 transition"
                   disabled={loading}
                 >
                 Registrarse
