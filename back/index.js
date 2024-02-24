@@ -15,6 +15,8 @@ console.log(publicDir)
 console.log('-------vercel----------')
 console.log(publicDirVercel)
 console.log('./public')
+console.log('---------------__dirname-----------------')
+console.log(__dirname)
 // console.log(process.cwd())
 console.log('----------------')
 const dbConnect = require('./config/mongo');
@@ -34,13 +36,13 @@ app.use(express.json());
 // }))
 // app.use(express.static("storage"));
 console.log()
-app.use(express.static('./public'));
+app.use(express.static('public'));
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: './public' });
+  res.sendFile("index.html", { root: 'public' });
 });
 
 v1Router(app);
