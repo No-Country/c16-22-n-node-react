@@ -4,9 +4,10 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require("path");
 const { Server } = require("socket.io");
-// const fileUpload = require("express-fileupload");
+const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
-//esta variable no se usa en local, sólo lo utiliza vercel para encontrar la carpeta pública al parecer!!!
+//esta variable no se usa en local, 
+// sólo lo utiliza vercel para encontrar la carpeta pública al parecer!!!
 const publicDirVercel = path.resolve(__dirname, "public");
 
 const dbConnect = require('./config/mongo');
@@ -20,10 +21,10 @@ const PORT = process.env.PORT || 3001;
 app = express();
 
 app.use(express.json());
-// app.use(fileUpload({
-//   useTempFiles: true,
-//   tempFileDir: "./storage"
-// }))
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: "./public"
+}))
 // app.use(express.static("storage"));
 console.log()
 app.use(express.static('./back/public'));
