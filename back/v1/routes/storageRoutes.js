@@ -8,19 +8,19 @@ router.post('/', async (req, res) => {
         const file = req.files.file;
 
         console.log('-------------file.buffer--------------------');
-        console.log(file);
+        console.log(file.data);
 
-        const stream = await cloudinary.uploader.upload_stream(
-            {
-                folder: 'serviya',
-            },
-            (error, result) => {
-                if (error) return console.error(error);
-                res.status(200).json(result);
-            }
-        );
+        // const stream = await cloudinary.uploader.upload_stream(
+        //     {
+        //         folder: 'serviya',
+        //     },
+        //     (error, result) => {
+        //         if (error) return console.error(error);
+        //         res.status(200).json(result);
+        //     }
+        // );
 
-        streamifier.createReadStream(file.data).pipe(stream);
+        // streamifier.createReadStream(file.data).pipe(stream);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error al subir el archivo" });
