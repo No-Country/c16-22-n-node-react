@@ -10,7 +10,6 @@ const getAllMessages = asyncHandler(async (req, res) => {
       const messages = await Message.find({chat: chatId})
       .populate("sender", "name pic email")
       .populate("chat");
-      console.log("msg" + messages);
       res.status(200);
       res.json(messages)
     } catch(error) {

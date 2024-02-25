@@ -44,15 +44,48 @@ const server = app.listen(PORT, () => {
 //     console.log("Listening WebSocket server on 3002");;
 // });
 
-const io = require("socket.io")(server, {
+const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http:localhost:3001",
+    origin: "http://localhost:5176",
+    credentials: true
   },
 });
 
 io.on("connection", (socket) => {
   console.log("User connected to socket.io");
+
+  socket.on("setup", (userId) => {
+    socket.join(userId);
+    socket.emit("connected");
+  });
+
+  socket.on("join chat", (room) => {
+    socket.join(room);
+    console.log(`User joined room ${room} `)
+  });
+
+  socket.on("typing", (room) => socket.in(room).emit("typing"));
+  socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
+
+  socket.on("new message", (newMessageReceived) => {
+    let chat = newMessageReceived.chat;
+    console.log("message received")
+    if (!chat.users) return console.log("chat.users not defined");
+
+    // We will not send message to ourselves
+    chat.users.forEach(user => {
+      if(user._id == newMessageReceived.sender._id) return;
+
+      socket.in(user._id).emit("message received", newMessageReceived);
+    });
+
+  });
+
+  socket.off("setup", () => {
+    console.log("user has DISCONNECTED");
+    socket.leave(userId)
+  })
 });
 
 dbConnect();
