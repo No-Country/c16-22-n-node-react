@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import VideoList from '../videolist/VideoList'
-import axios from 'axios'
-import { useState } from 'react'
+// import axios from 'axios'
+// import { useState } from 'react'
 
 function Tutorials() {
-    const [videosData, setVideosData] = useState([]);
+    // const [videosData, setVideosData] = useState([]);
 
     // useEffect( () => {
     //     axios
@@ -22,11 +22,16 @@ function Tutorials() {
   
     
   return (
-    <div className="max-w-[1440px] w-full mx-auto gap-12  flex flex-col flex-wrap align-left justify-start my-20">
-      <h3 className="text-[32px]">Tutoriales</h3>
+    <>
+      {/*  className="max-w-[1440px] mx-auto w-full flex flex-wrap align-left justify-start my-20" */}
+      <div className='mx-auto w-[1440px]'>
+        <h3 className="text-[32px]">Tutoriales</h3>
         {/* {videosData.length > 0 ? <VideoList videosData={videosData}></VideoList> : null} */}
+        {/* <VideoList></VideoList> */}
+
         <VideoList></VideoList>
-    </div>
+      </div>
+    </>
   );
 }
 
