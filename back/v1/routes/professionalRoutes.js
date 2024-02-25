@@ -7,9 +7,11 @@ router.get("/", professionalController.getAllProfessionals);
 
 router.get("/:professionalId", professionalController.getOneProfessional);
 
-router.patch("/:professionalId", professionalController.updateOneProfessional);
+router.patch("/:professionalId",
+    professionalController.updateOneProfessional);
 
-router.post("/", professionalController.createNewProfessional);
+router.post("/",
+    professionalController.createNewProfessional);
 
 router.delete("/:professionalId", professionalController.deleteOneProfessional);
 

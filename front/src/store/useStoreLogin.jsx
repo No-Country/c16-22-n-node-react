@@ -3,7 +3,7 @@ import {create} from 'zustand';
 // Definir la tienda
 const useStoreLogin = create(set => ({
   
-  login: true,
+  login: false,
   setLogin: (newFlag) => set({ login: newFlag }),
 }));
 
