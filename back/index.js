@@ -22,10 +22,10 @@ app = express();
 
 app.use(express.json());
 app.use(fileUpload({
+  limits: { fileSize: 1 * 1024 * 1024 }, // Limit to 1MB
   // useTempFiles: true,
   // tempFileDir: "public"
 }))
-// app.use(express.static("storage"));
 console.log()
 app.use(express.static('./back/public'));
 app.use(cors());
