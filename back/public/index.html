@@ -297,14 +297,108 @@
                 </ul>
             </li>
         </ol>
-        <p></p>
-        <p>/api/v1/messages</p>
-        <p>/api/v1/chat</p>
-        <p>/api/v1/users</p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
+        < <!-- -----------------------------------NEWS----------------------------------------- -->
+            <h4>News</h4>
+            <ol>
+                <li>
+                    <ul>
+                        <li>Método: GET</li>
+                        <li>Resultado: Trae todos los recursos disponibles en la base de datos news.</li>
+                        <li>Ruta:
+                            <a href="/api/v1/news" target="_blank" rel="noopener noreferrer">
+                                /api/v1/news</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Método: GET</li>
+                        <li>Resultado: Trae un recurso de la base de datos news
+                            que coincide con el identificador
+                            de la news especificada
+                            en /:newsId</li>
+                        <li>Ruta:
+                            <a href="/api/v1/news/:newsId" target="_blank" rel="noopener noreferrer">
+                                /api/v1/news/:newsId</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Método: POST con headers: {
+                            'Content-Type': 'multipart/form-data',
+                            },</li>
+
+                        <li style="color: #ff3300;">(el modelo se irá cambiando de acuerdo a las necesidades.
+                            Se puede agregar una propiedad para guardar la ruta de una imagen representativa de la
+                            categoría.
+                            )</li>
+                        <li>Resultado: Crea un nuevo recurso en la base
+                            de datos categories </li>
+                        <li>Ruta:
+                            <a href="/api/v1/news" target="_blank" rel="noopener noreferrer">
+                                /api/v1/news</a>
+                        </li>
+                        <li> <span>
+                                Body:
+                            </span>
+                            <span>
+                                <code>
+                            <pre>
+{
+    "news": <span style="color: #ff9900;">[“Descuentos”,"%"](String)</span>,
+    "urlImage": <span style="color: #ff9900;">"Url de la imagen" (String)</span>,
+}
+    </pre>
+</code>
+                            </span>
+                            <span id="json"></span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Método: PATCH</li>
+                        <li>Resultado: Actualiza un recurso en la base de datos news
+                            que coincide con el identificador
+                            de la news especificada
+                            en /:newsId
+                        </li>
+                        <li>Body: igual formato que en POST,
+                            pero solo se deben enviar las propiedades
+                            que se desean modificar. Hay que tener cuidado
+                            de no enviar ninguna propiedad
+                            vacía, porque se reemplazará con ese contenido vacío.
+                        </li>
+                        <li>Ruta:
+                            <a href="/api/v1/news/:newsId" target="_blank" rel="noopener noreferrer">
+                                /api/v1/news/:newsId</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Método: DELETE</li>
+                        <li>Resultado: Borra un recurso en la base de datos news
+                            que coincide con el identificador
+                            de la news especificada
+                            en /:newsId
+                        </li>
+                        <li>Ruta:
+                            <a href="/api/v1/news/:newsId" target="_blank" rel="noopener noreferrer">
+                                /api/v1/news/:newsId</a>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <p></p>
+            <p>/api/v1/messages</p>
+            <p>/api/v1/chat</p>
+            <p>/api/v1/users</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
     </div>
 </body>
 

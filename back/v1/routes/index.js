@@ -4,6 +4,7 @@ const categoryRouter = require("./categoryRoutes");
 const professionalRouter = require("./professionalRoutes");
 const chatRouter = require("./chatRouter");
 const messagesRouter = require("./messagesRouter")
+const newsRouter = require("./newsRoutes")
 
 function routerApi(app) {
   const router = express.Router();
@@ -13,6 +14,7 @@ function routerApi(app) {
   router.use('/professional', professionalRouter);
   router.use('/category', categoryRouter);
   router.use('/messages', messagesRouter)
+  router.use('/news', newsRouter)
 
   router.route("/").get((req, res) => {
     // cambiar este html por un objeto JSON con toda la información
