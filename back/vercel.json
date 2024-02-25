@@ -12,9 +12,6 @@
         }
     ],
     "functions": {
-        "v1/test.js": {
-            "memory": 1024
-        },
         "v1/*.js": {
             "memory": 1024
         }
