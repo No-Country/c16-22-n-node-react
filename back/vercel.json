@@ -12,10 +12,10 @@
         }
     ],
     "functions": {
-        "api/test.js": {
+        "v1/test.js": {
             "memory": 1024
         },
-        "api/*.js": {
+        "v1/*.js": {
             "memory": 1024,
             "maxDuration": 30
         }
