@@ -10,13 +10,5 @@
             "src": "/(.*)",
             "dest": "/"
         }
-    ],
-    "functions": {
-        "v1/*.js": {
-            "memory": 1024
-        }
-    },
-    "regions": [
-        "iad1"
     ]
 }
