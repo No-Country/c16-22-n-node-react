@@ -17,7 +17,7 @@ const Home = () => {
     // });
 
   return (
-    <div className=''>
+    <div className='mx-auto'>
       <Header/>
       <Categories/>
       <Novedades />

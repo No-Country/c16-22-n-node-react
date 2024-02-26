@@ -1,36 +1,30 @@
-import { useEffect, useState } from 'react';
-import "./Novedades.css"
 
+import "./Novedades.css";
 
-const DATA= 'https://serviya-back.vercel.app/api/v1/news';
 const Novedades = () => {
 
-     const [novedades, setNovedades] = useState([]);
 
-    useEffect(() => {
-        fetch(DATA)
-        .then((response) => response.json())
-        .then((novedades) => setNovedades(novedades)
-        )
-        },[]);
+  return (
+    <div className="max-w-[1440px] gap-9 flex justify-center mx-auto ">
+      <div className="gap-9 flex flex-col">
+        <div className="w-[290px] h-[260px] object-cover overflow-hidden " id="novedadesItem1">
+        </div>
+        <div className="w-[290px] h-[130px] " id="novedadesItem2"></div>
+      </div>
+      <div className="flex flex-col gap-9">
+        <div className="flex gap-9">
+          <div className="w-[290px] h-[130px] " id="novedadesItem3"></div>
+          <div className="w-[290px] h-[130px] " id="novedadesItem4"></div>
+        </div>
 
-
-    return (
-        <>
-        <h2 className='titulo'>Novedades</h2>
-            <section className='contenedor'>
-                {novedades.map((novedad) => (
-                    <article key={novedad._id} className="novedades flex">
-                        <img src={novedad.urlImage} alt={novedad.news} className='imagen'/>
-                        <div className='contenedorTexto'>
-                        <h3 className='texto'>{novedad.news[0]}</h3>
-                        <span className='texto text-slate-50 '>{novedad.news[1]}</span>
-                        </div>
-                    </article>
-                ))}
-            </section>
-        </>
-  )
-}
+        <div className="flex gap-9">
+          <div className="w-[400px] h-[260px] " id="novedadesItem5"></div>
+          <div className="w-[180px] h-[260px] " id="novedadesItem6"></div>
+        </div>
+      </div>
+      <div className="w-[290px] h-[430] " id="novedadesItem7"></div>
+    </div>
+  );
+};
 
 export default Novedades;
