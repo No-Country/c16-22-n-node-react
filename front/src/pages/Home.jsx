@@ -4,6 +4,7 @@ import Footer from '../components/footer/Footer'
 import Categories from '../components/categories/Categories'
 import Tutorials from "../components/tutorials/Tutorials";
 import { useNavigate } from 'react-router-dom'
+import SearchBar from '../components/searchbar/SearchBar';
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
   return (
     <div className=''>
      <Header/>
+     <SearchBar/>
      <Categories/>
      <Tutorials/>
       <Footer/>

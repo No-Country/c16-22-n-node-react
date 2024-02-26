@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import VideoList from '../videolist/VideoList'
 import axios from 'axios'
-import { useState } from 'react'
+import Title from '../title/Title'
 
 function Tutorials() {
     const [videosData, setVideosData] = useState([]);
@@ -23,9 +23,9 @@ function Tutorials() {
     
   return (
     <div className="max-w-[1440px] w-full mx-auto gap-12  flex flex-col flex-wrap align-left justify-start my-20">
-      <h3 className="text-[32px]">Tutoriales</h3>
-        {/* {videosData.length > 0 ? <VideoList videosData={videosData}></VideoList> : null} */}
-        <VideoList></VideoList>
+      <Title className={"text-[32px] font-[500]"} text={"Tutoriales"} />
+      {/* {videosData.length > 0 ? <VideoList videosData={videosData}></VideoList> : null} */}
+      <VideoList></VideoList>
     </div>
   );
 }
