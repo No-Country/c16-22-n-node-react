@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const streamifier = require('streamifier');
+// const { put } = require('@vercel/blob');
 
 
 router.post('/', async (req, res) => {
@@ -8,7 +9,10 @@ router.post('/', async (req, res) => {
         const file = req.files.file;
 
         console.log('-------------file.buffer--------------------');
-        console.log(file.data);
+        console.log(file);
+        // const blob = await put("filename", request.body, {
+        //     access: 'public',
+        // });
 
         const stream = await cloudinary.uploader.upload_stream(
             {

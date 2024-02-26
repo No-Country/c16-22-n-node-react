@@ -6,6 +6,7 @@ const chatRouter = require("./chatRouter");
 const messagesRouter = require("./messagesRouter");
 const newsRouter = require("./newsRoutes");
 const storageRouter = require("./storageRoutes");
+const uploadRouter = require("./uploadRoutes");
 
 function routerApi(app) {
   const router = express.Router();
@@ -17,6 +18,7 @@ function routerApi(app) {
   router.use('/messages', messagesRouter);
   router.use('/news', newsRouter);
   router.use('/storage', storageRouter);
+  router.use('/upload', uploadRouter);
 }
 
 module.exports = routerApi;
