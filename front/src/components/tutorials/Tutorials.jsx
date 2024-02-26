@@ -3,7 +3,6 @@ import VideoList from '../videolist/VideoList'
 import axios from 'axios'
 import Title from '../title/Title'
 // import { useEffect } from 'react'
-import VideoList from '../videolist/VideoList'
 // import axios from 'axios'
 // import { useState } from 'react'
 
