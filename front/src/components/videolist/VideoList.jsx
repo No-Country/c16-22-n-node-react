@@ -13,7 +13,7 @@ function VideoList() {
 
   return (
     <>
-    <div className="max-w-[1440px] mx-auto">
+    <div className="max-w-[1440px] mx-auto px-[50px] mt-24">
    <span className="px-3 text-[#4E4E4E] font-medium text-3xl" >Tutoriales</span>
       <Swiper
         slidesPerView={3}

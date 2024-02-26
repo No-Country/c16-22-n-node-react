@@ -15,12 +15,12 @@ const Categories = () => {
   
 
   return (
-         <div className='max-w-[1440px] mx-auto my-20'>
-       <span className="px-3 text-[#4E4E4E] font-medium text-3xl " >Categorias</span>
-        <div className="max-w-[1440px] w-full mx-auto gap-2  flex flex-wrap justify-stretch mt-5   ">
+         <div className='max-w-[1440px] mx-auto m-20 '>
+       <span className="px-3 text-[#4E4E4E] ml-16 font-medium text-3xl " >Categorias</span>
+        <div className="max-w-[1440px] w-full mx-auto gap-3  flex flex-wrap justify-center mt-5 ">
          
         {categories.map((category) => (
-          <div key={category._id} className="card m-4 rounded-2xl border-solid w-[200px] border-2 py-5">
+          <div key={category._id} className="card m-4 rounded-2xl border-solid w-[180px] h-[140px] border-2 py-5">
             <Link to={`/categorias/${category.category.toLowerCase()}`}>
             <img src={category.urlImage} alt={category.category} className="colored-img h-20 m-auto"/>
             </Link>

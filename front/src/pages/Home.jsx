@@ -20,7 +20,7 @@ const Home = () => {
     // });
 
   return (
-    <div className=''>
+    <div className='scroll-smooth '>
      <Header/>
      <Categories/>
      <Novedades/>
