@@ -5,8 +5,13 @@
 .card{
     background-color: #FAFAFA;
     border-color: #055286;
+    transition: .3s
 }
 
+.card:hover{
+    transition: .3s;
+    background: #C5E3F7;
+}
 .color-text{
     color: #055286; 
     font-family: "Poppins", sans-serif;
