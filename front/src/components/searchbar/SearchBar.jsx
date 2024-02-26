@@ -4,29 +4,41 @@ import { handleLocalStorage } from '../../localStorage/LocalStorage';
 import axios from 'axios';
 
 function SearchBar() {
+  // Maneja lo que el usuario quiere buscar
   const [search, setSearch] = useState("");
-  const [searchResult, setSearchResult] = useState([])
+  // Maneja los profesionales que cumplen con los requisitos de busqueda
+  const [searchResult, setSearchResult] = useState([]);
+
+  // Obtenemos los datos del usuario que inicio sesion
+
   const { user } = handleLocalStorage();
+  // TO-DO: En caso de no haber iniciado session deberiamos, deberiamos mostrar un mensaje
 
   const handleSearch = async () => {
-    console.log(user.token)
-    console.log(search)
+    // Para obtener los resultados necesitamos enviar el token del usuario que esta actualmente loggeado
     const config = {
       headers: {
-        "Authorization" : `Bearer ${user.token}`
-      }
-    }
+        Authorization: `Bearer ${user.token}`,
+      },
+    };
 
-    const response = await axios.get(`https://serviya-back.vercel.app/api/v1/professional?search=${search}`,
-    config
-    )
+    // Al momento de hacer la request, enviamos cualquier valor que este almancenado en la barra de busqueda
+    const response = await axios.get(
+      `https://serviya-back.vercel.app/api/v1/professional?search=${search}`,
+      config
+    );
 
     const { data } = response;
     setSearchResult(data);
-    console.log(data);
-    // setLoading(false);
-  }
 
+    // TO-DO: Mientras estemos esperando la respuesta, se puede renderizar un estado de carga "Loading..."
+    // setLoading(false);
+  };
+
+  // Regresamos un contenedor principal, con el titulo y barra de busqueda dentro
+  // La barra de busqueda esta hecha de una input de texto y un boton que envia la request de busqueda al hacer click
+  
+  // TO-DO: La request de busqueda tambien deberia enviar cuando el usuario presiona "Enter"
   return (
     <div className="max-w-[1440px] w-full mx-auto flex flex-col items-center">
       <Title
