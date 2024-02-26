@@ -1,4 +1,4 @@
-const { Schema, model, set, mongoose } = require("mongoose");
+const { Schema, model, set } = require("mongoose");
 
 set('useUnifiedTopology', true, { timezone: 'UTC-3 (Argentina)' });
 
