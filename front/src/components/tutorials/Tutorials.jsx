@@ -23,14 +23,10 @@ function Tutorials() {
     
   return (
     <>
-      {/*  className="max-w-[1440px] mx-auto w-full flex flex-wrap align-left justify-start my-20" */}
-      <div className='mx-auto w-[1440px]'>
-        <h3 className="text-[32px]">Tutoriales</h3>
-        {/* {videosData.length > 0 ? <VideoList videosData={videosData}></VideoList> : null} */}
-        {/* <VideoList></VideoList> */}
-
-        <VideoList></VideoList>
-      </div>
+    
+    <span >Tutoriales</span>
+       
+     
     </>
   );
 }
