@@ -6,8 +6,9 @@ const path = require("path");
 const { Server } = require("socket.io");
 const fileUpload = require("express-fileupload");
 const { cloudinaryConfig } = require('./config/cloudinary');
-const publicDir = path.resolve(process.cwd(), "public");
-
+//esta variable no se usa en local, 
+// sólo lo utiliza vercel para encontrar la carpeta pública al parecer!!!
+const publicDirVercel = path.resolve(__dirname, "public");
 
 const dbConnect = require('./config/mongo');
 
@@ -21,17 +22,18 @@ app = express();
 
 app.use(express.json());
 app.use(fileUpload({
-  useTempFiles: true,
-  tempFileDir: "./storage"
+  // useTempFiles: true,
+  // tempFileDir: "public"
 }))
 // app.use(express.static("storage"));
-app.use(express.static(publicDir));
+console.log()
+app.use(express.static('./back/public'));
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: __dirname || process.env.VERCEL_PUBLIC_DIR });
+  res.sendFile("index.html", { root: './public' });
 });
 
 v1Router(app);
@@ -44,15 +46,48 @@ const server = app.listen(PORT, () => {
 //     console.log("Listening WebSocket server on 3002");;
 // });
 
-const io = require("socket.io")(server, {
+const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http:localhost:3001",
+    origin: "http://localhost:5176",
+    credentials: true
   },
 });
 
 io.on("connection", (socket) => {
   console.log("User connected to socket.io");
+
+  socket.on("setup", (userId) => {
+    socket.join(userId);
+    socket.emit("connected");
+  });
+
+  socket.on("join chat", (room) => {
+    socket.join(room);
+    console.log(`User joined room ${room} `)
+  });
+
+  socket.on("typing", (room) => socket.in(room).emit("typing"));
+  socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
+
+  socket.on("new message", (newMessageReceived) => {
+    let chat = newMessageReceived.chat;
+    console.log("message received")
+    if (!chat.users) return console.log("chat.users not defined");
+
+    // We will not send message to ourselves
+    chat.users.forEach(user => {
+      if(user._id == newMessageReceived.sender._id) return;
+
+      socket.in(user._id).emit("message received", newMessageReceived);
+    });
+
+  });
+
+  socket.off("setup", () => {
+    console.log("user has DISCONNECTED");
+    socket.leave(userId)
+  })
 });
 
 dbConnect();

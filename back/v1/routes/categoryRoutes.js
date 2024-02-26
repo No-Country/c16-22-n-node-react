@@ -7,9 +7,11 @@ router.get("/", categoryController.getAllCategories);
 
 router.get("/:categoryId", categoryController.getOneCategory);
 
-router.patch("/:categoryId", categoryController.updateOneCategory);
+router.patch("/:categoryId",
+    categoryController.updateOneCategory);
 
-router.post("/", categoryController.createNewCategory);
+router.post("/",
+    categoryController.createNewCategory);
 
 router.delete("/:categoryId", categoryController.deleteOneCategory);
 

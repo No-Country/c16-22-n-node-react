@@ -2,8 +2,11 @@
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
 import Categories from '../components/categories/Categories'
+import Tutorials from "../components/tutorials/Tutorials";
 import { useNavigate } from 'react-router-dom'
-import Novedades from '../components/novedades/Novedades'
+import VideoList from '../components/videolist/VideoList';
+import Novedades from '../components/novedades/Novedades';
+
 
 const Home = () => {
   // If the user is already login we should redirect them to the desired page
@@ -17,10 +20,11 @@ const Home = () => {
     // });
 
   return (
-    <div className='mx-auto'>
-      <Header/>
-      <Categories/>
-      <Novedades />
+    <div className=''>
+     <Header/>
+     <Categories/>
+     <Novedades/>
+     <VideoList/>
       <Footer/>
     </div>
   )

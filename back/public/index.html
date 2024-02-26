@@ -104,54 +104,59 @@
                             <code>
                             <pre>
 {
-    "name": <span style="color: #ff9900;">“Juan Pérez” (String)</span>,
-    "lastName": <span style="color: #ff9900;">“González” (String)</span>,
-    "company": <span style="color: #ff9900;">“MiEmpresa” (String)</span>,
-    "email": <span style="color: #ff9900;">“juan.perez@miempresa.com” (String, es un dato único e irrepetible)</span>,
-    "password": <span style="color: #ff9900;">“ContraseñaSegura” (String)</span>,
-    "category": <span style="color: #ff9900;">“Carpintero” (String)</span>,
-    "aptitudes": <span style="color: #ff9900;">“DNI 12345678” (String)</span>,
-    "description": <span style="color: #ff9900;">“Carpintero con más de 10 años de experiencia” (String)</span>,
+    "name": <span style="color: #0b9912fb;">“Juan Pérez” (String)</span>,
+    "lastName": <span style="color: #0b9912fb;">“González” (String)</span>,
+    "company": <span style="color: #0b9912fb;">“MiEmpresa” (String)</span>,
+    "email": <span style="color: #0b9912fb;">“juan.perez@miempresa.com” (String, es un dato único e irrepetible)</span>,
+    "password": <span style="color: #0b9912fb;">“ContraseñaSegura” (String)</span>,
+    "category": <span style="color: #0b9912fb;">“Carpintero” (String)</span>,
+    "aptitudes": <span style="color: #0b9912fb;">“DNI 12345678” (String)</span>,
+    "description": <span style="color: #0b9912fb;">“Carpintero con más de 10 años de experiencia” (String)</span>,
     "consultPrice": <span style="color: #3399ff;">500 (Number)</span>,
-    "timeAvailability": <span style="color: #ff9900;">“Lunes a viernes de 9 a 18” (String)</span>,
-    "geographicAvailability": <span style="color: #ff9900;">“CABA y zona norte” (String)</span>,
+    "timeAvailability": <span style="color: #0b9912fb;">“Lunes a viernes de 9 a 18” (String)</span>,
+    "geographicAvailability": <span style="color: #0b9912fb;">“CABA y zona norte” (String)</span>,
     "bookings": [
         {
         "date": <span style="color: #3399ff;">2024-02-15 (Date)</span>,
-        "place": <span style="color: #ff9900;">“Calle Falsa 123” (String)</span>
+        "place": <span style="color: #0b9912fb;">“Calle Falsa 123” (String)</span>
         },
         {
         "date": <span style="color: #3399ff;">2024-03-01 (Date)</span>,
-        "place": <span style="color: #ff9900;">“Avenida Siempreviva 456” (String)</span>
+        "place": <span style="color: #0b9912fb;">“Avenida Siempreviva 456” (String)</span>
         }
     ],
-    "gallery": [] <span style="color: #ff9900;">Este debe ir vacío porque las imágenes</span>,
-                <span style="color: #ff9900;">se envían en formato archivo adjunto a este form-data.</span>                 
-                <span style="color: #ff9900;">Mediante código se sube a cloudinary y se guarda aquí la url y el Id.</span>    
-    <!-- {
-        "imageId": <span style="color: #ff9900;">“12345” (String)</span>,
-        "imageUrl": <span style="color: #ff9900;">“https://ejemplo.com/imagen1.jpg” (String)</span>
-        },
-        {
-        "imageId": <span style="color: #ff9900;">“67890” (String)</span>,
-        "imageUrl": <span style="color: #ff9900;">“https://ejemplo.com/imagen2.jpg” (String)</span>
-        } -->
-    <!-- ], -->
+    "gallery": [] <span style="color: #0b9912fb;">Este debe ir vacío porque las imágenes</span>,
+                <span style="color: #0b9912fb;">se envían en formato archivo adjunto a este form-data.</span>                 
+                <span style="color: #0b9912fb;">Mediante código se sube a cloudinary y se guarda aquí la url y el Id.</span>
+                
+                <span></span>  
+                <span></span>   
+                <span style="color: #0b9912fb;">         El siguiente es el formato con el cual se guardan la imágenes:</span>  
+                        [{  
+                            "imageId": <span style="color: #0b9912fb;">“12345” (String)</span>,
+                            "imageUrl": <span style="color: #0b9912fb;">“https://ejemplo.com/imagen1.jpg” (String)</span>
+                            },
+                            {
+                            "imageId": <span style="color: #0b9912fb;">“67890” (String)</span>,
+                            "imageUrl": <span style="color: #0b9912fb;">“https://ejemplo.com/imagen2.jpg” (String)</span>
+                        }]
+                        <span></span>
+                        <span></span>  
     "comments": [
         {
-        "user": <span style="color: #ff9900;">“Maria Rodriguez” (String)</span>,
-        "rating": <span style="color: #ff9900;">“Número de 0 a 5” (Number)</span>,
-        "body": <span style="color: #ff9900;">“Excelente trabajo, muy profesional.” (String)</span>,
+        "user": <span style="color: #0b9912fb;">“Maria Rodriguez” (String)</span>,
+        "rating": <span style="color: #0b9912fb;">“Número de 0 a 5” (Number)</span>,
+        "body": <span style="color: #0b9912fb;">“Excelente trabajo, muy profesional.” (String)</span>,
         "date": <span style="color: #3399ff;">2024-02-16 (Date)</span>
         },
         {
-        "user": <span style="color: #ff9900;">“Pedro Martinez” (String)</span>,
-        "body": <span style="color: #ff9900;">“Muy recomendable, rápido y eficiente.” (String)</span>,
+        "user": <span style="color: #0b9912fb;">“Pedro Martinez” (String)</span>,
+        "body": <span style="color: #0b9912fb;">“Muy recomendable, rápido y eficiente.” (String)</span>,
         "date": <span style="color: #3399ff;">2024-02-20 (Date)</span>
         }
     ],
-    "contact": <span style="color: #ff9900;">“@juanperez” (String, es un dato único e irrepetible)</span>,
-    "payment": <span style="color: #ff9900;">"Efectivo o transferencia bancaria" (String)</span>,
+    "contact": <span style="color: #0b9912fb;">“@juanperez” (String, es un dato único e irrepetible)</span>,
+    "payment": <span style="color: #0b9912fb;">"Efectivo o transferencia bancaria" (String)</span>,
     "hidden": <span style="color: #9933ff;">false (Boolean)</span>
 }
     </pre>
@@ -248,9 +253,9 @@
                             <code>
                             <pre>
 {
-    "category": <span style="color: #ff9900;">“Electricidad” (String)</span>,
-    "urlImage": <span style="color: #ff9900;">"Url de la imagen" (String)</span>,
-    "detail": <span style="color: #ff9900;">“profesionales que trabajan con la 
+    "category": <span style="color: #0b9912fb;">“Electricidad” (String)</span>,
+    "urlImage": <span style="color: #0b9912fb;">"Url de la imagen" (String)</span>,
+    "detail": <span style="color: #0b9912fb;">“profesionales que trabajan con la 
         energía eléctrica en hogares, negocios e industrias, realizando reparaciones, instalaciones, 
         mantenimiento y proyectos eléctricos para garantizar su seguridad y 
         buen funcionamiento.” (String)</span>,
@@ -293,6 +298,100 @@
                     <li>Ruta:
                         <a href="/api/v1/category/:categoryId" target="_blank" rel="noopener noreferrer">
                             /api/v1/category/:categoryId</a>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <!-- -----------------------------------NEWS----------------------------------------- -->
+        <h4>News</h4>
+        <ol>
+            <li>
+                <ul>
+                    <li>Método: GET</li>
+                    <li>Resultado: Trae todos los recursos disponibles en la base de datos news.</li>
+                    <li>Ruta:
+                        <a href="/api/v1/news" target="_blank" rel="noopener noreferrer">
+                            /api/v1/news</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>Método: GET</li>
+                    <li>Resultado: Trae un recurso de la base de datos news
+                        que coincide con el identificador
+                        de la news especificada
+                        en /:newsId</li>
+                    <li>Ruta:
+                        <a href="/api/v1/news/:newsId" target="_blank" rel="noopener noreferrer">
+                            /api/v1/news/:newsId</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>Método: POST con headers: {
+                        'Content-Type': 'multipart/form-data',
+                        },</li>
+
+                    <li style="color: #ff3300;">(el modelo se irá cambiando de acuerdo a las necesidades.
+                        Se puede agregar una propiedad para guardar la ruta de una imagen representativa de la
+                        categoría.
+                        )</li>
+                    <li>Resultado: Crea un nuevo recurso en la base
+                        de datos categories </li>
+                    <li>Ruta:
+                        <a href="/api/v1/news" target="_blank" rel="noopener noreferrer">
+                            /api/v1/news</a>
+                    </li>
+                    <li> <span>
+                            Body:
+                        </span>
+                        <span>
+                            <code>
+                            <pre>
+{
+    "news": <span style="color: #0b9912fb;">[“Descuentos”,"%"](String)</span>,
+    "urlImage": <span style="color: #0b9912fb;">"Url de la imagen" (String)</span>,
+}
+    </pre>
+</code>
+                        </span>
+                        <span id="json"></span>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>Método: PATCH</li>
+                    <li>Resultado: Actualiza un recurso en la base de datos news
+                        que coincide con el identificador
+                        de la news especificada
+                        en /:newsId
+                    </li>
+                    <li>Body: igual formato que en POST,
+                        pero solo se deben enviar las propiedades
+                        que se desean modificar. Hay que tener cuidado
+                        de no enviar ninguna propiedad
+                        vacía, porque se reemplazará con ese contenido vacío.
+                    </li>
+                    <li>Ruta:
+                        <a href="/api/v1/news/:newsId" target="_blank" rel="noopener noreferrer">
+                            /api/v1/news/:newsId</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>Método: DELETE</li>
+                    <li>Resultado: Borra un recurso en la base de datos news
+                        que coincide con el identificador
+                        de la news especificada
+                        en /:newsId
+                    </li>
+                    <li>Ruta:
+                        <a href="/api/v1/news/:newsId" target="_blank" rel="noopener noreferrer">
+                            /api/v1/news/:newsId</a>
                     </li>
                 </ul>
             </li>

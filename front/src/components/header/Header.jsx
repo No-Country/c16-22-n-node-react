@@ -1,10 +1,10 @@
 import React from "react";
 import "./header.css";
 import Nav from "../nabvar/Navbar";
-import Serviya from "../../../public/header/icon.svg";
-import AppStore from "../../../public/header/descarga1.svg";
-import GooglePlay from "../../../public/header/descarga2.svg";
-import Human from "../../../public/header/header-human.svg";
+import Serviya from "/header/icon.svg";
+import AppStore from "/header/descarga1.svg";
+import GooglePlay from "/header/descarga2.svg";
+import Human from "/header/header-human.svg";
 const Header = () => {
   return (
     <>
