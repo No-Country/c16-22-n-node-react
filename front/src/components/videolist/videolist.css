@@ -1,0 +1,28 @@
+  .swiper-slide {
+    font-size: 18px;
+    background: #fff;
+     border-radius: 15px;
+     overflow: hidden;
+     width: 475px;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+  .swiper {
+    max-width: 1440px;
+    padding: 15px;
+    border-radius: 15px;
+    height: 300px;
+    margin: 20px auto;
+  }
+
+  
+.swiper-button-next{
+    color: #055286;
+}
+.swiper-button-prev{
+    color: #055286;
+}

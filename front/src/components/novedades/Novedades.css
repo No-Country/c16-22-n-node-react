@@ -1,0 +1,181 @@
+
+#novedadesItem1 {
+  display: flex;
+
+  cursor: pointer;
+  border-radius: 15px;
+  background: url("../../../public/novedades/descuentos.svg");
+  transition: background 0.3s; 
+}
+
+#novedadesItem1::after {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-image: linear-gradient(
+    0deg,
+    rgba(110, 100, 100, 0.429) 0%,
+    rgba(253, 187, 45, 0) 100%
+  );
+  border-radius: 15px;
+  transition:
+    opacity 0.3s,
+    background-image 0.3s; 
+  opacity: 1;
+}
+
+#novedadesItem1:hover::after {
+  opacity: 0;
+}
+
+#novedadesItem2 {
+  display: flex;
+  cursor: pointer;
+  border-radius: 15px;
+  background: url("../../../public/novedades/multirubros.svg");
+}
+#novedadesItem2::after {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-image: linear-gradient(
+    0deg,
+    rgba(110, 100, 100, 0.429) 0%,
+    rgba(253, 187, 45, 0) 100%
+  );
+  border-radius: 15px;
+  transition:
+    opacity 0.3s,
+    background-image 0.3s; 
+  opacity: 1;
+}
+
+#novedadesItem2:hover::after {
+  opacity: 0;
+}
+
+
+#novedadesItem3 {
+    display: flex;
+  cursor: pointer;
+  border-radius: 15px;
+  background: url("../../../public/novedades/nuevos.svg");
+}
+
+#novedadesItem3::after {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-image: linear-gradient(0deg, rgba(110, 100, 100, 0.429) 0%, rgba(253, 187, 45, 0) 100%);
+    border-radius: 15px;
+    transition: opacity 0.3s, background-image 0.3s; 
+    opacity: 1;
+}
+
+#novedadesItem3:hover::after {
+    opacity: 0;
+}
+
+#novedadesItem4 {
+    display: flex;
+  cursor: pointer;
+  border-radius: 15px;
+  background: url("../../../public/novedades/mejorvalorados.svg");
+}
+#novedadesItem4::after {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-image: linear-gradient(0deg, rgba(110, 100, 100, 0.429) 0%, rgba(253, 187, 45, 0) 100%);
+    border-radius: 15px;
+    transition: opacity 0.3s, background-image 0.3s; 
+    opacity: 1;
+}
+
+#novedadesItem4:hover::after {
+    opacity: 0;
+}
+
+#novedadesItem5 {
+    display: flex;
+  cursor: pointer;
+  border-radius: 15px;
+  background: url("../../../public/novedades/empresas.svg");
+}
+
+#novedadesItem5::after {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-image: linear-gradient(0deg, rgba(110, 100, 100, 0.429) 0%, rgba(253, 187, 45, 0) 100%);
+    border-radius: 15px;
+    transition: opacity 0.3s, background-image 0.3s; 
+}
+
+#novedadesItem5:hover::after {
+    opacity: 0;
+}
+
+#novedadesItem6 {
+    display: flex;
+  cursor: pointer;
+  border-radius: 15px;
+  background: url("../../../public/novedades/24horas.svg");
+}
+
+#novedadesItem6::after {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-image: linear-gradient(0deg, rgba(110, 100, 100, 0.429) 0%, rgba(253, 187, 45, 0) 100%);
+    border-radius: 15px;
+    transition: opacity 0.3s, background-image 0.3s;
+    opacity: 1;
+}
+
+#novedadesItem6:hover::after {
+    opacity: 0;
+}
+
+#novedadesItem7 {
+    display: flex;
+  cursor: pointer;
+  border-radius: 15px;
+  background: url("../../../public/novedades/mujeres.svg");
+}
+
+#novedadesItem7::after {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-image: linear-gradient(0deg, rgba(110, 100, 100, 0.429) 0%, rgba(253, 187, 45, 0) 100%);
+    border-radius: 15px;
+    transition: opacity 0.3s, background-image 0.3s; 
+    opacity: 1;
+}
+
+#novedadesItem7:hover::after {
+    opacity: 0;
+}
+

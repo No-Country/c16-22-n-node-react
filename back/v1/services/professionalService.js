@@ -4,8 +4,11 @@ const fs = require('fs-extra');
 
 
 const getAllProfessionals = async () => {
-  const data = await professionalModel.find({});
-  return data;
+  try {
+    const data = await professionalModel.find({});
+    return data;
+  } catch (err) { return err.message }
+
 };
 
 const getOneProfessional = async (id) => {
@@ -67,10 +70,6 @@ const createNewProfessional = async (body, files) => {
       // console.log('------------------------------files----------------------------------')
       // console.log(files);
       data = await updateOneProfessional(data._id, {}, files);
-    }
-    data = {
-      message: files,
-      data: data
     }
     return data;
   } catch (err) {
