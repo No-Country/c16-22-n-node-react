@@ -1,8 +1,8 @@
 import React from "react";
-import Serviya from "../../../public/footer/serviya.svg";
-import Youtube from "../../../public/footer/youtube.svg";
-import Facebook from "../../../public/footer/facebook.svg";
-import Instagram from "../../../public/footer/instagram.svg";
+import Serviya from "/footer/serviya.svg";
+import Youtube from "/footer/youtube.svg";
+import Facebook from "/footer/facebook.svg";
+import Instagram from "/footer/instagram.svg";
 
 const Footer = () => {
   return (
