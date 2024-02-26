@@ -3,7 +3,6 @@ import Home from "../pages/Home";
 
 
 
-
 export const router = createBrowserRouter ([
      //  ubicar rutas aqui ejemplo:
 
