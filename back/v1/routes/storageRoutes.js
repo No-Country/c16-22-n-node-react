@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
 
         const stream = await cloudinary.uploader.upload_stream(
             {
-                folder: 'serviya',
+                folder: `serviya/${body.folder}`,
             },
             (error, result) => {
                 if (error) return console.error(error);
