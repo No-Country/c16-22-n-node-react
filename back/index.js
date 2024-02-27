@@ -28,7 +28,13 @@ app.use(fileUpload({
 // app.use(express.static("storage"));
 console.log()
 app.use(express.static('./back/public'));
-app.use(cors());
+
+var corsOptions = {
+  origin: ["https://serviya-front.vercel.app", "http://localhost:5173"],
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(morgan('dev'));
 
