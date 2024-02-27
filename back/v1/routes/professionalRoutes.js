@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const professionalController = require("../controllers/professionalController");
 
-router.get("/", professionalController.getAllProfessionals);
+router.get("/", protect, professionalController.getAllProfessionals);
 
 router.get("/:professionalId", professionalController.getOneProfessional);
 
