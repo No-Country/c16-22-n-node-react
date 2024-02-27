@@ -40,7 +40,7 @@ function SearchBar() {
   
   // TO-DO: La request de busqueda tambien deberia enviar cuando el usuario presiona "Enter"
   return (
-    <div className="max-w-[1440px] w-full mx-auto flex flex-col items-center">
+    <div className="max-w-[1440px] w-full mx-auto flex flex-col items-center mt-20 ">
       <Title
         className={"text-[32px] font-[500] mb-[24px] mx-[225px]"}
         text={"Buscá un profesional"}

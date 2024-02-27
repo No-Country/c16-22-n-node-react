@@ -6,7 +6,7 @@ Title.propTypes = {
 };
 
 function Title({ text, className }) {
-  return <h3  className={className}>{text}</h3>;
+  return <h3 className={className} >{text}</h3>;
 }
 
 export default Title;
