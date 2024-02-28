@@ -1,6 +1,7 @@
 const { professionalModel } = require('../../database/models');
+const { storageModel } = require('../../database/models');
 const { uploadImage, deleteImage } = require('../../utils/cloudinary')
-const fs = require('fs-extra');
+// const fs = require('fs-extra');
 
 
 const getAllProfessionals = async () => {
@@ -23,64 +24,84 @@ const getOneProfessional = async (id) => {
 
 
 
-const createNewProfessional = async (body, files) => {
-  try {
-    const {
-      name,
-      lastName,
-      company,
-      email,
-      password,
-      category,
-      validations,
-      description,
-      pricePerHour,
-      timeAvailability,
-      geographicAvailability,
-      bookings,
-      gallery,
-      comments,
-      contact,
-      payment,
-      hidden
-    } = body;
+const createNewProfessional = async (
+  body,
+  files
+) => {
 
-    const newProfessional = {
-      name,
-      lastName,
-      company,
-      email,
-      password,
-      category,
-      validations,
-      description,
-      pricePerHour,
-      timeAvailability,
-      geographicAvailability,
-      bookings: JSON.parse(bookings),
-      gallery: JSON.parse(gallery),
-      comments: JSON.parse(comments),
-      contact,
-      payment,
-      hidden
-    };
-    let data = await professionalModel.create(newProfessional);
-    if (!!files) {
-      // si hay imágenes se actualiza gallery del profesional 
-      console.log('------------------------------files----------------------------------')
-      console.log(files);
-      data = await updateOneProfessional(data._id, {}, files);
+  const {
+    name,
+    lastName,
+    DNIPasaporte,
+    telefono,
+    email,
+    password,
+    category,
+    license,
+    gender,
+    workZone,
+    aptitudes,
+    timeAvailability,
+    description,
+    consultPrice,
+    bookings,
+    gallery,
+    comments,
+    contact,
+    payment,
+    hidden
+  } = body;
+
+  const newProfessional = {
+    name,
+    lastName,
+    DNIPasaporte,
+    telefono,
+    email,
+    password,
+    category,
+    license,
+    gender,
+    workZone,
+    aptitudes: JSON.parse(aptitudes),
+    timeAvailability,
+    description,
+    consultPrice,
+    bookings: JSON.parse(bookings),
+    gallery: JSON.parse(gallery),
+    comments: JSON.parse(comments),
+    contact,
+    payment,
+    hidden
+
+  };
+
+
+  try {
+    // traigo datos de las imágenes de storage 
+    const dataImage = await storageModel.find({});
+    console.log(dataImage);
+    if (!!dataImage) {
+      // si hay imágenes en storage, las guardo en gallery
+      dataImage.map((d) => {
+        newProfessional.gallery.push({
+          imageId: d.imageId,
+          imageUrl: d.imageUrl
+        });
+      })
+      // borro todo el storage
+      const data = await storageModel.find({});
+      data.map(async (d) => {
+        await storageModel.findOneAndDelete({ _id: d._id });
+      });
     }
+    // creo el profesional
+    let data = await professionalModel.create(newProfessional);
+
     return data;
   } catch (err) {
     console.error(err);
-    //si no hay profesional se termina el proceso
-    if (!!files) {
-      for (prop in files) {
-        // borra las imágenes en carpeta local /storage de este servidor
-        fs.unlink(files[prop].tempFilePath);
-      }
-    }
+
     return ('Error creating professionals: ' + err.message);
   };
 };
