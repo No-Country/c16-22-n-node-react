@@ -1,4 +1,4 @@
-const { Schema, model, set, mongoose } = require("mongoose");
+const { Schema, model, set } = require("mongoose");
 
 set('useUnifiedTopology', true, { timezone: 'UTC-3 (Argentina)' });
 
@@ -6,18 +6,24 @@ const professionalSchema = new Schema(
     {
         name: String,
         lastName: String,
-        company: String,
+        DNIPasaporte: String,
+        telefono: String,
         email: {
             type: String,
             unique: true,
         },
         password: String,
         category: String,
-        aptitudes: String,
+        license: String,
+        gender: {
+            type: ["masculino", "femenino"],
+            default: "masculino"
+        },
+        workZone: String,
+        aptitudes: [String],
+        timeAvailability: String,
         description: String,
         consultPrice: Number,
-        timeAvailability: String,
-        geographicAvailability: String,
         bookings: [{
             date: Date,
             place: String,

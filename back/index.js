@@ -22,10 +22,10 @@ app = express();
 
 app.use(express.json());
 app.use(fileUpload({
+  // limits: { fileSize: 1 * 1024 * 1024 }, // Limit to 1MB
   // useTempFiles: true,
   // tempFileDir: "public"
 }))
-// app.use(express.static("storage"));
 console.log()
 app.use(express.static('./back/public'));
 
@@ -91,7 +91,7 @@ io.on("connection", (socket) => {
 
     // We will not send message to ourselves
     chat.users.forEach(user => {
-      if(user._id == newMessageReceived.sender._id) return;
+      if (user._id == newMessageReceived.sender._id) return;
 
       socket.in(user._id).emit("message received", newMessageReceived);
     });

@@ -5,6 +5,7 @@ const models = {
     messageModel: require('./message'),
     chatModel: require('./chat'),
     newsModel: require('./news'),
+    storageModel: require('./storage'),
 }
 
 module.exports = models;
