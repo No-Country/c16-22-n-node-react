@@ -1,5 +1,8 @@
-// import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import VideoList from '../videolist/VideoList'
+import axios from 'axios'
+import Title from '../title/Title'
+// import { useEffect } from 'react'
 // import axios from 'axios'
 // import { useState } from 'react'
 
@@ -22,12 +25,11 @@ function Tutorials() {
   
     
   return (
-    <>
-    
-    <span >Tutoriales</span>
-       
-     
-    </>
+    <div className="max-w-[1440px] w-full mx-auto gap-12  flex flex-col flex-wrap align-left justify-start my-20">
+      <Title className={"text-[32px] font-[500]"} text={"Tutoriales"} />
+      {/* {videosData.length > 0 ? <VideoList videosData={videosData}></VideoList> : null} */}
+      <VideoList></VideoList>
+    </div>
   );
 }
 
