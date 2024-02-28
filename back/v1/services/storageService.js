@@ -51,7 +51,7 @@ const createNewStorage = async (body, files) => {
 
 const deleteOneStorage = async (id) => {
     try {
-        // traigo un sotrage para saber el id de la imagen en cloudinary
+        // traigo un storage para saber el id de la imagen en cloudinary
         const data = await storageModel.find({ _id: id });
         // se borra la imagen de cloudinary
         const deleteImageData = await deleteImage(data[0].imageId);

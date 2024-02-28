@@ -5,49 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentación de la API</title>
-    <script>
-        const professional = {
-            name: "String",
-            lastName: "String",
-            company: "String",
-            email: {
-                type: "String",
-                unique: "true",
-            },
-            password: "String",
-            category: "String",
-            validations: "String",
-            description: "String",
-            pricePerHour: "String",
-            timeAvailability: "String",
-            geographicAvailability: "String",
-            bookings: [{
-                date: Date,
-                place: "String",
-            }],
-            gallery: [{
-                imageId: "String",
-                imageUrl: "String",
-            }],
-            comments: [{
-                user: "String",
-                body: "String",
-                date: Date
-            }],
-            contact: {
-                type: "String",
-                unique: "true",
-            },
-            payment: "String",
-            hidden: "Boolean"
-        }
 
-        const jsonStrProfessional = JSON.stringify(professional);
-        console.log(jsonStrProfessional);
-
-        document.getElementById("json").innerHTML = jsonStrProfessional;
-
-    </script>
 </head>
 
 <body style="margin: 50px;">
@@ -106,15 +64,21 @@
 {
     "name": <span style="color: #0b9912fb;">“Juan Pérez” (String)</span>,
     "lastName": <span style="color: #0b9912fb;">“González” (String)</span>,
-    "company": <span style="color: #0b9912fb;">“MiEmpresa” (String)</span>,
+    "DNIPasaporte": <span style="color: #0b9912fb;">“23.458.961” (String)</span>,
+    "telefono": <span style="color: #0b9912fb;">“23.458.961” (String)</span>,
     "email": <span style="color: #0b9912fb;">“juan.perez@miempresa.com” (String, es un dato único e irrepetible)</span>,
     "password": <span style="color: #0b9912fb;">“ContraseñaSegura” (String)</span>,
     "category": <span style="color: #0b9912fb;">“Carpintero” (String)</span>,
+    "license": <span style="color: #0b9912fb;">345.4546 (String)</span>,
+    "gender": {
+              type:[<span style="color: #0b9912fb;">"masculino", "femenino"</span>],
+              default:<span style="color: #0b9912fb;">"masculino"</span>,
+              }
+    "workZone": <span style="color: #0b9912fb;">"Centro" (String)</span>,
     "aptitudes": <span style="color: #0b9912fb;">“DNI 12345678” (String)</span>,
+    "timeAvailability": <span style="color: #0b9912fb;">“Lunes a viernes de 9 a 18” (String)</span>,
     "description": <span style="color: #0b9912fb;">“Carpintero con más de 10 años de experiencia” (String)</span>,
     "consultPrice": <span style="color: #3399ff;">500 (Number)</span>,
-    "timeAvailability": <span style="color: #0b9912fb;">“Lunes a viernes de 9 a 18” (String)</span>,
-    "geographicAvailability": <span style="color: #0b9912fb;">“CABA y zona norte” (String)</span>,
     "bookings": [
         {
         "date": <span style="color: #3399ff;">2024-02-15 (Date)</span>,
@@ -333,13 +297,8 @@
                     <li>Método: POST con headers: {
                         'Content-Type': 'multipart/form-data',
                         },</li>
-
-                    <li style="color: #ff3300;">(el modelo se irá cambiando de acuerdo a las necesidades.
-                        Se puede agregar una propiedad para guardar la ruta de una imagen representativa de la
-                        categoría.
-                        )</li>
                     <li>Resultado: Crea un nuevo recurso en la base
-                        de datos categories </li>
+                        de datos news </li>
                     <li>Ruta:
                         <a href="/api/v1/news" target="_blank" rel="noopener noreferrer">
                             /api/v1/news</a>
@@ -392,6 +351,78 @@
                     <li>Ruta:
                         <a href="/api/v1/news/:newsId" target="_blank" rel="noopener noreferrer">
                             /api/v1/news/:newsId</a>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <p></p>
+        <!-- -----------------------------------STORAGE----------------------------------------- -->
+        <h4>Storage </h4>
+        <div style="color: #ff3300;">>>>>IMPORTANTE: Base de datos temporaria para cargar imágenes que luego son
+            guardadas en gallery de Professionals</div>
+        <ol>
+            <li>
+                <ul>
+                    <li>Método: GET</li>
+                    <li>Resultado: Trae todos los recursos disponibles en la base de datos storage.</li>
+                    <li>Ruta:
+                        <a href="/api/v1/storage" target="_blank" rel="noopener noreferrer">
+                            /api/v1/storage</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>Método: GET</li>
+                    <li>Resultado: Trae un recurso de la base de datos storage
+                        que coincide con el identificador
+                        de la storage especificada
+                        en /:storageId</li>
+                    <li>Ruta:
+                        <a href="/api/v1/storage/:storageId" target="_blank" rel="noopener noreferrer">
+                            /api/v1/storage/:storageId</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>Método: POST con headers: {
+                        'Content-Type': 'multipart/form-data',
+                        },</li>
+                    <li>Resultado: Crea un nuevo recurso en la base
+                        de datos storage y guarda la imagen en cloudinary</li>
+                    <li>Ruta:
+                        <a href="/api/v1/storage" target="_blank" rel="noopener noreferrer">
+                            /api/v1/storage</a>
+                    </li>
+                    <li> <span>
+                            Body:
+                        </span>
+                        <span>
+                            <code>
+                                    <pre>
+        {
+            "imageId": <span style="color: #0b9912fb;">"Id que identifica la imagen con cloudinary"(String)</span>,
+            "imageUrl": <span style="color: #0b9912fb;">"Url de la imagen de cloudinary" (String)</span>,
+        }
+            </pre>
+        </code>
+                        </span>
+                        <span id="json"></span>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>Método: DELETE</li>
+                    <li>Resultado: Borra la imagen guardada en cloudinary y un recurso en la base de datos storage
+                        que coincide con el identificador
+                        de la storage especificada
+                        en /:storageI
+                    </li>
+                    <li>Ruta:
+                        <a href="/api/v1/storage/:storageId" target="_blank" rel="noopener noreferrer">
+                            /api/v1/storage/:storageId</a>
                     </li>
                 </ul>
             </li>

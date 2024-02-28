@@ -1,5 +1,3 @@
-
-
 const uploadImage = async (filePath) => {
     return await cloudinary.uploader.upload(filePath, {
         folder: 'serviYA'
@@ -25,8 +23,5 @@ const stream = async (folder, data) => {
     streamifier.createReadStream(data).pipe(stream);
     return stream.pipes;
 }
-
-
-
 
 module.exports = { uploadImage, deleteImage, stream };
