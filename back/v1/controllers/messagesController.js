@@ -3,7 +3,7 @@ const Message = require("../../database/models/message");
 const User = require("../../database/models/user");
 const Chat = require("../../database/models/chat");
 
-const getAllMessages = asyncHandler(async (req, res) => {
+const getAllMessages = async (req, res) => {
     const chatId = req.params.chatId
     try {
       const messages = await Message.find({chat: chatId})
@@ -15,7 +15,7 @@ const getAllMessages = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error(error.message)
     }
-});
+};
 
 const createNewMessage = async (req, res) => {
   const { content, chatId } = req.body;
