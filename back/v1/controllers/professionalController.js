@@ -7,7 +7,7 @@ const getAllProfessionals = async (req, res) => {
   res.send(allProfessionals);
 };
 
-// const getAllProfessionals = asyncHandler(async (req, res) => {
+// const getAllProfessionals = async (req, res) => {
 //   // const allUsers = usersService.getAllUsers();
 //   // res.send({status: "OK", data: {}});
 //   const keyword = req.query.search
@@ -22,7 +22,7 @@ const getAllProfessionals = async (req, res) => {
 //   const professionals = await Professional.find(keyword).find({ _id: { $ne: req.user._id } });
 //   // console.log(users)
 //   res.status(200).send(professionals);
-// });
+// };
 
 const getOneProfessional = async (req, res) => {
   const id = req.params.professionalId;

@@ -1,11 +1,9 @@
 const Chat = require("../../database/models/chat");
 const User = require("../../database/models/user");
 const chatService = require("../services/chatService");
-const asyncHandler = require("express-async-handler");
-
 
 // fetch all chats for an user
-const getAllChats = asyncHandler(async (req, res) => {
+const getAllChats = async (req, res) => {
   try {
     Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
       .populate("users", "-password")
@@ -22,7 +20,7 @@ const getAllChats = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error(error.message);
   }
-});
+};
 
 const getOneChat = (req, res) => {
   const Chat = chatService.getOneChat();
@@ -30,7 +28,7 @@ const getOneChat = (req, res) => {
 };
 
 // CREATE AND ACCESS A CHAT
-const createNewChat = asyncHandler(async (req, res) => {
+const createNewChat = async (req, res) => {
   // const createdChat = chatService.createNewChat();
   // res.send("Create a new Chat");
   const { userId } = req.body;
@@ -77,7 +75,7 @@ const createNewChat = asyncHandler(async (req, res) => {
       throw new Error(error.message);
     }
   }
-});
+};
 
 const updateOneChat = (req, res) => {
   const updatedChat = chatService.updateOneChat();

@@ -1,11 +1,10 @@
-const asyncHandler = require("express-async-handler");
 const usersService = require("../services/usersService");
 const User = require("../../database/models").userModel;
 const generateToken = require('../../config/generateToken');
 const { json } = require("body-parser");
 const { stringify } = require("querystring");
 
-const getAllUsers = asyncHandler (async (req, res) => {
+const getAllUsers = async (req, res) => {
   // const allUsers = usersService.getAllUsers();
   // res.send({status: "OK", data: {}});
   const keyword = req.query.search
@@ -20,14 +19,14 @@ const getAllUsers = asyncHandler (async (req, res) => {
   const users = await User.find(keyword).find({ _id: { $ne: req.user._id }});
   // console.log(users)
   res.status(200).send(users);
-});
+};
 
 const getOneUser = (req, res) => {
   const user = usersService.getOneUser();
   res.send("Get an existing User");
 };
 
-const createNewUser = asyncHandler( async(req, res) => {
+const createNewUser = async(req, res) => {
   const { name, email, password, pic } = req.body;
 
   if (!name || !email || !password) {
@@ -55,7 +54,7 @@ const createNewUser = asyncHandler( async(req, res) => {
   }
 
   res.status(201).send({ status: "OK", data: createdUser });
-});
+};
 
 const updateOneUser = (req, res) => {
   const updatedUser = usersService.updateOneUser();
@@ -67,7 +66,7 @@ const deleteOneUser = (req, res) => {
   res.send("Delete an existing User");
 };
 
-const authenticateUser = asyncHandler(async (req, res) => {
+const authenticateUser = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne( { email } );
@@ -81,7 +80,7 @@ const authenticateUser = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Invalid Email or Password")
   }
-});
+};
 
 module.exports = {
   getAllUsers,
