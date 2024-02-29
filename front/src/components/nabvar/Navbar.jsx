@@ -6,16 +6,14 @@ import Register from "../auth/register/Register";
 import Logout from "../auth/logout/Logout";
 
 const Nav = () => {
-
-
-  
   const navigate = useNavigate();
   const { login } = useStoreLogin();
 
+  console.log(login);
 
   return (
     <nav
-      className="max-w-[1440px] h-[120px] w-full bg-white
+      className="max-w-[1440px] h-[10%] w-full bg-white
     flex items-center justify-between px-9
     font-roboto mx-auto
     "
