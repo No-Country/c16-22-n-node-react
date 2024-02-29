@@ -6,6 +6,7 @@ router.get("/",
     //  protect,
     professionalController.getAllProfessionals);
 
+    
 router.get("/:professionalId", professionalController.getOneProfessional);
 
 router.patch("/:professionalId",
