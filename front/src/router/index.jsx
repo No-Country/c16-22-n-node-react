@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
-import Chat from '../pages/Chat'
+import Chat from '../pages/Chat';
+import NotFound from '../pages/NotFound';
 
 
 export const router = createBrowserRouter ([
@@ -13,6 +14,10 @@ export const router = createBrowserRouter ([
       {
         path: "/chat",
         element: <Chat/>
+      },
+      {
+        path: "*",
+        element: <NotFound/>
       }
 
     // {

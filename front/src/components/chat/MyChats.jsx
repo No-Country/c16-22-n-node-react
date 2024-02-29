@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { handleLocalStorage } from "../../localStorage/LocalStorage";
+import ProfilePic from "./ProfilePic";
 import axios from 'axios';
 
 function MyChats() {
   const { user } = handleLocalStorage();
   const [search, setSearch] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchChats, setSearchChats] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [myChats, setMyChats] = useState([]);
 
   const chats = [
     {
@@ -27,6 +29,29 @@ function MyChats() {
     },
   ];
 
+  useEffect(() => {
+    try {
+      setLoading(true);
+      const config = {
+        headers: {
+          "Authentication": `Bearer ${user.token}`
+        }
+      }
+
+      const response = axios.get(
+        "http://serviya-back.vercel.app/api/v1/chat",
+        config
+      );
+
+      const { data } = response;
+      console.log(data);
+      setMyChats(data);
+      setLoading(false);
+    } catch(error) {
+      console.log(error)
+    }
+  });
+
    const handleSearch = async () => {
      if (!search) {
        // display toast - Please enter something in search
@@ -45,7 +70,7 @@ function MyChats() {
        );
 
        const { data } = response;
-       setSearchResult(data);
+       setSearchChats(data);
        console.log(data);
        setLoading(false);
      } catch (error) {
@@ -57,7 +82,7 @@ function MyChats() {
     <div className="flex flex-col w-[25%] h-full font-roboto border-r-[1px] border-r-[#D0D0D0]">
       <div className="text-white p-3 h-[10%] flex justify-between w-full items-center bg-primary">
         <div className="flex items-center space-x-4">
-          <img className="w-14 h-14 rounded-full" src={user._doc.pic} alt="" />
+          <ProfilePic pic={user._doc.pic}/>
           <span>Chats</span>
         </div>
         <span>(2)</span>
@@ -87,7 +112,7 @@ function MyChats() {
         ) } */}
         {chats.map((chat) => (
           <div className="flex w-full h-[80px] p-5 items-center border-b-[#D0D0D0] border-b-[1px]">
-            <img className="w-14 h-14 rounded-full" src={chat.user.pic} alt="" />
+            <ProfilePic pic={chat.user.pic} />
             {/* {a state should handle if the div is selected or not} */}
             <div className="flex flex-col ml-3 text-[14px] truncate" selected={chat.selected}>
               <p>{chat.user.name}</p>
