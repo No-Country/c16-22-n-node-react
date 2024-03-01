@@ -1,15 +1,11 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Login from "../auth/login/Login";
 import useStoreLogin from "../../store/useStoreLogin";
 import Register from "../auth/register/Register";
 import Logout from "../auth/logout/Logout";
 
 const Nav = () => {
-  const navigate = useNavigate();
   const { login } = useStoreLogin();
-
-  console.log(login);
+  const user = JSON.parse(localStorage.getItem("info"));
 
   return (
     <nav
@@ -19,7 +15,7 @@ const Nav = () => {
     "
     >
       <img src="./header/iconServiYAwhite.svg" alt="" />
-      {login ?  <Logout/>:
+      {user ?  <Logout/>:
         <div className="flex items-center gap-8 justify-center">
           <Login />
            <Register/>

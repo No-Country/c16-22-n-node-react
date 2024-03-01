@@ -6,8 +6,6 @@ const asyncHandler = require("express-async-handler");
 
 // fetch all chats for an user
 const getAllChats = asyncHandler(async (req, res) => {
-  // const allChats = chatService.getAllChats();
-  // res.send("Get all Chats");
   try {
     Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
       .populate("users", "-password")
