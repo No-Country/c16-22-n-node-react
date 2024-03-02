@@ -5,6 +5,7 @@ const Chat = require("../../database/models/chat");
 
 const getAllMessages = async (req, res) => {
     const chatId = req.params.chatId
+    console.log(chatId)
     try {
       const messages = await Message.find({chat: chatId})
       .populate("sender", "name pic email")
@@ -31,6 +32,7 @@ const createNewMessage = async (req, res) => {
     chat: chatId,
   };
 
+  
   try {
     var message = await Message.create(newMessage);
 

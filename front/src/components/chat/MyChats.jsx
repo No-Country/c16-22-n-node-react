@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { handleLocalStorage } from "../../localStorage/LocalStorage";
 import ProfilePic from "./ProfilePic";
+import MyChatItem from "./MyChatItem";
 import axios from 'axios';
 
 function MyChats() {
@@ -10,47 +11,35 @@ function MyChats() {
   const [loading, setLoading] = useState(false);
   const [myChats, setMyChats] = useState([]);
 
-  const chats = [
-    {
-      user: {
-        pic: "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        name: "Manuel Lopez",
-      },
-      latestMessage: "Seria para hacer el diagnosticooooooo",
-      selected: true
-    },
-    {
-      user: {
-        pic: "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        name: "Jose Caceres",
-      },
-      latestMessage: "Perfecto!",
-      selected: false
-    },
-  ];
 
-  useEffect(() => {
+  const fetchChats = async () => {
     try {
       setLoading(true);
       const config = {
         headers: {
-          "Authentication": `Bearer ${user.token}`
-        }
-      }
+          "Authorization": `Bearer ${user.token}`,
+        },
+      };
 
-      const response = axios.get(
-        "http://serviya-back.vercel.app/api/v1/chat",
+      const response = await axios.get(
+        "http://localhost:3001/api/v1/chat",
         config
       );
 
       const { data } = response;
-      console.log(data);
       setMyChats(data);
+      console.log(data)
       setLoading(false);
-    } catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
+      // display toast there was an error
     }
-  });
+  }
+
+  useEffect(() => {
+    // maybe we will have to do something else here
+    fetchChats();
+  }, []);
 
    const handleSearch = async () => {
      if (!search) {
@@ -71,18 +60,18 @@ function MyChats() {
 
        const { data } = response;
        setSearchChats(data);
-       console.log(data);
        setLoading(false);
      } catch (error) {
        // display a toast = fail to load the search reshults
      }
    };
 
+
   return (
     <div className="flex flex-col w-[25%] h-full font-roboto border-r-[1px] border-r-[#D0D0D0]">
       <div className="text-white p-3 h-[10%] flex justify-between w-full items-center bg-primary">
         <div className="flex items-center space-x-4">
-          <ProfilePic pic={user._doc.pic}/>
+          <ProfilePic pic={user._doc.pic} />
           <span>Chats</span>
         </div>
         <span>(2)</span>
@@ -104,22 +93,29 @@ function MyChats() {
           </button>
         </div>
 
-        {/* {This represents a component "chat"} */}
         {/* {loading ? (<div>Loading...</div>) : (
           searchResult?.map((user) => (
             <ChatListItem></ChatListItem>
           ))
         ) } */}
-        {chats.map((chat) => (
-          <div className="flex w-full h-[80px] p-5 items-center border-b-[#D0D0D0] border-b-[1px]">
-            <ProfilePic pic={chat.user.pic} />
-            {/* {a state should handle if the div is selected or not} */}
-            <div className="flex flex-col ml-3 text-[14px] truncate" selected={chat.selected}>
-              <p>{chat.user.name}</p>
-              <p className="truncate">{chat.latestMessage}</p>
-            </div>
-          </div>
-        ))}
+        
+        {myChats.length > 0 ? (
+          myChats.map((chat) => (
+            <MyChatItem
+              key={chat._id}
+              id={chat._id}
+              pic={chat.professional.pic}
+              title={chat.professional.name}
+              subtitle={
+                chat.latestMessage.sender === user._doc.id
+                  ? `You: ${chat.latestMessage.content}`
+                  : chat.latestMessage.content
+              }
+            />
+          ))
+        ) : (
+          <MyChatItem />
+        )}
       </div>
     </div>
   );

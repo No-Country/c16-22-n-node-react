@@ -23,7 +23,6 @@ const getOneProfessional = async (id) => {
 };
 
 
-
 const createNewProfessional = async (
   body,
   files
