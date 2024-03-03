@@ -32,6 +32,23 @@ const professionalSchema = new Schema(
             imageId: String,
             imageUrl: String,
         }],
+        consult: [
+            {
+                userName: String,
+                userEmail: String,
+            },
+            [{
+                consult: String,
+                date: Date,
+            }],
+            [
+                {
+                    response: String,
+                    date: Date,
+                }
+            ]
+
+        ],
         comments: [{
             user: String,
             rating: Number,
