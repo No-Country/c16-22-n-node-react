@@ -6,6 +6,7 @@ import Nav from "../components/nabvar/Navbar";
 import Mapp from "../components/mapGoogle/Mapp";
 import Banner from "../components/banner/Banner";
 import ProfDescrip from "../components/profDescrip/profDescrip";
+import ProfConsult from '../components/profConsult/profConsult';
 import s from './Professional.module.css'
 
 const Professional = () => {
@@ -35,7 +36,12 @@ const Professional = () => {
             <div className={s.container}>
                 <ProfDescrip />
                 <Mapp />
+
             </div>
+            <div className={s.containerConsult}>
+                <ProfConsult />
+            </div>
+
 
             <Footer />
         </div>
