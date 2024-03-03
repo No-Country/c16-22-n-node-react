@@ -26,7 +26,8 @@ const createNewUser = async (user) => {
   }
 };
 
-const updateOneUser = () => {
+const updateOneUser = (changes) => {
+  
   return;
 };
 

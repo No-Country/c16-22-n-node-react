@@ -28,7 +28,21 @@ app.use(fileUpload({
 }))
 console.log()
 app.use(express.static('./back/public'));
-app.use(cors());
+
+// Enable CORS for all routes
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://serviya-front.vercel.app');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+var corsOptions = {
+  origin: ["https://serviya-front.vercel.app", "http://localhost:5173"],
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(morgan('dev'));
 

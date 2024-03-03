@@ -3,6 +3,7 @@ import useStoreLogin from "../store/useStoreLogin";
 export const handleLocalStorage = () => {
   const { setLogin } = useStoreLogin();
   const user = JSON.parse(localStorage.getItem("info"));
+  const selectedChat = localStorage.getItem("selectedChat");
 
   const login = () => {
     if (user) {
@@ -19,5 +20,6 @@ export const handleLocalStorage = () => {
     user,
     login,
     logout,
+    selectedChat
   };
 };

@@ -1,3 +1,4 @@
+const generateToken = require("../../config/generateToken");
 const professionalService = require("../services/professionalService");
 const Professional = require("../../database/models").professionalModel;
 
@@ -7,7 +8,7 @@ const getAllProfessionals = async (req, res) => {
   res.send(allProfessionals);
 };
 
-// const getAllProfessionals = asyncHandler(async (req, res) => {
+// const getAllProfessionals = async (req, res) => {
 //   // const allUsers = usersService.getAllUsers();
 //   // res.send({status: "OK", data: {}});
 //   const keyword = req.query.search
@@ -22,7 +23,7 @@ const getAllProfessionals = async (req, res) => {
 //   const professionals = await Professional.find(keyword).find({ _id: { $ne: req.user._id } });
 //   // console.log(users)
 //   res.status(200).send(professionals);
-// });
+// };
 
 const getOneProfessional = async (req, res) => {
   const id = req.params.professionalId;
@@ -53,10 +54,27 @@ const deleteOneProfessional = async (req, res) => {
   res.send(deletedProfessional);
 };
 
+const authenticateProfessional = async (req, res) => {
+  const {email, password} = req.body;
+
+  const professional = await Professional.findOne({email});
+
+  if(professional && (await professional.matchPassword(password))) {
+    res.send({
+      ...user,
+      token: generateToken(professional._id)
+    })
+  } else {
+    res.status(401);
+    throw new Error("Invalid Email or Password")
+  }
+}
+
 module.exports = {
   getAllProfessionals,
   getOneProfessional,
   createNewProfessional,
   updateOneProfessional,
   deleteOneProfessional,
+  authenticateProfessional
 };

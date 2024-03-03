@@ -1,11 +1,11 @@
 // eventually we need the service here
-const asyncHandler = require("express-async-handler");
 const Message = require("../../database/models/message");
 const User = require("../../database/models/user");
 const Chat = require("../../database/models/chat");
 
-const getAllMessages = asyncHandler(async (req, res) => {
+const getAllMessages = async (req, res) => {
     const chatId = req.params.chatId
+    console.log(chatId)
     try {
       const messages = await Message.find({chat: chatId})
       .populate("sender", "name pic email")
@@ -16,9 +16,9 @@ const getAllMessages = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error(error.message)
     }
-});
+};
 
-const createNewMessage = asyncHandler(async (req, res) => {
+const createNewMessage = async (req, res) => {
   const { content, chatId } = req.body;
 
   if (!content || !chatId) {
@@ -32,6 +32,7 @@ const createNewMessage = asyncHandler(async (req, res) => {
     chat: chatId,
   };
 
+  
   try {
     var message = await Message.create(newMessage);
 
@@ -50,7 +51,7 @@ const createNewMessage = asyncHandler(async (req, res) => {
     throw new Error(error.message);
   }
   // res.send("Create a new Message");
-});
+};
 
 module.exports = {
   getAllMessages,

@@ -1,30 +1,40 @@
 const Chat = require("../../database/models/chat");
 const User = require("../../database/models/user");
 const chatService = require("../services/chatService");
-const asyncHandler = require("express-async-handler");
-
 
 // fetch all chats for an user
-const getAllChats = asyncHandler(async (req, res) => {
-  // const allChats = chatService.getAllChats();
-  // res.send("Get all Chats");
+const getAllChats = async (req, res) => {
   try {
-    Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
-      .populate("users", "-password")
+    const chatWithUsers = await Chat.find({user: {$eq: req.user._id}})
+      .populate({
+        path: "user",
+        select: "name pic email",
+      })
+      .populate({
+        path: "professional",
+        select: "name pic email",
+      })
       .populate("latestMessage")
-      .sort({ updatedAt: -1 })
-      .then(async (results) => {
-        results = await User.populate(results, {
-          path: "latestMessage.sender",
-          select: "name pic email",
-        });
-        res.status(200).send(results);
-      });
+      .sort({ updatedAt: -1 });
+      
+    res.send(chatWithUsers);
+
+    // Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
+    //   .populate("users", "-password")
+    //   .populate("latestMessage")
+    //   .sort({ updatedAt: -1 })
+    //   .then(async (results) => {
+    //     results = await User.populate(results, {
+    //       path: "latestMessage.sender",
+    //       select: "name pic email",
+    //     });
+    //     res.status(200).send(results);
+    //   });
   } catch (error) {
     res.status(400);
     throw new Error(error.message);
   }
-});
+};
 
 const getOneChat = (req, res) => {
   const Chat = chatService.getOneChat();
@@ -32,54 +42,55 @@ const getOneChat = (req, res) => {
 };
 
 // CREATE AND ACCESS A CHAT
-const createNewChat = asyncHandler(async (req, res) => {
-  // const createdChat = chatService.createNewChat();
-  // res.send("Create a new Chat");
-  const { userId } = req.body;
+const createNewChat = async (req, res) => {
+  const { professionalId } = req.body;
   
-  if (!userId) {
-    console.log("UserId param not sent with request");
+  if (!professionalId) {
+    console.log("professionalId param not sent with request");
     return res.sendStatus(400);
   }
 
   var foundChats = await Chat.find({
     $and: [
-      { users: { $elemMatch: { $eq: req.user._id } } },
-      { users: { $elemMatch: { $eq: userId } } },
+      { user: { $eq: req.user._id }  },
+      { professional: { $eq: professionalId } },
     ],
   })
-    .populate("users", "-password")
+    .populate({ path: "user", select: "name pic email" })
+    .populate({ path: "professional", select: "name pic email" })
     .populate("latestMessage");
 
-  foundChats = await User.populate(foundChats, {
-    path: "latestMessage.sender",
-    select: "name pic email",
-  });
 
   if (foundChats.length > 0) {
     console.log("existing chat")
     res.status(200);
     res.send(foundChats[0]);
   } else {
-    console.log("creating chat")
+    console.log("creating chat");
     var chatData = {
       chatName: "sender",
-      users: [req.user._id, userId],
+      user: req.user._id,
+      professional: professionalId
     };
 
     try {
       const createdChat = await Chat.create(chatData);
-      const fullChat = await Chat.findOne({ _id: createdChat._id }).populate(
-        "users",
-        "-password"
-      );
+      const fullChat = await Chat.findOne({ _id: createdChat._id })
+        .populate({
+          path: "user",
+          select: "name pic email",
+        })
+        .populate({
+          path: "professional",
+          select: "name pic email",
+        });
       res.status(200).json(fullChat);
     } catch (error) {
       res.status(400);
       throw new Error(error.message);
     }
   }
-});
+};
 
 const updateOneChat = (req, res) => {
   const updatedChat = chatService.updateOneChat();
