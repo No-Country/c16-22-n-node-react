@@ -64,6 +64,22 @@ function Conversation() {
     }
   };
 
+  const isSameSender = (messages, m, i, userId) => {
+  return (
+    i < messages.length - 1 &&
+    (messages[i + 1].sender._id !== m.sender._id ||
+      messages[i + 1].sender._id === undefined) &&
+    messages[i].sender._id !== userId
+  );
+}
+
+  const isLastMessage = (messages, i, userId) => {
+    return console.log(
+      i === messages.length - 1 &&
+      messages[messages.length - 1].sender._id !== userId &&
+      messages[messages.length - 1].sender._id
+    );
+  };
 
   return (
     <div className="w-3/4 text-white">
@@ -74,7 +90,7 @@ function Conversation() {
           {/* our chat */}
           {/* probably same component but passing different styles based on whether you are a sender or receiver */}
           {messages.length > 0 ?
-            messages.map((message) => (
+            messages.map((message, index) => (
               <div className="flex text-black space-x-4 self-end">
                 <div className="flex flex-col space-y-2">
                   {/* {list of messages} */}
@@ -83,11 +99,12 @@ function Conversation() {
                     {message.content}
                   </p>
                 </div>
-                <img className="w-14 h-14 rounded-full" src={user._doc.pic} alt="" />
+                {isLastMessage(messages, message, index, user._doc.id) ? <></> : <img className="w-14 h-14 rounded-full" src={user._doc.pic} alt="" />}
+                
               </div>
 
             ))
-             : <div className="text-black">Click on a user to start chatting</div>}
+             : <></>}
           {/* {the person we are chatting with} */}
           {/* <div className="flex text-black space-x-4">
             <img className="w-14 h-14 rounded-full" src={user._doc.pic} alt="" />

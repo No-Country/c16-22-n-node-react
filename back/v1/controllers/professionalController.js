@@ -1,3 +1,4 @@
+const generateToken = require("../../config/generateToken");
 const professionalService = require("../services/professionalService");
 const Professional = require("../../database/models").professionalModel;
 
@@ -53,10 +54,27 @@ const deleteOneProfessional = async (req, res) => {
   res.send(deletedProfessional);
 };
 
+const authenticateProfessional = async (req, res) => {
+  const {email, password} = req.body;
+
+  const professional = await Professional.findOne({email});
+
+  if(professional && (await professional.matchPassword(password))) {
+    res.send({
+      ...user,
+      token: generateToken(professional._id)
+    })
+  } else {
+    res.status(401);
+    throw new Error("Invalid Email or Password")
+  }
+}
+
 module.exports = {
   getAllProfessionals,
   getOneProfessional,
   createNewProfessional,
   updateOneProfessional,
   deleteOneProfessional,
+  authenticateProfessional
 };

@@ -5,8 +5,6 @@ const { json } = require("body-parser");
 const { stringify } = require("querystring");
 
 const getAllUsers = async (req, res) => {
-  // const allUsers = usersService.getAllUsers();
-  // res.send({status: "OK", data: {}});
   const keyword = req.query.search
     ? {
         $or: [

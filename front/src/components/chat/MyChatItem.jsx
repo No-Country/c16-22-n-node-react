@@ -10,26 +10,28 @@ MyChatItem.propTypes = {
 };
 
 
-function MyChatItem({id, title, subtitle, pic}) {
+function MyChatItem({ id, title, subtitle, pic, setSelectedChatId }) {
   const [isSelected, setIsSelected] = useState(false);
 
-  if(!pic || !title || !subtitle) {
-    pic = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg";
-    title = "Aun no tienes mensajes"
-    subtitle = "Conecta con clientes"
+  if (!pic || !title || !subtitle) {
+    pic =
+      "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg";
+    title = "Aun no tienes mensajes";
+    subtitle = "Conecta con clientes";
   }
 
   const handleClick = (id) => {
     setIsSelected(!isSelected);
-    localStorage.setItem("selectedChat", !isSelected ? id : "undefined") 
+    setSelectedChatId(id);
+    localStorage.setItem("selectedChat", !isSelected ? id : "undefined");
   };
 
   return (
-    <div onClick={() => handleClick(id)}
+    <div
+      onClick={() => handleClick(id)}
       className={`flex w-full h-[80px] p-5 items-center
     border-b-[#D0D0D0] border-b-[1px]
-      ${isSelected ? 'bg-secondary' : 'bg-white'}`}
-    
+      ${isSelected ? "bg-secondary" : "bg-white"}`}
     >
       <ProfilePic pic={pic} />
       {/* {a state should handle if the div is selected or not} */}

@@ -4,20 +4,19 @@ import ProfilePic from "./ProfilePic";
 import MyChatItem from "./MyChatItem";
 import axios from 'axios';
 
-function MyChats() {
+function MyChats({ setSelectedChatId }) {
   const { user } = handleLocalStorage();
   const [search, setSearch] = useState("");
   const [searchChats, setSearchChats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [myChats, setMyChats] = useState([]);
 
-
   const fetchChats = async () => {
     try {
       setLoading(true);
       const config = {
         headers: {
-          "Authorization": `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
 
@@ -28,44 +27,43 @@ function MyChats() {
 
       const { data } = response;
       setMyChats(data);
-      console.log(data)
+      console.log(data);
       setLoading(false);
     } catch (error) {
       console.log(error);
       // display toast there was an error
     }
-  }
+  };
 
   useEffect(() => {
     // maybe we will have to do something else here
     fetchChats();
   }, []);
 
-   const handleSearch = async () => {
-     if (!search) {
-       // display toast - Please enter something in search
-     }
+  const handleSearch = async () => {
+    if (!search) {
+      // display toast - Please enter something in search
+    }
 
-     try {
-       setLoading(true);
-       const config = {
-         headers: {
-           Authorization: `Bearer ${user.token}`,
-         },
-       };
-       const response = await axios.get(
-         `http://serviya-back.vercel.app/api/v1/users/?search=${search}`,
-         config
-       );
+    try {
+      setLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const response = await axios.get(
+        `http://serviya-back.vercel.app/api/v1/users/?search=${search}`,
+        config
+      );
 
-       const { data } = response;
-       setSearchChats(data);
-       setLoading(false);
-     } catch (error) {
-       // display a toast = fail to load the search reshults
-     }
-   };
-
+      const { data } = response;
+      setSearchChats(data);
+      setLoading(false);
+    } catch (error) {
+      // display a toast = fail to load the search reshults
+    }
+  };
 
   return (
     <div className="flex flex-col w-[25%] h-full font-roboto border-r-[1px] border-r-[#D0D0D0]">
@@ -98,7 +96,7 @@ function MyChats() {
             <ChatListItem></ChatListItem>
           ))
         ) } */}
-        
+
         {myChats.length > 0 ? (
           myChats.map((chat) => (
             <MyChatItem
@@ -107,10 +105,19 @@ function MyChats() {
               pic={chat.professional.pic}
               title={chat.professional.name}
               subtitle={
-                chat.latestMessage.sender === user._doc.id
-                  ? `You: ${chat.latestMessage.content}`
-                  : chat.latestMessage.content
+                chat.latestMessage ? (
+                  chat.latestMessage.sender == user._doc.id ? (
+                    `You: ${chat.latestMessage.content}`
+                  ) : (
+                    chat.latestMessage.content
+                  )
+                ) : (
+                  <></>
+                )
               }
+              setSelectedChatId={() => {
+                setSelectedChatId;
+              }}
             />
           ))
         ) : (

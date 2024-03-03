@@ -1,18 +1,26 @@
 const { Schema, model, set } = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 set('useUnifiedTopology', true, { timezone: 'UTC-3 (Argentina)' });
 
 const professionalSchema = new Schema(
     {
-        name: String,
+        name: {
+            type: String,
+            required: true
+        },
         lastName: String,
         DNIPasaporte: String,
         telefono: String,
         email: {
             type: String,
             unique: true,
+            required: true
         },
-        password: String,
+        password: {
+            type: String,
+            required: true
+        },
         category: String,
         license: String,
         gender: {
@@ -56,7 +64,21 @@ const professionalSchema = new Schema(
     {
         timestamps: true,
         versionKey: false,
+        methods: {
+            matchPassword(enteredPassword) {
+            return bcrypt.compareSync(enteredPassword, this.password)
+        }
     }
-)
+});
+
+// Before saving to we should perform the encryption
+professionalSchema.pre('save', async function (next) {
+  if (!this.isModified) {
+    next()
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt,);
+})
 
 module.exports = model('professional', professionalSchema)

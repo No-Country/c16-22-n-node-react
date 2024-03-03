@@ -21,8 +21,12 @@ const Chat = () => {
     <div className="scroll-smooth h-screen w-screen">
       <Nav />
       <div className="flex h-[90%] w-full">
-        <MyChats />
-        {selectedChatId === "undefined" || selectedChatId === null ? <div>nothing yet</div> : <Conversation />}
+        <MyChats setSelectedChatId={setSelectedChatId} />
+        {selectedChatId === "undefined" || selectedChatId === null ? (
+          <div>nothing yet</div>
+        ) : (
+          <Conversation />
+        )}
       </div>
     </div>
   );

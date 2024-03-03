@@ -17,4 +17,6 @@ router.post("/",
 
 router.delete("/:professionalId", professionalController.deleteOneProfessional);
 
+router.post("/login", professionalController.authenticateProfessional)
+
 module.exports = router;
