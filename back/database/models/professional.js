@@ -47,13 +47,10 @@ const professionalSchema = new Schema(
             },
             [{
                 consult: String,
-                date: Date,
-            }],
-            [
-                {
-                    response: String,
-                    date: Date,
-                }
+                consultDate: Date,
+                response: String,
+                responseDate: Date,
+            }
             ]
         ],
         comments: [{
