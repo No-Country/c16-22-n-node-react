@@ -39,7 +39,7 @@ const ProfDescript = () => {
                         return (
                             <div className={s.aptitudes}>
                                 <div className={s.check}>
-                                    <img src="/professional/check.svg" alt="" />
+                                    <img className={s.imageCheck} src="/professional/check.svg" alt="" />
                                 </div>
                                 <div>{a}</div>
                             </div>

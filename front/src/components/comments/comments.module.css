@@ -1,3 +1,29 @@
+.containerComments {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.titleValues {
+    font-size: 20px;
+}
+
+.allComments {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    width: 264px;
+    font-size: 14px;
+}
+
+.oneComments {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-bottom: 0.5px solid #C1C1C1;
+    padding-bottom: 16px;
+}
+
 .containerStarts {
     display: flex;
     flex-direction: row;
@@ -8,6 +34,7 @@
     display: flex;
     flex-direction: row;
     gap: 2px;
+    font-size: 700;
 }
 
 .stars {
@@ -19,4 +46,19 @@
 .star {
     width: 20px;
     height: 19px;
+}
+
+.see {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    color: #055286;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.arrowDown {
+    width: 12px;
+    height: 700;
 }

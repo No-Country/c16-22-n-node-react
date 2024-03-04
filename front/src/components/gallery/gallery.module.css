@@ -2,12 +2,13 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 623px;
+    width: 508px;
 }
 
 .gallery {
     display: flex;
     flex-wrap: wrap;
+    justify-content: end;
     gap: 20px;
 }
 

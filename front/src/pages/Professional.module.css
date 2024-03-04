@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100vw;
-    padding: 40px;
+    padding: 73px;
 }
 
 .containerConsult {
@@ -11,5 +11,38 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100vw;
-    padding: 40px;
+    padding: 73px;
+}
+
+.containerSectionConsult {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.report {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 142px;
+    gap: 8px;
+    border-bottom: 0.5px solid #C1C1C1;
+    padding-bottom: 8px;
+}
+
+
+
+
+.flag {
+    width: 15px;
+    height: 17px;
+}
+
+
+.textReport {
+    font-size: 16px;
+    font-weight: 400;
 }

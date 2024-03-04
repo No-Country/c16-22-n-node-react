@@ -9,11 +9,11 @@ const Comments = ({ profess }) => {
     }, []);
 
     return (
-        <div>
-            <div>Valoraciones ({prof?.comments?.length})</div>
-            <div>{prof?.comments?.map((comment) => {
+        <div className={s.containerComments}>
+            <div className={s.titleValues}>Valoraciones ({prof?.comments?.length})</div>
+            <div className={s.allComments}>{prof?.comments?.map((comment) => {
                 return (
-                    <div>
+                    <div className={s.oneComments}>
                         <div className={s.containerStarts}>
 
                             <div className={s.commentUser}> <img className={s.check} src="/professional/check1.svg" alt="" />{comment.user}</div>
@@ -30,6 +30,7 @@ const Comments = ({ profess }) => {
                     </div>
                 )
             })}</div>
+            < div className={s.see} > Ver más opiniones <img className={s.arrowDown} src="/professional/arrowDown.svg" alt="" /></div>
         </div>
     )
 }
