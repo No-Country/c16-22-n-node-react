@@ -1,0 +1,22 @@
+.containerStarts {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.commentUser {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+
+.star {
+    width: 20px;
+    height: 19px;
+}

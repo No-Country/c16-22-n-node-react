@@ -1,0 +1,17 @@
+.containerGallery {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 623px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.imageGallery {
+    width: 244px;
+    border-radius: 20px;
+}

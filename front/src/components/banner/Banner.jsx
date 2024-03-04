@@ -9,7 +9,6 @@ const Banner = () => {
 
     const api = async () => {
         const professional = await axios.get('https://serviya-back.vercel.app/api/v1/professional/65dea08e07ab5778c8ff7da1')
-        console.log(professional.data[0]);
         setProf(professional.data[0])
 
     }
@@ -17,12 +16,6 @@ const Banner = () => {
     useEffect(() => {
         api();
     }, []);
-
-    useEffect(() => {
-        console.log('---------------top')
-        console.log(prof.name);
-        console.log('---------------bottom')
-    }, [prof]);
 
     return (
         <div className={s.banner}>
