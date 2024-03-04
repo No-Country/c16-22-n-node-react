@@ -40,18 +40,16 @@ const professionalSchema = new Schema(
             imageId: String,
             imageUrl: String,
         }],
-        consult: [
+        queries: [
             {
                 userName: String,
                 userEmail: String,
-            },
-            [{
-                consult: String,
-                consultDate: Date,
+                query: String,
+                queryDate: Date,
                 response: String,
                 responseDate: Date,
             }
-            ]
+
         ],
         comments: [{
             user: String,
