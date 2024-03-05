@@ -14,13 +14,13 @@ const Nav = () => {
     font-roboto mx-auto
     "
     >
-      <img src="./header/iconServiYAwhite.svg" alt="" />
-      {user ?  <Logout/>:
+      <img src="/public/header/iconServiYAwhite.svg" alt="" />
+      {user ? <Logout /> :
         <div className="flex items-center gap-8 justify-center">
           <Login />
-           <Register/>
+          <Register />
         </div>
-       }
+      }
     </nav>
   );
 };

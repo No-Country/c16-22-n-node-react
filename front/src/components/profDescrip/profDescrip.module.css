@@ -41,5 +41,8 @@
 .time {
     display: flex;
     flex-direction: row;
+    align-items: start;
     gap: 4px;
+    width: 200px;
+    margin-right: 10px;
 }
