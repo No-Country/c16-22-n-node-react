@@ -1,0 +1,130 @@
+.banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    width: 100vw;
+    height: 198px;
+    background: linear-gradient(#055286, rgba(13, 83, 131, 0.6));
+    padding-left: 73px;
+    padding-right: 73px;
+}
+
+.cardProfessional {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    width: 493px;
+    height: 144px;
+    /* background-color: aquamarine; */
+}
+
+.photo {
+    width: 191px;
+    height: 144px;
+    /* background-color: blue; */
+    border-radius: 24px;
+    overflow: hidden;
+
+}
+
+.imgPhoto {
+    width: 493px;
+    height: 144px;
+    object-fit: cover;
+}
+
+.datos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 278px;
+    height: 134px;
+    /* background-color: blueviolet; */
+}
+
+.name {
+    color: #FFFFFF;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.value {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.stars {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.star {
+    width: 24px;
+    height: 24px;
+}
+
+.textValue {
+    color: #FAFAFA
+}
+
+.reservaButton {
+    background-color: #E8C900;
+    padding: 8px 20px 8px 20px;
+    border-radius: 14px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.cardValue {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    width: 384px;
+    height: 122px;
+    /* background-color: aquamarine; */
+}
+
+.containerIdentity {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+}
+
+.identity {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.vectorCircle {
+    width: 38px;
+    height: 38px;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    padding-top: 7px;
+    padding-left: 9px;
+}
+
+.vector {
+    width: 20px;
+    height: 24.44px;
+}
+
+.consultPrice {
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 400;
+}

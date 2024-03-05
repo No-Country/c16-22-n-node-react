@@ -1,0 +1,7 @@
+.workZone {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 508px;
+    height: 385px;
+}

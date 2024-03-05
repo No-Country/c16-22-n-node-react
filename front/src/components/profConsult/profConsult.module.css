@@ -1,0 +1,92 @@
+.containerConsult {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 623px;
+}
+
+.consult {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.inputConsult {
+    width: 549px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.buttonConsult {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54px;
+    height: 39px;
+    border-radius: 16px;
+    background-color: #E8C900;
+}
+
+.arrow {
+    width: 26px;
+    height: 26px;
+}
+
+.nameBody {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.nameConsult {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+.check {
+    width: 14px;
+    height: 17.11px;
+}
+
+.userName {
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+.query {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.response {
+    display: flex;
+    flex-direction: row;
+}
+
+.imageResponse {
+    width: 10px;
+    height: 10px;
+}
+
+.queryResponse {
+    font-size: 14px;
+}
+
+.see {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    color: #055286;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.arrowDown {
+    width: 12px;
+    height: 7.41px;
+}

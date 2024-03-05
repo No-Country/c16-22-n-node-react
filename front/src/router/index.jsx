@@ -1,31 +1,39 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
-import Chat from '../pages/Chat';
+import Chat from '../pages/Chat'
+import Professional from "../pages/Professional";
 import NotFound from '../pages/NotFound';
 
 
-export const router = createBrowserRouter ([
-     //  ubicar rutas aqui ejemplo:
 
-     {
-          path: "/",
-          element: <Home />,
-      },
-      {
-        path: "/chat",
-        element: <Chat/>
-      },
-      {
-        path: "*",
-        element: <NotFound/>
-      }
+export const router = createBrowserRouter([
+  //  ubicar rutas aqui ejemplo:
 
-    // {
-    //     path: "/about",
-    //     element: <About />,
-    // },
-    // {
-    //     path: "/blog",
-    //     element: <Blog />,
-    // },
+
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/chat",
+    element: <Chat />
+  },
+  {
+    path: "/professional/:id",
+    element: <Professional />
+  },
+
+  {
+    path: "*",
+    element: <NotFound />
+  }
 ])
+
+// {
+//     path: "/about",
+//     element: <About />,
+// },
+// {
+//     path: "/blog",
+//     element: <Blog />,
+// },
