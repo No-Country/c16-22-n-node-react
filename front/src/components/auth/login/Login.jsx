@@ -93,6 +93,7 @@ const Login = () => {
                     id="password"
                     type="password"
                   />
+                  <span className="self-center text-grey cursor-pointer text-[14px] hover:underline">¿Olvidaste tu contraseña?</span>
                 </div>
                 <button
                   type="submit"
@@ -101,7 +102,7 @@ const Login = () => {
                 hover:opacity-80 transition"
                   disabled={loading}
                 >
-                  Iniciar sesion
+                  Iniciar sesión
                 </button>
               </form>
 

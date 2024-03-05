@@ -2,19 +2,28 @@
 const Message = require("../../database/models/message");
 const User = require("../../database/models/user");
 const Chat = require("../../database/models/chat");
+const {isValidObjectId} = require('mongoose')
 
 const getAllMessages = async (req, res) => {
     const chatId = req.params.chatId
     console.log(chatId)
-    try {
-      const messages = await Message.find({chat: chatId})
-      .populate("sender", "name pic email")
-      .populate("chat");
-      res.status(200);
-      res.json(messages)
-    } catch(error) {
-      res.status(400);
-      throw new Error(error.message)
+    if (!chatId || !isValidObjectId(chatId)) {
+      // Check if chatId is null or not a valid ObjectId
+      res.status(400).json({ error: "Invalid chatId" });
+      return;
+    }
+
+    if(chatId) {
+      try {
+        const messages = await Message.find({chat: chatId})
+        .populate("sender", "name pic email")
+        .populate("chat");
+        res.status(200);
+        res.json(messages);
+      } catch(error) {
+        res.status(400);
+        throw new Error(error.message)
+      }
     }
 };
 

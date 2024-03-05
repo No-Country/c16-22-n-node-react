@@ -10,8 +10,10 @@ const Chat = () => {
   // If the user is not logged in we should redirect them to the home page
   const navigate = useNavigate();
 
+  let user = JSON.parse(localStorage.getItem("info"));
+
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("info"));
+    user = JSON.parse(localStorage.getItem("info"));
     if (!user) {
       navigate("/");
     }
@@ -21,9 +23,9 @@ const Chat = () => {
     <div className="scroll-smooth h-screen w-screen">
       <Nav />
       <div className="flex h-[90%] w-full">
-        <MyChats setSelectedChatId={setSelectedChatId} />
+        {user && <MyChats setSelectedChatId={setSelectedChatId} />}
         {selectedChatId === "undefined" || selectedChatId === null ? (
-          <div>nothing yet</div>
+          <Conversation></Conversation>
         ) : (
           <Conversation />
         )}
