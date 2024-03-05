@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
     element: <Chat />
   },
   {
-    path: "/professional",
+    path: "/professional/:id",
     element: <Professional />
   },
 
@@ -27,14 +27,13 @@ export const router = createBrowserRouter([
     path: "*",
     element: <NotFound />
   }
-
-
-  // {
-  //     path: "/about",
-  //     element: <About />,
-  // },
-  // {
-  //     path: "/blog",
-  //     element: <Blog />,
-  // },
 ])
+
+// {
+//     path: "/about",
+//     element: <About />,
+// },
+// {
+//     path: "/blog",
+//     element: <Blog />,
+// },

@@ -3,26 +3,15 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import s from "./profDescrip.module.css";
 
-const ProfDescript = () => {
+const ProfDescript = ({ profess }) => {
 
     const [prof, setProf] = useState([]);
 
-    const api = async () => {
-        const professional = await axios.get('https://serviya-back.vercel.app/api/v1/professional/65dea08e07ab5778c8ff7da1')
-        console.log(professional.data[0]);
-        setProf(professional.data[0])
-
-    }
-
     useEffect(() => {
-        api();
+        setProf(profess[0]);
     }, []);
 
-    useEffect(() => {
-        console.log('---------------top')
-        console.log(prof.description);
-        console.log('---------------bottom')
-    }, [prof]);
+
     return (
         <div className={s.container}>
             <div className={s.description}>

@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from 'axios';
 import s from './Professional.module.css'
 import Footer from "../components/footer/Footer";
@@ -14,9 +15,10 @@ import Comments from '../components/comments/comments';
 
 const Professional = () => {
     const [profess, setProfess] = useState([]);
-
+    const { id } = useParams();
+    // 65dea08e07ab5778c8ff7da1
     const api = async () => {
-        const professional = await axios.get('https://serviya-back.vercel.app/api/v1/professional/65dea08e07ab5778c8ff7da1')
+        const professional = await axios.get(`https://serviya-back.vercel.app/api/v1/professional/${id}`)
         // console.log(professional.data[0]);
         setProfess([professional.data[0]])
 
@@ -24,22 +26,26 @@ const Professional = () => {
 
     useEffect(() => {
         api();
+        console.log('-----------------ID---------------------')
+        console.log(id)
+        console.log('-----------------ID---------------------')
     }, []);
 
-    useEffect(() => {
-        // console.log('---------------top')
-        // console.log(profess.description);
-        // console.log('---------------bottom')
-    }, [profess]);
 
     return (
         <div>
             <Nav />
-            <Banner />
+            {profess.length > 0 ?
+                <Banner profess={profess} />
+                : null}
             <div className={s.container}>
-                <ProfDescrip />
-                <Mapp />
 
+                {profess.length > 0 ?
+                    <ProfDescrip profess={profess} />
+                    : null}
+                {profess.length > 0 ?
+                    <Mapp profess={profess} />
+                    : null}
             </div>
             <div className={s.containerConsult}>
                 {profess.length > 0 ?

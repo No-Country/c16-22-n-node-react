@@ -3,18 +3,12 @@ import { useEffect, useState } from "react";
 import s from "./Banner.module.css"
 import axios from 'axios';
 
-const Banner = () => {
+const Banner = ({ profess }) => {
 
     const [prof, setProf] = useState([]);
 
-    const api = async () => {
-        const professional = await axios.get('https://serviya-back.vercel.app/api/v1/professional/65dea08e07ab5778c8ff7da1')
-        setProf(professional.data[0])
-
-    }
-
     useEffect(() => {
-        api();
+        setProf(profess[0]);
     }, []);
 
     return (
@@ -33,7 +27,7 @@ const Banner = () => {
                             <img className={s.star} src="/banner/estrella.svg" alt="" />
                             <img className={s.star} src="/banner/estrella.svg" alt="" />
                         </div>
-                        <div className={s.textValue}>(10 valoraciones)</div>
+                        <div className={s.textValue}>({prof?.comments?.length} valoraciones)</div>
                     </div>
 
                     <button className={s.reservaButton}>Reservar consulta</button>
