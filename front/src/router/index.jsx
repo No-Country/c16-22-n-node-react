@@ -9,7 +9,6 @@ import NotFound from '../pages/NotFound';
 export const router = createBrowserRouter([
   //  ubicar rutas aqui ejemplo:
 
-
   {
     path: "/",
     element: <Home />,
@@ -28,12 +27,3 @@ export const router = createBrowserRouter([
     element: <NotFound />
   }
 ])
-
-// {
-//     path: "/about",
-//     element: <About />,
-// },
-// {
-//     path: "/blog",
-//     element: <Blog />,
-// },
