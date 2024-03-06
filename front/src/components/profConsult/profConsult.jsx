@@ -31,7 +31,7 @@ const ProfConsult = ({ profess }) => {
             const chatId = chatResponse.data._id;
             
             const messageResponse = await axios.post(
-              "https://serviya-back.vercel.app/api/v1/message/",
+              "https://serviya-back.vercel.app/api/v1/messages",
               {
                 content: consultation,
                 chatId,
