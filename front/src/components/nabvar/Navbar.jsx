@@ -22,9 +22,9 @@ const Nav = () => {
       {user ?  <Logout/>:
         <div className="flex items-center gap-8 justify-center">
           <Login />
-           <Register/>
+          <Register />
         </div>
-       }
+      }
     </nav>
   );
 };
