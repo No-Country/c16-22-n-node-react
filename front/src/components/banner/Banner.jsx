@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from "react";
-import s from "./Banner.module.css"
-import star from "../../../../public/banner/estrella.svg";
+import s from "./Banner.module.css";
 
 const Banner = ({ profess }) => {
 
@@ -21,11 +20,11 @@ const Banner = ({ profess }) => {
                     <div className={s.name}>{prof.name} {prof.lastName}</div>
                     <div className={s.value}>
                         <div className={s.stars}>
-                            <img className={s.star} src={star} alt="star" />
-                            <img className={s.star} src={star} alt="star" />
-                            <img className={s.star} src={star} alt="star" />
-                            <img className={s.star} src={star} alt="star" />
-                            <img className={s.star} src={star} alt="star" />
+                            <img className={s.star} src="/banner/estrella.svg" alt="star" />
+                            <img className={s.star} src="/banner/estrella.svg" alt="star" />
+                            <img className={s.star} src="/banner/estrella.svg" alt="star" />
+                            <img className={s.star} src="/banner/estrella.svg" alt="star" />
+                            <img className={s.star} src="/banner/estrella.svg" alt="star" />
                         </div>
                         <div className={s.textValue}>({prof?.comments?.length} valoraciones)</div>
                     </div>
