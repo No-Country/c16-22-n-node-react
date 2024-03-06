@@ -3,9 +3,22 @@ const professionalService = require("../services/professionalService");
 const Professional = require("../../database/models").professionalModel;
 
 const getAllProfessionals = async (req, res) => {
-  const allProfessionals = await professionalService.getAllProfessionals();
-  // res.send("Get all Professionals");
-  res.send(allProfessionals);
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { aptitudes: { $regex: req.query.search, $options: "i" } },
+          { description: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  if (keyword) {
+    const professionalsSearch = await Professional.find(keyword).find({ _id: { $ne: req.user._id } });
+    res.send(professionalsSearch);
+  } else {
+    const allProfessionals = await professionalService.getAllProfessionals();
+    res.send(allProfessionals);
+  }
 };
 
 // const getAllProfessionals = async (req, res) => {

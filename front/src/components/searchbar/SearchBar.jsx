@@ -15,7 +15,6 @@ function SearchBar() {
   // TO-DO: En caso de no haber iniciado session deberiamos, deberiamos mostrar un mensaje
 
   const handleSearch = async () => {
-    console.log(user)
     // Para obtener los resultados necesitamos enviar el token del usuario que esta actualmente loggeado
     const config = {
       headers: {
@@ -31,7 +30,7 @@ function SearchBar() {
 
     const { data } = response;
     setSearchResult(data);
-
+      console.log(data);
     // TO-DO: Mientras estemos esperando la respuesta, se puede renderizar un estado de carga "Loading..."
     // setLoading(false);
   };
