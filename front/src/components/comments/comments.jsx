@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import s from './comments.module.css'
 
 const Comments = ({ profess }) => {
-    const [prof, setProf] = useState([]);
+    const [prof, setProf] = useState([{}]);
 
     useEffect(() => {
         setProf(profess[0]);
