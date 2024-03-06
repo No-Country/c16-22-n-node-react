@@ -53,7 +53,7 @@ const Professional = () => {
                         <ProfConsult profess={profess} />
 
                         <div className={s.report}>
-                            <div ><img className={s.flag} src="/public/professional/flag.svg" alt="" /></div>
+                            <div ><img className={s.flag} src="/professional/flag.svg" alt="" /></div>
 
                             <div className={s.textReport}> Reportar cuenta </div>
                         </div>

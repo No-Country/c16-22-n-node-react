@@ -47,42 +47,42 @@ function MyChats() {
       console.log(data);
       setMyChats(data);
       setLoading(false);
-    } catch(error) {
+    } catch (error) {
       console.log(error)
     }
   });
 
-   const handleSearch = async () => {
-     if (!search) {
-       // display toast - Please enter something in search
-     }
+  const handleSearch = async () => {
+    if (!search) {
+      // display toast - Please enter something in search
+    }
 
-     try {
-       setLoading(true);
-       const config = {
-         headers: {
-           Authorization: `Bearer ${user.token}`,
-         },
-       };
-       const response = await axios.get(
-         `http://serviya-back.vercel.app/api/v1/users/?search=${search}`,
-         config
-       );
+    try {
+      setLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const response = await axios.get(
+        `http://serviya-back.vercel.app/api/v1/users/?search=${search}`,
+        config
+      );
 
-       const { data } = response;
-       setSearchChats(data);
-       console.log(data);
-       setLoading(false);
-     } catch (error) {
-       // display a toast = fail to load the search reshults
-     }
-   };
+      const { data } = response;
+      setSearchChats(data);
+      console.log(data);
+      setLoading(false);
+    } catch (error) {
+      // display a toast = fail to load the search reshults
+    }
+  };
 
   return (
     <div className="flex flex-col w-[25%] h-full font-roboto border-r-[1px] border-r-[#D0D0D0]">
       <div className="text-white p-3 h-[10%] flex justify-between w-full items-center bg-primary">
         <div className="flex items-center space-x-4">
-          <ProfilePic pic={user._doc.pic}/>
+          <ProfilePic pic={user._doc.pic} />
           <span>Chats</span>
         </div>
         <span>(2)</span>
@@ -100,7 +100,7 @@ function MyChats() {
             className="w-[82px] h-[] bg-[#055286] rounded-r-3xl flex items-center justify-center"
             onClick={handleSearch}
           >
-            <img src="../../../public/searchbar/lupa.svg" alt="" />
+            <img src="/searchbar/lupa.svg" alt="" />
           </button>
         </div>
 
