@@ -21,7 +21,7 @@ function MyChats({ setSelectedChatId }) {
       };
 
       const response = await axios.get(
-        "http://localhost:3001/api/v1/chat",
+        "https://serviya-back.vercel.app/api/v1/chat",
         config
       );
 

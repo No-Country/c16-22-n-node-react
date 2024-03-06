@@ -52,7 +52,7 @@ function Conversation() {
       };
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:3001/api/v1/messages/${selectedChat}`,
+        `https://serviya-back.vercel.app/api/v1/messages/${selectedChat}`,
         config
       );
       const { data } = response;

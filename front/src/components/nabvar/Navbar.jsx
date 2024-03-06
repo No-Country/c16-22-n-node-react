@@ -17,7 +17,7 @@ const Nav = () => {
     `}
     >
       <Link to="/">
-        <img src="./header/iconServiYAwhite.svg" alt="" />
+        <img src="/header/iconServiYAwhite.svg" alt="" />
       </Link>
       {user ?  <Logout/>:
         <div className="flex items-center gap-8 justify-center">
