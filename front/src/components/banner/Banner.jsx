@@ -1,8 +1,7 @@
 
 import { useEffect, useState } from "react";
 import s from "./Banner.module.css"
-import star from "/banner/estrella.svg";
-import arrowDown from "/professional/arrowDown.svg";
+import star from "../../../../public/banner/estrella.svg";
 
 const Banner = ({ profess }) => {
 
