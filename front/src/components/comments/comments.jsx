@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import s from './comments.module.css'
+import star from "/banner/estrella.svg";
+import arrowDown from "/professional/arrowDown.svg";
 
 const Comments = ({ profess }) => {
     const [prof, setProf] = useState([{}]);
@@ -18,11 +20,11 @@ const Comments = ({ profess }) => {
 
                             <div className={s.commentUser}> <img className={s.check} src="/professional/check1.svg" alt="" />{comment.user}</div>
                             <div className={s.stars}>
-                                <img className={s.star} src="/banner/estrella.svg" alt="" />
-                                <img className={s.star} src="/banner/estrella.svg" alt="" />
-                                <img className={s.star} src="/banner/estrella.svg" alt="" />
-                                <img className={s.star} src="/banner/estrella.svg" alt="" />
-                                <img className={s.star} src="/banner/estrella.svg" alt="" />
+                                <img className={s.star} src={star} alt="star" />
+                                <img className={s.star} src={star} alt="star" />
+                                <img className={s.star} src={star} alt="star" />
+                                <img className={s.star} src={star} alt="star" />
+                                <img className={s.star} src={star} alt="star" />
                             </div>
                         </div>
 
@@ -30,7 +32,7 @@ const Comments = ({ profess }) => {
                     </div>
                 )
             })}</div>
-            < div className={s.see} > Ver más opiniones <img className={s.arrowDown} src="/professional/arrowDown.svg" alt="" /></div>
+            < div className={s.see} > Ver más opiniones <img className={s.arrowDown} src={arrowDown} alt="arrow down" /></div>
         </div>
     )
 }

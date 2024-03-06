@@ -1,7 +1,7 @@
 
 
-import Perfil from "../../../../public/login/perfil.svg";
-import Serviya from "../../../../public/login/serviya.svg";
+import Perfil from "/login/perfil.svg";
+import Serviya from "/login/serviya.svg";
 import { handleRegister } from "../../../hanldeloginAndRegister/HandleLogAndReg";
 
 
@@ -55,7 +55,7 @@ const Register = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col gap-4  p-4"
               >
-                         <div className="font-bold flex flex-col gap-2 ">
+                <div className="font-bold flex flex-col gap-2 ">
                   <label
                     className=" shadow-lg border-[#7C7C7C] p-1
       border-solid border-2 w-fit px-2 rounded-xl 
@@ -63,10 +63,10 @@ const Register = () => {
      "
                     htmlFor="email"
                   >
-                   Ingresar Nombre
+                    Ingresar Nombre
                   </label>
                   <input
-                    {...register("name", {required:true})}
+                    {...register("name", { required: true })}
                     type="text"
                     className=" shadow-lg font-bold focus:border-[#7C7C7C]   text-[#7C7C7C]
       text-sm text-center    border-2  rounded-xl  "
@@ -81,10 +81,10 @@ const Register = () => {
      "
                     htmlFor="email"
                   >
-                   Ingresar Correo
+                    Ingresar Correo
                   </label>
                   <input
-                    {...register("email", {required:true})}
+                    {...register("email", { required: true })}
                     type="email"
                     className=" shadow-lg font-bold focus:border-[#7C7C7C]   text-[#7C7C7C]
       text-sm text-center    border-2  rounded-xl  "
@@ -100,10 +100,10 @@ const Register = () => {
      "
                     htmlFor="password"
                   >
-                  Ingresar Contraseña
+                    Ingresar Contraseña
                   </label>
                   <input
-                    {...register("password", {required:true})}
+                    {...register("password", { required: true })}
                     className=" shadow-lg  text-[#7C7C7C]
       text-sm text-center  border-solid border-2  rounded-xl 
            outline-none
@@ -119,7 +119,7 @@ const Register = () => {
                     hover:opacity-80 transition"
                   disabled={loading}
                 >
-                Registrarse
+                  Registrarse
                 </button>
               </form>
 

@@ -1,10 +1,10 @@
-import Perfil from "../../../../public/login/perfil.svg";
-import Serviya from "../../../../public/login/serviya.svg";
+import Perfil from "/login/perfil.svg";
+import Serviya from "/login/serviya.svg";
 
 import { handleLogin } from "../../../hanldeloginAndRegister/HandleLogAndReg";
 
 const Login = () => {
-  
+
   const {
     onSubmit,
     handleSubmit,
