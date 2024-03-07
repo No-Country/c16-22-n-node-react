@@ -27,7 +27,7 @@ const Chat = () => {
         {selectedChatId === "undefined" || selectedChatId === null ? (
           <Conversation></Conversation>
         ) : (
-          <Conversation />
+          <Conversation selectedChatId={selectedChatId} />
         )}
       </div>
     </div>

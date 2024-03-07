@@ -119,7 +119,7 @@ function MyChats({ setSelectedChatId }) {
               title={chat.professional.name}
               subtitle={
                 chat.latestMessage ? (
-                  chat.latestMessage.sender == user._doc.id ? (
+                  chat.latestMessage.sender == user._doc._id ? (
                     `You: ${chat.latestMessage.content}`
                   ) : (
                     chat.latestMessage.content

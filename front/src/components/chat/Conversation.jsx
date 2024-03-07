@@ -8,7 +8,7 @@ import NewMessageForm from './NewMessageForm';
 // const ENDPOINT = "http://localhost:3001"; // change this to the deployed url
 // let socket, selectedChatCompare;
 
-function Conversation() {
+function Conversation({selectedChatId}) {
   const { user, selectedChat } = handleLocalStorage();
 
   const [socketConnected, setSocketConnected] = useState(false);
@@ -45,14 +45,29 @@ function Conversation() {
     
     try {
       if (selectedChat === undefined) return;
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
+
+      let config = {}
+
+      if (user.type === "professional") {
+        config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+            "X-Type": "professional",
+          },
+        };
+      } else {
+        config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
+      }
+
+      
       setLoading(true);
       const response = await axios.get(
-        `https://serviya-back.vercel.app/api/v1/messages/${selectedChat}`,
+        `https://serviya-back.vercel.app/api/v1/messages/${selectedChatId}`,
         config
       );
       const { data } = response;
@@ -83,7 +98,7 @@ function Conversation() {
 
   return (
     <div className="w-3/4 text-white">
-      <ChatHeader user={user} />
+      {selectedChatId && <ChatHeader user={user} />}
       <div className=" w-full h-[90%] p-10 bg-[#E0E9EE] flex flex-col justify-between">
         {/* both chats container */}
         <div className="flex flex-col space-y-6 overflow-auto w-full"> 

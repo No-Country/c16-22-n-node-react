@@ -9,17 +9,31 @@ function NewMessageForm({setMessages}) {
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
+  console.log(user);
+
   const sendMessage = async () => {
     // if(event.key === "Enter" && newMessage) {
     if (newMessage) {
       try {
         //socket.emit("stop typing", selectedChat._id);
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        };
+
+        let config = {};
+
+        if (user.type === "professional") {
+          config = {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+              "X-Type": "professional",
+            },
+          };
+        } else {
+          config = {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          };
+        }
 
         setNewMessage(""); // it should change the ui async first and then post a new message
 
