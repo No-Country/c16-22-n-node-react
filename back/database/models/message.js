@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const messageModel = Schema({
   sender: {
     type: Schema.Types.ObjectId,
-    ref: ["User", "professional"]
+    ref: "User",
   },
   content: {
     type: String,
