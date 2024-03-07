@@ -24,7 +24,7 @@ function NewMessageForm({setMessages}) {
         setNewMessage(""); // it should change the ui async first and then post a new message
 
         const response = await axios.post(
-          "http://localhost:3001/api/v1/messages",
+          "https://serviya-back.vercel.app/api/v1/messages",
           {
             content: newMessage,
             chatId: selectedChat,
