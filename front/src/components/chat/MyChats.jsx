@@ -13,13 +13,12 @@ function MyChats({ setSelectedChatId }) {
   const [myChats, setMyChats] = useState([]);
 
   const fetchChats = async () => {
-    const {info} = handleLogin();
-
+    
     try {
       setLoading(true);
       let config = {};
 
-      if(info.type === 'professional') {
+      if(user.type === 'professional') {
          config = {
           headers: {
             Authorization: `Bearer ${user.token}`,
