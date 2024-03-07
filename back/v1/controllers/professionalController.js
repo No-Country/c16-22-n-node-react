@@ -2,6 +2,7 @@ const generateToken = require("../../config/generateToken");
 const professionalService = require("../services/professionalService");
 const Professional = require("../../database/models").professionalModel;
 
+
 const getAllProfessionals = async (req, res) => {
   const keyword = req.query.search
     ? {
