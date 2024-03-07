@@ -3,6 +3,7 @@ import { handleLocalStorage } from "../../localStorage/LocalStorage";
 import ProfilePic from "./ProfilePic";
 import MyChatItem from "./MyChatItem";
 import axios from 'axios';
+import { handleLogin } from "../../hanldeloginAndRegister/HandleLogAndReg";
 
 function MyChats({ setSelectedChatId }) {
   const { user } = handleLocalStorage();
@@ -12,13 +13,26 @@ function MyChats({ setSelectedChatId }) {
   const [myChats, setMyChats] = useState([]);
 
   const fetchChats = async () => {
+    const {info} = handleLogin();
+
     try {
       setLoading(true);
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
+      let config = {};
+
+      if(info.type === 'professional') {
+         config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            'X-Type': 'professional'
+          },
+        };
+      } else {
+         config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
+      }
 
       const response = await axios.get(
         "https://serviya-back.vercel.app/api/v1/chat",
