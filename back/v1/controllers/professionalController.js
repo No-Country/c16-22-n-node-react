@@ -14,8 +14,9 @@ const getAllProfessionals = async (req, res) => {
 
     console.log(keyword);
 
-  if (!keyword) {
+  if (!req.query.search) {
     const allProfessionals = await professionalService.getAllProfessionals();
+    console.log(allProfessionals)
     res.send(allProfessionals);
   } else {
     const professionalsSearch = await Professional.find(keyword).find({
