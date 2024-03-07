@@ -1,9 +1,11 @@
 import Perfil from "../../../../public/login/perfil.svg";
 import Serviya from "../../../../public/login/serviya.svg";
+import Register from "../register/Register";
+import ProfessionalRegisterForm from "../register/ProfessionalRegisterForm";
 
 import { handleLogin } from "../../../hanldeloginAndRegister/HandleLogAndReg";
 
-const Login = () => {
+const Login = ({typeOfLogin}) => {
   
   const {
     onSubmit,
@@ -14,18 +16,35 @@ const Login = () => {
     loading,
     openModal,
     setOpenModal,
+    openModalProfessional,
+    setOpenModalProfessional,
   } = handleLogin();
+
+  const handleProfessionalRegister = async () => {
+    setOpenModal(false);
+    setOpenModalProfessional(true);
+  }
 
   return (
     <>
-      <button
-        onClick={() => setOpenModal(true)}
-        className="cursor-pointer w-[150px] h-[55px] bg-[#055286]
+      {typeOfLogin === "user" ? (
+        <button
+          onClick={() => setOpenModal(true)}
+          className="cursor-pointer w-[150px] h-[55px] bg-[#055286]
             rounded-2xl p-4 text-xl font-[400] text-white flex items-center
               hover:opacity-80 transition"
-      >
-        Iniciar sesion
-      </button>
+        >
+          Iniciar sesion
+        </button>
+      ) : (
+        <button
+          onClick={() => setOpenModal(true)}
+          className="text-primary hover:underline"
+        >
+          ¿Sos profesional?
+        </button>
+      )}
+
       {openModal && (
         <div
           onClick={handleModalClick}
@@ -48,7 +67,9 @@ const Login = () => {
  w-full max-w-96 mx-auto mt-9 overflow-hidden"
             >
               <span className="text-[#7C7C7C] font-bold text-center">
-                Ingresá a tu cuenta ServiYA
+                {typeOfLogin === "user"
+                  ? "Ingresá a tu cuenta ServiYA"
+                  : "Ingresá como profesional"}
               </span>
 
               <form
@@ -93,7 +114,22 @@ const Login = () => {
                     id="password"
                     type="password"
                   />
+                  {typeOfLogin === "user" ? (
+                    <Register onClick={() => setOpenModal(false)} />
+                  ) : (
+                    <></>
+                  )}
+
+                  <span className="self-center text-grey cursor-pointer text-[12px] hover:underline">
+                    ¿Olvidaste tu contraseña?
+                  </span>
                 </div>
+                <input
+                  type="text"
+                  className="hidden"
+                  value={typeOfLogin === "user" ? "user" : "profesional"}
+                  {...register("type", { required: true })}
+                />
                 <button
                   type="submit"
                   className="font-bold shadow-lg cursor-pointer   bg-[#E8C900]
@@ -101,8 +137,22 @@ const Login = () => {
                 hover:opacity-80 transition"
                   disabled={loading}
                 >
-                  Iniciar sesion
+                  Iniciar sesión
                 </button>
+
+                {typeOfLogin === "professional" ? (
+                  <button
+                    onClick={() => handleProfessionalRegister()}
+                    className="font-bold shadow-lg cursor-pointer   bg-primary
+              rounded-2xl px-4 py-3 text-md  text-white flex justify-center items-center font-roboto 
+                hover:opacity-80 transition"
+                    disabled={loading}
+                  >
+                    Registrate
+                  </button>
+                ) : (
+                  <></>
+                )}
               </form>
 
               <div
@@ -124,6 +174,15 @@ const Login = () => {
               X
             </div>
           </div>
+        </div>
+      )}
+
+      {openModalProfessional && (
+        <div
+          className="bg-[#E0E9EE] max-w-[1440px] h-full bg-opacity-100 absolute
+            z-10 right-0 left-0 top-0 bottom-0 mx-auto flex justify-center modal-container"
+        >
+          <ProfessionalRegisterForm/>
         </div>
       )}
     </>

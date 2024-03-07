@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const professionalController = require("../controllers/professionalController");
+const { protect } = require("../middleware/authorization");
 
 router.get("/",
-    //  protect,
+     protect,
     professionalController.getAllProfessionals);
 
     

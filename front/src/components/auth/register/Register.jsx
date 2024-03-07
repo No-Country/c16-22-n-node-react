@@ -19,12 +19,16 @@ const Register = () => {
   return (
     <>
       <button
-        onClick={() => setOpenModal(true)}
-        className="cursor-pointer w-[150px] h-[55px] 
-            rounded-2xl p-4 text-xl font-[400] text-[#055286] flex items-center justify-center
-              hover:opacity-80 transition"
+        onClick={() => { 
+          
+          setOpenModal(true)
+        
+        }}
+        className="cursor-pointer 
+             p-1 text-[15px]  text-grey flex self-center
+              hover:opacity-80 transition hover:underline"
       >
-        Registrase
+        No tienes una cuenta aun? Registrate
       </button>
       {openModal && (
         <div
@@ -67,6 +71,7 @@ const Register = () => {
                   </label>
                   <input
                     {...register("name", {required:true})}
+                    
                     type="text"
                     className=" shadow-lg font-bold focus:border-[#7C7C7C]   text-[#7C7C7C]
       text-sm text-center    border-2  rounded-xl  "

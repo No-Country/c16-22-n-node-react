@@ -2,10 +2,29 @@ const generateToken = require("../../config/generateToken");
 const professionalService = require("../services/professionalService");
 const Professional = require("../../database/models").professionalModel;
 
+
 const getAllProfessionals = async (req, res) => {
-  const allProfessionals = await professionalService.getAllProfessionals();
-  // res.send("Get all Professionals");
-  res.send(allProfessionals);
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { aptitudes: { $regex: req.query.search, $options: "i" } },
+          { description: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+    console.log(keyword);
+
+  if (!req.query.search) {
+    const allProfessionals = await professionalService.getAllProfessionals();
+    console.log(allProfessionals)
+    res.send(allProfessionals);
+  } else {
+    const professionalsSearch = await Professional.find(keyword).find({
+      _id: { $ne: req.user._id },
+    });
+    res.send(professionalsSearch);
+  }
 };
 
 // const getAllProfessionals = async (req, res) => {
@@ -61,7 +80,7 @@ const authenticateProfessional = async (req, res) => {
 
   if(professional && (await professional.matchPassword(password))) {
     res.send({
-      ...user,
+      ...professional,
       token: generateToken(professional._id)
     })
   } else {

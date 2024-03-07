@@ -3,6 +3,7 @@ import { handleLocalStorage } from "../../localStorage/LocalStorage";
 import ProfilePic from "./ProfilePic";
 import MyChatItem from "./MyChatItem";
 import axios from 'axios';
+import { handleLogin } from "../../hanldeloginAndRegister/HandleLogAndReg";
 
 function MyChats({ setSelectedChatId }) {
   const { user } = handleLocalStorage();
@@ -12,22 +13,33 @@ function MyChats({ setSelectedChatId }) {
   const [myChats, setMyChats] = useState([]);
 
   const fetchChats = async () => {
+    
     try {
       setLoading(true);
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
+      let config = {};
+
+      if(user.type === 'professional') {
+         config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            'X-Type': 'professional'
+          },
+        };
+      } else {
+         config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
+      }
 
       const response = await axios.get(
-        "http://localhost:3001/api/v1/chat",
+        "https://serviya-back.vercel.app/api/v1/chat",
         config
       );
 
       const { data } = response;
       setMyChats(data);
-      console.log(data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -106,7 +118,7 @@ function MyChats({ setSelectedChatId }) {
               title={chat.professional.name}
               subtitle={
                 chat.latestMessage ? (
-                  chat.latestMessage.sender == user._doc.id ? (
+                  chat.latestMessage.sender == user._doc._id ? (
                     `You: ${chat.latestMessage.content}`
                   ) : (
                     chat.latestMessage.content

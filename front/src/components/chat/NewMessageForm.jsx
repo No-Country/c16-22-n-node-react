@@ -14,17 +14,32 @@ function NewMessageForm({setMessages}) {
     if (newMessage) {
       try {
         //socket.emit("stop typing", selectedChat._id);
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        };
+
+        let config = {};
+        console.log(user._doc)
+        console.log(user.type)
+
+        if (user.type === "professional") {
+          config = {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+              "X-Type": "professional",
+            },
+          };
+        } else {
+          config = {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          };
+        }
 
         setNewMessage(""); // it should change the ui async first and then post a new message
 
         const response = await axios.post(
-          "http://localhost:3001/api/v1/messages",
+          "https://serviya-back.vercel.app/api/v1/messages",
           {
             content: newMessage,
             chatId: selectedChat,
@@ -32,7 +47,6 @@ function NewMessageForm({setMessages}) {
           config
         );
         const { data } = response;
-        console.log(data);
 
         //socket.emit("new message", data);
         setMessages((prevMessages) => [...prevMessages, data]);

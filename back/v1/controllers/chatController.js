@@ -5,7 +5,12 @@ const chatService = require("../services/chatService");
 // fetch all chats for an user
 const getAllChats = async (req, res) => {
   try {
-    const chatWithUsers = await Chat.find({user: {$eq: req.user._id}})
+    const chatWithUsers = await Chat.find({
+      $or: [
+        {user: req.user._id},
+        {professional: req.user._id}
+      ]
+    })
       .populate({
         path: "user",
         select: "name pic email",

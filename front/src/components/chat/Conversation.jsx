@@ -8,7 +8,7 @@ import NewMessageForm from './NewMessageForm';
 // const ENDPOINT = "http://localhost:3001"; // change this to the deployed url
 // let socket, selectedChatCompare;
 
-function Conversation() {
+function Conversation({selectedChatId}) {
   const { user, selectedChat } = handleLocalStorage();
 
   const [socketConnected, setSocketConnected] = useState(false);
@@ -45,14 +45,29 @@ function Conversation() {
     
     try {
       if (selectedChat === undefined) return;
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
+
+      let config = {}
+
+      if (user.type === "professional") {
+        config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+            "X-Type": "professional",
+          },
+        };
+      } else {
+        config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
+      }
+
+      
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:3001/api/v1/messages/${selectedChat}`,
+        `https://serviya-back.vercel.app/api/v1/messages/${selectedChatId}`,
         config
       );
       const { data } = response;
@@ -83,13 +98,13 @@ function Conversation() {
 
   return (
     <div className="w-3/4 text-white">
-      <ChatHeader user={user} />
+      {selectedChatId && <ChatHeader user={user} />}
       <div className=" w-full h-[90%] p-10 bg-[#E0E9EE] flex flex-col justify-between">
         {/* both chats container */}
-        <div className="flex flex-col space-y-6 overflow-auto w-full"> 
+        <div className="flex flex-col space-y-6 overflow-auto w-full">
           {/* our chat */}
           {/* probably same component but passing different styles based on whether you are a sender or receiver */}
-          {messages.length > 0 ?
+          {messages.length > 0 ? (
             messages.map((message, index) => (
               <div className="flex text-black space-x-4 self-end">
                 <div className="flex flex-col space-y-2">
@@ -99,18 +114,35 @@ function Conversation() {
                     {message.content}
                   </p>
                 </div>
-                {isLastMessage(messages, message, index, user._doc.id) ? <></> : <img className="w-14 h-14 rounded-full" src={user._doc.pic} alt="" />}
-                
+              {console.log(message)}
+                {message.sender === user._doc._id ? (
+                  <img
+                    className="w-14 h-14 rounded-full"
+                    src={user._doc.pic}
+                    alt=""
+                  />
+                ) : (
+                  <img
+                    className="w-14 h-14 rounded-full"
+                    src={message.sender}
+                    alt=""
+                  />
+                )}
               </div>
-
             ))
-             : <></>}
+          ) : (
+            <></>
+          )}
           {/* {the person we are chatting with} */}
-          {/* <div className="flex text-black space-x-4">
-            <img className="w-14 h-14 rounded-full" src={user._doc.pic} alt="" />
+          <div className="flex text-black space-x-4">
+            <img
+              className="w-14 h-14 rounded-full"
+              src={user._doc.pic}
+              alt=""
+            />
             <div className="flex flex-col space-y-2">
-              {/* {list of messages} */
-              /* {probably we need a component} 
+              {/* {list of messages} */}
+              {/* {probably we need a component} */}
               <p className="max-w-[700px] bg-white p-4 rounded-xl shadow-md">
                 Hola Camila, como estas?
               </p>
@@ -121,10 +153,10 @@ function Conversation() {
                 Seria para hacer el diagnostico, esta bien?
               </p>
             </div>
-          </div> */}
+          </div>
         </div>
 
-        <NewMessageForm setMessages={setMessages}/>
+        <NewMessageForm setMessages={setMessages} />
       </div>
     </div>
   );
