@@ -1,10 +1,21 @@
 
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'
+import useStoreProfessional from "../../store/useStoreProfessional"
 import s from "./Banner.module.css";
 
 const Banner = ({ profess }) => {
 
     const [prof, setProf] = useState([]);
+    const navigate = useNavigate();
+    const updateProfessional = useStoreProfessional(state => state.updateProfessional);
+
+
+    const reservar = (e) => {
+        e.preventDefault();
+        updateProfessional(prof)
+        navigate(`/reservar/${prof._id}`)
+    }
 
     useEffect(() => {
         setProf(profess[0]);
@@ -29,7 +40,7 @@ const Banner = ({ profess }) => {
                         <div className={s.textValue}>({prof?.comments?.length} valoraciones)</div>
                     </div>
 
-                    <button className={s.reservaButton}>Reservar consulta</button>
+                    <button onClick={(e) => reservar(e)} className={s.reservaButton}>Reservar consulta</button>
 
                 </div>
             </div>

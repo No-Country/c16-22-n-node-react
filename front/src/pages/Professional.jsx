@@ -16,19 +16,14 @@ import Comments from '../components/comments/comments';
 const Professional = () => {
     const [profess, setProfess] = useState([]);
     const { id } = useParams();
-    // 65dea08e07ab5778c8ff7da1
     const api = async () => {
         const professional = await axios.get(`https://serviya-back.vercel.app/api/v1/professional/${id}`)
-        // console.log(professional.data[0]);
         setProfess([professional.data[0]])
 
     }
 
     useEffect(() => {
         api();
-        console.log('-----------------ID---------------------')
-        console.log(id)
-        console.log('-----------------ID---------------------')
     }, []);
 
 
