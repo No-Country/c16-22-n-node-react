@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from "react";
-import axios from 'axios';
 import s from "./profDescrip.module.css";
 
 const ProfDescript = ({ profess }) => {
@@ -16,7 +15,7 @@ const ProfDescript = ({ profess }) => {
         <div className={s.container}>
             <div className={s.description}>
                 <div>Descripción</div>
-                <div>{prof.description}</div>
+                <div>{prof?.description}</div>
             </div>
             <div className={s.subContainer}>
                 <div className={s.containerApt}>
@@ -24,7 +23,7 @@ const ProfDescript = ({ profess }) => {
                         Aptitudes
                     </div>
 
-                    {prof.aptitudes?.map((a) => {
+                    {prof?.aptitudes?.map((a) => {
                         return (
                             <div className={s.aptitudes}>
                                 <div className={s.check}>
@@ -39,7 +38,7 @@ const ProfDescript = ({ profess }) => {
                     <div>Disponibilidad</div>
                     <div className={s.time}>
                         <img src="/professional/access_time.svg" alt="" />
-                        <div>{prof.timeAvailability}</div>
+                        <div>{prof?.timeAvailability}</div>
                     </div>
 
                 </div>

@@ -47,47 +47,78 @@ const Reservar = () => {
         <div>
             <Nav />
             <div className={s.container}>
-                <div className={s.title}>
-                    <div className={s.textTitle}>Reservar visita</div>
-                    <img className={s.arrowRight} src="/reserva/arrowRight.svg" alt="" />
-                    <div className={s.subtitle}>Carga de datos</div>
-                </div>
+                <div className={s.cardTitle}>
+                    <div>
+                        <div className={s.title}>
+                            <div className={s.textTitle}>Reservar visita</div>
+                            <div className={s.arrowRightContainer}>
+                                <img className={s.arrowRight} src="/reserva/arrowRight.svg" alt="" />
+                            </div>
 
-                <div>Servicio</div>
-
-                <div>
-                    <img src={prof?.pic} alt="" />
-                    <div>Visita técnica con {prof?.name} {prof?.lastName}</div>
-                    <div>{prof?.consultPrice} ARS</div>
-                </div>
-
-
-                <div >
-                    <div onChange={handleAddress}>Domicilio de la visita
-                        <input type="text" name="address" placeholder="Agrega el domicilio" />
+                            <div className={s.subtitle}>Carga de datos</div>
+                        </div>
+                        <div className={s.titleCard}>Servicio</div>
                     </div>
 
-                    <div >Día y horario de reserva</div>
-
-                    <div onChange={handleDate}>
-                        <div >Fecha</div>
-                        <input name="date" type="date" />
-                    </div>
-                    <div onChange={handleTime}>
-                        <div>Horario</div>
-                        <input name="time" type="time" />
+                    <div className={s.containerVolver}>
+                        <img src="/reserva/arrowLeft.svg" alt="" />
+                        <div className={s.volver}>  Volver</div>
                     </div>
                 </div>
+                <div className={s.subContainer}>
+
+                    <div >
+                        <div>
+                            <div className={s.cardReserva}>
+                                <img className={s.imageProfessional} src={prof?.pic} alt="" />
+                                <div className={s.informationCard}>
+                                    <div className={s.textCard}>Visita técnica con {prof?.name} {prof?.lastName}</div>
+                                    <div className={s.containerCoin}> <img className={s.coin} src="/reserva/coin.svg" alt="" /> $ {prof?.consultPrice} ARS</div>
+                                </div>
+
+                            </div>
 
 
-                <div>
-                    <div>Resumen de reserva</div>
-                    <div>Visita técnica con {prof?.name} {prof?.lastName}</div>
-                    <div>{formReserva.address}</div>
-                    <div>{prof?.consultPrice} ARS</div>
-                    <div>Día y hora: {formReserva.date}
-                        a las {formReserva.time}</div>
+                            <div >
+                                <div className={s.address} onChange={handleAddress}>
+
+                                    <div className={s.addressTitle}>Domicilio de la visita</div>
+                                    <div className={s.containerLocation}>
+                                        <img className={s.imageLocation} src="/reserva/location.svg" alt="" />
+                                        <input className={s.inputAddress} type="text" name="address" placeholder="Agrega el domicilio" />
+                                    </div>
+                                </div>
+
+                                <div className={s.titleDateTime} >Día y horario de reserva</div>
+                                <div className={s.dateTime}>
+                                    <div className={s.date} onChange={handleDate}>
+                                        <div >Fecha</div>
+                                        <input className={s.inputDate} name="date" type="date" />
+                                    </div>
+                                    <div className={s.time} onChange={handleTime}>
+                                        <div>Horario</div>
+                                        <input className={s.inputTime} name="time" type="time" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={s.resumenCard}>
+                        <div className={s.titleReserva}>Resumen de reserva</div>
+                        <div className={s.bodyReserva}>
+                            <div className={s.lineReserva}> <img src="/reserva/check.svg" alt="" /> Visita técnica con {prof?.name} {prof?.lastName}</div>
+                            <div className={s.lineReserva}>  <img className={s.imageReserva} src="/reserva/location.svg" alt="" /> {formReserva.address}</div>
+                            <div className={s.lineReserva}>  <img className={s.imageReserva} src="/reserva/coin.svg" alt="" /> {prof?.consultPrice} ARS</div>
+                            <div className={s.lineReserva}> <img src="/reserva/access_time.svg" alt="" /> Día y hora: {formReserva.date} a las {formReserva.time}</div>
+                        </div>
+                        <div className={s.buttonContainer}>
+                            <button className={s.buttonConfirmar}> Confirmar reserva</button>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
             <Footer />
         </div>

@@ -14,7 +14,7 @@ const Banner = ({ profess }) => {
     const reservar = (e) => {
         e.preventDefault();
         updateProfessional(prof)
-        navigate(`/reservar/${prof._id}`)
+        navigate(`/reservar/${prof?._id}`)
     }
 
     useEffect(() => {
@@ -25,10 +25,10 @@ const Banner = ({ profess }) => {
         <div className={s.banner}>
             <div className={s.cardProfessional}>
                 <div className={s.photo}>
-                    <img className={s.imgPhoto} src={prof.pic} alt="" />
+                    <img className={s.imgPhoto} src={prof?.pic} alt="" />
                 </div>
                 <div className={s.datos}>
-                    <div className={s.name}>{prof.name} {prof.lastName}</div>
+                    <div className={s.name}>{prof?.name} {prof?.lastName}</div>
                     <div className={s.value}>
                         <div className={s.stars}>
                             <img className={s.star} src="/banner/estrella.svg" alt="star" />
@@ -50,7 +50,7 @@ const Banner = ({ profess }) => {
                     <div className={s.vectorCircle}><img className={s.vector} src="/banner/vector.svg" alt="" /></div>
                 </div>
 
-                <div className={s.consultPrice}>Valor de consulta: {prof.consultPrice} ARS</div>
+                <div className={s.consultPrice}>Valor de consulta: {prof?.consultPrice} ARS</div>
             </div>
         </div>
     )

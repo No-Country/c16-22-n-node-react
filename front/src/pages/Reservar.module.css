@@ -1,16 +1,40 @@
+.container {
+    width: 100vw;
+    padding: 73px;
+    font: "Poppins", sans-serif;
+}
+
+.subContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cardTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .title {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     gap: 10px;
-    width: 300px;
+    width: 450px;
     height: 68px;
-    background-color: rgb(22, 30, 185);
+    padding: 10px;
+    font: "Poppins", sans-serif;
 }
 
 .textTitle {
+    font: "Poppins", sans-serif;
     font-size: 32px;
+}
+
+.arrowRightContainer {
+    padding: 25px 0 25px 0;
 }
 
 .arrowRight {
@@ -19,5 +43,187 @@
 }
 
 .subtitle {
+    font: "Poppins", sans-serif;
     font-size: 24px;
+    padding: 20px 0 20px 0;
+}
+
+.titleCard {
+    font: "Poppins", sans-serif;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.containerVolver {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    height: 50px;
+}
+
+.volver {
+    font-size: 16px;
+    text-decoration: underline;
+    text-decoration-color: #D2D2D2;
+
+}
+
+.cardReserva {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    width: 730px;
+    height: 180px;
+    padding-left: 20px;
+    border-radius: 20px;
+    border: 1px solid #b1adad;
+    background-color: #D2D2D2;
+}
+
+.imageProfessional {
+    width: 191px;
+    height: 144px;
+    border-radius: 20px;
+}
+
+.informationCard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.textCard {
+    font-size: 24px;
+}
+
+.containerCoin {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.coin {
+    width: 20px;
+    height: 20px;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    border-bottom: 1px solid #7C7C7C;
+}
+
+.addressTitle {
+    font-size: 20px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+.containerLocation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.imageLocation {
+    width: 32px;
+    height: 40px;
+}
+
+.inputAddress {
+    width: 700px;
+    height: 110px;
+    border: 0;
+}
+
+.titleDateTime {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 260px;
+    height: 50px;
+    font-size: 20px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+.dateTime {
+    display: flex;
+    flex-direction: row;
+    gap: 184px;
+}
+
+.date {
+    width: 258px;
+    height: 70px;
+    font-size: 20px;
+}
+
+.inputDate {
+    width: 258px;
+}
+
+.time {
+    width: 258px;
+    height: 70px;
+    font-size: 20px;
+}
+
+.inputTime {
+    width: 258px;
+}
+
+.resumenCard {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 24px;
+    width: 513px;
+    height: 430px;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #b1adad;
+    background-color: #D2D2D2;
+}
+
+.titleReserva {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.bodyReserva {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 20px;
+}
+
+.imageReserva {
+    width: 24px;
+    height: 24px;
+}
+
+.lineReserva {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 430px;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+    width: 430px;
+}
+
+.buttonConfirmar {
+    border-radius: 14px;
+    background-color: #E8C900;
+    padding: 16px 30px 16px 30px;
 }
