@@ -80,7 +80,7 @@ const authenticateProfessional = async (req, res) => {
 
   if(professional && (await professional.matchPassword(password))) {
     res.send({
-      ...user,
+      ...professional,
       token: generateToken(professional._id)
     })
   } else {
