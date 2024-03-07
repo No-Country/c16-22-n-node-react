@@ -1,7 +1,31 @@
 import Perfil from "../../../../public/login/perfil.svg";
 import Serviya from "../../../../public/login/serviya.svg";
+import { useState } from "react";
 
 function ProfessionalRegisterForm() {
+    const [aptitud, setAptitud] = useState("");
+    const [aptitudes, setAptitudes] = useState([]);
+
+    const handleAptitudChange = (e) => {
+        setAptitud(e.target.value);
+    }
+
+    const handleAptitudKeyDown = (e) => {
+        const trimmedAptitud = aptitud.trim();
+
+       if (e.key === 'Enter' && trimmedAptitud.length && !aptitudes.includes(trimmedAptitud)) {
+        e.preventDefault();
+        setAptitudes((prevAptitudes) => [...prevAptitudes, trimmedAptitud]);
+        setAptitud('');
+      }
+    }
+
+    const handleAptitudRemove = (aptitudToRemove) => {
+        const updatedAptitudes = aptitudes.filter((aptitud) => aptitud !== aptitudToRemove);
+        setAptitudes(updatedAptitudes);
+    }
+
+
   return (
     <div className="w-[791px] p-2  flex items-center flex-col">
       <img
@@ -22,38 +46,38 @@ function ProfessionalRegisterForm() {
           Paso 1 de 2{" "}
         </span>
 
-        <form action="">
+        <form className="flex flex-col" action="">
           <div className="flex justify-center gap-28">
-            <div className="flex flex-col hidden">
-              <label htmlFor="name">Nombre y apellido</label>
-              <input type="text" />
+            <div className="flex flex-col">
+              <label className="font-bold" htmlFor="name">Nombre y apellido</label>
+              <input className="rounded-xl" type="text" />
 
-              <label htmlFor="dni">DNI / Pasaporte</label>
-              <input type="text" />
+              <label className="font-bold" htmlFor="dni">DNI / Pasaporte</label>
+              <input className="rounded-xl" type="text" />
 
-              <label htmlFor="telephone">Telefono</label>
-              <input type="tel" />
-            </div>
-
-            <div className="flex flex-col hidden">
-              <label htmlFor="email">E-mail</label>
-              <input type="text" />
-
-              <label htmlFor="password">Contraseña</label>
-              <input type="password" />
-
-              <label htmlFor="password">Repetir contraseña</label>
-              <input type="password" />
+              <label className="font-bold" htmlFor="telephone">Telefono</label>
+              <input className="rounded-xl" type="tel" />
             </div>
 
             <div className="flex flex-col">
-              <label htmlFor="name">Puesto de trabajo</label>
+              <label className="font-bold" htmlFor="email">E-mail</label>
+              <input className="rounded-xl" type="text" />
+
+              <label className="font-bold" htmlFor="password">Contraseña</label>
+              <input className="rounded-xl" type="password" />
+
+              <label className="font-bold" htmlFor="password">Repetir contraseña</label>
+              <input className="rounded-xl" type="password" />
+            </div>
+
+            <div className="flex flex-col hidden">
+              <label className="font-bold" htmlFor="name">Puesto de trabajo</label>
               <input type="text" />
 
-              <label htmlFor="dni">Matricula nº</label>
+              <label className="font-bold" htmlFor="dni">Matricula nº</label>
               <input type="text" />
 
-              <label htmlFor="gender">Género</label>
+              <label className="font-bold" htmlFor="gender">Género</label>
               <select name="gender" id="gender">
                 <option value={"Sin especificar"}>Sin especificar</option>
                 <option value={"Masculino"}>Masculino</option>
@@ -61,18 +85,39 @@ function ProfessionalRegisterForm() {
               </select>
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col hidden">
               <label htmlFor="area">Zona de trabajo</label>
               <input type="text" />
 
-              <label htmlFor="password">Habilidades</label>
-              <select name="aptitudes" id="aptitudes">
-                <option value={"Sin especificar"}>Sin especificar</option>
-                <option value={"Masculino"}>Masculino</option>
-                <option value={"Femenino"}>Femenino</option>
-              </select>
+              <label htmlFor="aptitudes">Habilidades</label>
+              <input
+                type="text"
+                value={aptitud}
+                onChange={handleAptitudChange}
+                onKeyDown={handleAptitudKeyDown}
+              />
+              <div className="bg-[#EAE9E9] p-2  max-w-[190px] mt-2 h-10 overflow-scroll">
+                {aptitudes?.map((aptitud, index) => (
+                  <>
+                    <span
+                      key={index}
+                      className="text-black w-2 h-2 ml-1"
+                    >
+                      {aptitud}
+                    </span>{" "}
+                    <button
+                      className="text-[#FF0000]"
+                      onClick={() => {
+                        handleAptitudRemove(aptitud);
+                      }}
+                    >
+                      x
+                    </button>
+                  </>
+                ))}
+              </div>
 
-              <label htmlFor="password">Disponibilidad</label>
+              <label htmlFor="timeAvailability">Disponibilidad</label>
               <select name="timeAvailability" id="timeAvailability">
                 <option value={"24hrs"}>24hrs</option>
                 <option value={"Noche"}>Noche</option>
@@ -84,7 +129,7 @@ function ProfessionalRegisterForm() {
 
           <button
             className="shadow-lg cursor-pointer   bg-[#E8C900]
-              rounded-2xl px-5 py-2 text-sm  text-black flex justify-center items-center hover:opacity-80 transition"
+              rounded-2xl px-5 py-2 text-sm  text-black flex self-end mb-10 mr-10 hover:opacity-80 transition"
           >
             Siguiente
           </button>

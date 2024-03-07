@@ -77,7 +77,7 @@ const professionalSchema = new Schema(
         versionKey: false,
         methods: {
             matchPassword(enteredPassword) {
-                return bcrypt.compareSync(enteredPassword, this.password)
+                return enteredPassword === this.password;
             }
         }
     });
