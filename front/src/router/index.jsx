@@ -4,6 +4,7 @@ import Chat from '../pages/Chat'
 import Professional from "../pages/Professional";
 import NotFound from '../pages/NotFound';
 import Reservar from "../pages/Reservar";
+import Payment from "../pages/payment";
 
 
 
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
   {
     path: "/reservar/:id",
     element: <Reservar />
+  },
+  {
+    path: "/payment/:id",
+    element: <Payment />
   },
   {
     path: "*",

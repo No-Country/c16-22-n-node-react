@@ -4,11 +4,7 @@
     font: "Poppins", sans-serif;
 }
 
-.subContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
+
 
 .cardTitle {
     display: flex;
@@ -69,6 +65,12 @@
 
 }
 
+.subContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .cardReserva {
     display: flex;
     flex-direction: row;
@@ -86,6 +88,7 @@
     width: 191px;
     height: 144px;
     border-radius: 20px;
+    object-fit: cover;
 }
 
 .informationCard {

@@ -1,30 +1,53 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import useStoreProfessional from '../store/useStoreProfessional';
+import useStoreReserva from '../store/useStoreReserva';
 import Footer from "../components/footer/Footer";
 import Nav from "../components/nabvar/Navbar";
 import s from './Reservar.module.css'
 
 const Reservar = () => {
+    // estados locales
     const [prof, setProf] = useState([]);
-    const professional = useStoreProfessional(state => state.professional);
     const [formReserva, setFormReserva] = useState({});
+    // estados globales
+    const professional = useStoreProfessional(state => state.professional);
+    const reserva = useStoreReserva(state => state.reserva);
+    const updateProfessional = useStoreProfessional(state => state.updateProfessional);
+    const updateReserva = useStoreReserva(state => state.updateReserva);
+    const navigate = useNavigate();
 
     // console.log(professional);
 
     const handleAddress = (e) => {
         e.preventDefault();
-        // console.log(e.target.value)
-        formReserva.address = e.target.value;
+        setFormReserva({
+            ...formReserva,
+            address: e.target.value
+        })
     }
 
     const handleDate = (e) => {
         e.preventDefault();
-        formReserva.date = Date(e.target.value);
+        setFormReserva({
+            ...formReserva,
+            date: e.target.value
+        })
     }
 
     const handleTime = (e) => {
         e.preventDefault();
-        formReserva.time = e.target.value;
+        setFormReserva({
+            ...formReserva,
+            time: e.target.value
+        })
+    }
+
+    const confirmarReserva = (e) => {
+        e.preventDefault();
+        updateProfessional(prof)
+        updateReserva(formReserva)
+        navigate(`/payment/${prof?._id}`)
     }
 
     useEffect(() => {
@@ -56,6 +79,7 @@ const Reservar = () => {
                             </div>
 
                             <div className={s.subtitle}>Carga de datos</div>
+
                         </div>
                         <div className={s.titleCard}>Servicio</div>
                     </div>
@@ -65,6 +89,8 @@ const Reservar = () => {
                         <div className={s.volver}>  Volver</div>
                     </div>
                 </div>
+
+
                 <div className={s.subContainer}>
 
                     <div >
@@ -108,12 +134,13 @@ const Reservar = () => {
                         <div className={s.titleReserva}>Resumen de reserva</div>
                         <div className={s.bodyReserva}>
                             <div className={s.lineReserva}> <img src="/reserva/check.svg" alt="" /> Visita técnica con {prof?.name} {prof?.lastName}</div>
-                            <div className={s.lineReserva}>  <img className={s.imageReserva} src="/reserva/location.svg" alt="" /> {formReserva.address}</div>
+                            <div className={s.lineReserva}>  <img className={s.imageReserva} src="/reserva/location.svg" alt="" /> {formReserva?.address}</div>
                             <div className={s.lineReserva}>  <img className={s.imageReserva} src="/reserva/coin.svg" alt="" /> {prof?.consultPrice} ARS</div>
-                            <div className={s.lineReserva}> <img src="/reserva/access_time.svg" alt="" /> Día y hora: {formReserva.date} a las {formReserva.time}</div>
+                            <div className={s.lineReserva}> <img src="/reserva/access_time.svg" alt="" /> Día y hora: {formReserva?.date} a las {formReserva?.time}</div>
                         </div>
+
                         <div className={s.buttonContainer}>
-                            <button className={s.buttonConfirmar}> Confirmar reserva</button>
+                            <button onClick={(e) => confirmarReserva(e)} className={s.buttonConfirmar}> Confirmar reserva</button>
                         </div>
                     </div>
 

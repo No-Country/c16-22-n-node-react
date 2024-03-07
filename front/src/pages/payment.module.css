@@ -1,0 +1,145 @@
+.container {
+    width: 100vw;
+    padding: 73px;
+    font: "Poppins", sans-serif;
+}
+
+.cardTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 0 40px 0;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 840px;
+    height: 68px;
+    padding: 10px;
+    font: "Poppins", sans-serif;
+}
+
+.textTitle {
+    font: "Poppins", sans-serif;
+    font-size: 32px;
+}
+
+.arrowRightContainer {
+    padding: 25px 0 25px 0;
+}
+
+.arrowRight {
+    width: 11.77px;
+    height: 20px;
+}
+
+.subtitle {
+    font: "Poppins", sans-serif;
+    font-size: 24px;
+    padding: 20px 0 20px 0;
+}
+
+.titleCard {
+    font: "Poppins", sans-serif;
+    font-size: 24px;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.containerVolver {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    height: 50px;
+}
+
+.volver {
+    font-size: 16px;
+    text-decoration: underline;
+    text-decoration-color: #D2D2D2;
+
+}
+
+
+
+.resumenCard {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 24px;
+    width: 840px;
+    height: 330px;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #b1adad;
+    background-color: #D2D2D2;
+}
+
+.titleReserva {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.bodyReserva {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 20px;
+}
+
+.imageReserva {
+    width: 24px;
+    height: 24px;
+}
+
+.lineReserva {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 430px;
+}
+
+
+
+.titlePayment {
+    font-size: 20px;
+    padding: 40px 10px 40px 10px;
+}
+
+.containerPago {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 840px;
+    height: 70px;
+    border-bottom: 1px solid #7C7C7C;
+}
+
+.imagePago {
+    width: 80px;
+    height: 45.09px;
+}
+
+.textPago {
+    font-size: 15px;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+    width: 840px;
+    margin-top: 50px;
+}
+
+.buttonConfirmar {
+    border-radius: 14px;
+    background-color: #E8C900;
+    padding: 16px 30px 16px 30px;
+}
