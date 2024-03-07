@@ -4,27 +4,31 @@ const Professional = require("../../database/models").professionalModel;
 
 
 const getAllProfessionals = async (req, res) => {
-  const keyword = req.query.search
-    ? {
-        $or: [
-          { aptitudes: { $regex: req.query.search, $options: "i" } },
-          { description: { $regex: req.query.search, $options: "i" } },
-        ],
-      }
-    : {};
 
-    console.log(keyword);
+  // pedido de todos los profesionales en forma provisoria
+  const allProfessionals = await professionalService.getAllProfessionals();
+  res.send(allProfessionals);
+  // const keyword = req.query.search
+  //   ? {
+  //       $or: [
+  //         { aptitudes: { $regex: req.query.search, $options: "i" } },
+  //         { description: { $regex: req.query.search, $options: "i" } },
+  //       ],
+  //     }
+  //   : {};
 
-  if (!req.query.search) {
-    const allProfessionals = await professionalService.getAllProfessionals();
-    console.log(allProfessionals)
-    res.send(allProfessionals);
-  } else {
-    const professionalsSearch = await Professional.find(keyword).find({
-      _id: { $ne: req.user._id },
-    });
-    res.send(professionalsSearch);
-  }
+  //   console.log(keyword);
+
+  // if (!req.query.search) {
+  //   const allProfessionals = await professionalService.getAllProfessionals();
+  //   console.log(allProfessionals)
+  //   res.send(allProfessionals);
+  // } else {
+  //   const professionalsSearch = await Professional.find(keyword).find({
+  //     _id: { $ne: req.user._id },
+  //   });
+  //   res.send(professionalsSearch);
+  // }
 };
 
 // const getAllProfessionals = async (req, res) => {
@@ -74,11 +78,11 @@ const deleteOneProfessional = async (req, res) => {
 };
 
 const authenticateProfessional = async (req, res) => {
-  const {email, password} = req.body;
+  const { email, password } = req.body;
 
-  const professional = await Professional.findOne({email});
+  const professional = await Professional.findOne({ email });
 
-  if(professional && (await professional.matchPassword(password))) {
+  if (professional && (await professional.matchPassword(password))) {
     res.send({
       ...professional,
       token: generateToken(professional._id)
