@@ -4,10 +4,10 @@ const professionalController = require("../controllers/professionalController");
 const { protect } = require("../middleware/authorization");
 
 router.get("/",
-     protect,
+    //  protect,
     professionalController.getAllProfessionals);
 
-    
+
 router.get("/:professionalId", professionalController.getOneProfessional);
 
 router.patch("/:professionalId",
