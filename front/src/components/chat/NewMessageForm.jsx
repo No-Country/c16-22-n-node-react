@@ -30,6 +30,7 @@ function NewMessageForm({setMessages}) {
         } else {
           config = {
             headers: {
+              "Content-Type": "application/json",
               Authorization: `Bearer ${user.token}`,
             },
           };

@@ -35,7 +35,7 @@ const createNewMessage = async (req, res) => {
     return res.sendStatus(400);
   }
 
-  console.log(req.user);
+  console.log(req.user._id);
 
   var newMessage = {
     sender: req.user._id,
