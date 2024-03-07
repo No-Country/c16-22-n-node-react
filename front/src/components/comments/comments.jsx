@@ -32,7 +32,7 @@ const Comments = ({ profess }) => {
                     </div>
                 )
             })}</div>
-            < div className={s.see} > Ver más opiniones de las que hay<img className={s.arrowDown} src={arrowDown} alt="arrow down" /></div>
+            < div className={s.see} > Ver más opiniones <img className={s.arrowDown} src={arrowDown} alt="arrow down" /></div>
         </div>
     )
 }
