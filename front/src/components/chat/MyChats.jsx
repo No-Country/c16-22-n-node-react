@@ -40,7 +40,6 @@ function MyChats({ setSelectedChatId }) {
 
       const { data } = response;
       setMyChats(data);
-      console.log(data);
       setLoading(false);
     } catch (error) {
       console.log(error);

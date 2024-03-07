@@ -9,8 +9,6 @@ function NewMessageForm({setMessages}) {
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
-  console.log(user);
-
   const sendMessage = async () => {
     // if(event.key === "Enter" && newMessage) {
     if (newMessage) {
@@ -18,6 +16,8 @@ function NewMessageForm({setMessages}) {
         //socket.emit("stop typing", selectedChat._id);
 
         let config = {};
+        console.log(user._doc)
+        console.log(user.type)
 
         if (user.type === "professional") {
           config = {
@@ -47,7 +47,6 @@ function NewMessageForm({setMessages}) {
           config
         );
         const { data } = response;
-        console.log(data);
 
         //socket.emit("new message", data);
         setMessages((prevMessages) => [...prevMessages, data]);
