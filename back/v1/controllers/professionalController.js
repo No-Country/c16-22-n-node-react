@@ -12,12 +12,16 @@ const getAllProfessionals = async (req, res) => {
       }
     : {};
 
-  if (keyword) {
-    const professionalsSearch = await Professional.find(keyword).find({ _id: { $ne: req.user._id } });
-    res.send(professionalsSearch);
-  } else {
+    console.log(keyword);
+
+  if (!keyword) {
     const allProfessionals = await professionalService.getAllProfessionals();
     res.send(allProfessionals);
+  } else {
+    const professionalsSearch = await Professional.find(keyword).find({
+      _id: { $ne: req.user._id },
+    });
+    res.send(professionalsSearch);
   }
 };
 

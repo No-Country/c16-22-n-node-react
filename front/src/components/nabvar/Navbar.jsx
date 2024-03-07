@@ -11,7 +11,7 @@ const Nav = () => {
 
   return (
     <nav
-      className={`max-w-[1440px] ${location.pathname === '/chat' ? "h-[10%]" : "h-[120px]"} w-full bg-white
+      className={`max-w-[1440px] ${location.pathname === "/chat" ? "h-[10%]" : "h-[120px]"} w-full bg-white
     flex items-center justify-between px-9
     font-roboto mx-auto
     `}
@@ -19,12 +19,14 @@ const Nav = () => {
       <Link to="/">
         <img src="/header/iconServiYAwhite.svg" alt="" />
       </Link>
-      {user ?  <Logout/>:
+      {user ? (
+        <Logout />
+      ) : (
         <div className="flex items-center gap-8 justify-center">
-          <Login />
-          <Register />
+          <Login typeOfLogin={"professional"} />
+          <Login typeOfLogin={"user"} />
         </div>
-      }
+      )}
     </nav>
   );
 };
