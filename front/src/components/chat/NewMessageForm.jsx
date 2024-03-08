@@ -9,8 +9,8 @@ function NewMessageForm({socketConnected, setMessages, socket}) {
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
-  // const URL = "https://serviya-back.vercel.app";
-  const URL = "http://localhost:3001";
+  const URL = "https://serviya-back.vercel.app";
+  // const URL = "http://localhost:3001";
 
   const sendMessage = async () => {
     // if(event.key === "Enter" && newMessage) {

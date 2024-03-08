@@ -5,7 +5,8 @@ import { io } from "socket.io-client";
 import { useState, useEffect } from "react";
 import NewMessageForm from './NewMessageForm';
 
-const ENDPOINT = "http://localhost:3001"; // change this to the deployed url
+// const ENDPOINT = "http://localhost:3001"; // change this to the deployed url
+const ENDPOINT = "https://serviya-back.vercel.app";
 let socket, selectedChatCompare;
 
 function Conversation({selectedChatId}) {
@@ -15,8 +16,8 @@ function Conversation({selectedChatId}) {
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
 
-  // const URL = "https://serviya-back.vercel.app";
-  const URL = "http://localhost:3001";
+  const URL = "https://serviya-back.vercel.app";
+  // const URL = "http://localhost:3001";
 
   useEffect(() => {
     // this is for single message area

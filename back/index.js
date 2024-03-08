@@ -72,7 +72,7 @@ const server = app.listen(PORT, () => {
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://serviya-back.vercel.app",
     credentials: true
   },
 });
