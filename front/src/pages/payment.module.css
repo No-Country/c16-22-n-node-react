@@ -1,3 +1,27 @@
+.containerAll {
+    position: relative;
+}
+
+.paymentCheck {
+    position: absolute;
+    display: none;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(124, 124, 124, 0.8);
+}
+
+.containerImagePaymentCheck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.imagePaymentcheck {
+    /* incluir movimiento */
+}
+
 .container {
     width: 100vw;
     padding: 73px;
@@ -65,7 +89,10 @@
 
 }
 
-
+.containerCard {
+    display: flex;
+    flex: row;
+}
 
 .resumenCard {
     display: flex;
@@ -93,6 +120,7 @@
 }
 
 .imageReserva {
+    display: none;
     width: 24px;
     height: 24px;
 }
@@ -104,7 +132,15 @@
     width: 430px;
 }
 
+.checkPaymentImage {
+    width: 330px;
+    height: 285px;
+}
 
+.isPayment {
+    display: flex;
+    flex-direction: column;
+}
 
 .titlePayment {
     font-size: 20px;
@@ -120,12 +156,18 @@
     border-bottom: 1px solid #7C7C7C;
 }
 
+.containerImagePayment {
+    width: 200px;
+}
+
 .imagePago {
     width: 80px;
     height: 45.09px;
 }
 
+
 .textPago {
+    width: 700px;
     font-size: 15px;
 }
 
