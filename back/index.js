@@ -69,7 +69,7 @@ const server = app.listen(PORT, () => {
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3001",
+    origin: "http://localhost:5173",
     credentials: true,
   },
 });
@@ -93,16 +93,16 @@ io.on("connection", (socket) => {
   socket.on("new message", (newMessageReceived) => {
     let chat = newMessageReceived.chat;
     console.log("message received")
+    console.log(chat)
     if (!chat.user && !chat.professional) return console.log("chat users are not defined");
 
     // We will not send message to ourselves
-
-    if (chat.user) {
-      if (chat.user == newMessageReceived.sender[0]?._id) return;
+    
+    if (chat.user == newMessageReceived.sender[0]?._id) {
+      return;
       socket.in(user._id).emit("message received", newMessageReceived);
     } else if (chat.professional) {
-      if (chat.professional == newMessageReceived.sender[0]?._id) return;
-
+      // if (chat.professional == newMessageReceived.sender[0]?._id) return;
       socket.in(user._id).emit("message received", newMessageReceived);
     }
   });

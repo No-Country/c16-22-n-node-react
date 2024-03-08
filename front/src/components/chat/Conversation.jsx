@@ -75,6 +75,7 @@ function Conversation({selectedChatId}) {
       const { data } = response;
       setMessages(data);
       setLoading(false);
+      console.log("chat:" , selectedChat)
       socket.emit("join chat", selectedChat);
     } catch (error) {
       // display toast - error ocurred
