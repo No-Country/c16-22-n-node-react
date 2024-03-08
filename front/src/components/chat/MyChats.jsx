@@ -1,56 +1,59 @@
 import { useEffect, useState } from "react";
 import { handleLocalStorage } from "../../localStorage/LocalStorage";
 import ProfilePic from "./ProfilePic";
+import MyChatItem from "./MyChatItem";
 import axios from 'axios';
+import { handleLogin } from "../../hanldeloginAndRegister/HandleLogAndReg";
 
-function MyChats() {
+function MyChats({ setSelectedChatId }) {
   const { user } = handleLocalStorage();
   const [search, setSearch] = useState("");
   const [searchChats, setSearchChats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [myChats, setMyChats] = useState([]);
 
-  const chats = [
-    {
-      user: {
-        pic: "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        name: "Manuel Lopez",
-      },
-      latestMessage: "Seria para hacer el diagnosticooooooo",
-      selected: true
-    },
-    {
-      user: {
-        pic: "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        name: "Jose Caceres",
-      },
-      latestMessage: "Perfecto!",
-      selected: false
-    },
-  ];
-
-  useEffect(() => {
+  const fetchChats = async () => {
+    
     try {
       setLoading(true);
-      const config = {
-        headers: {
-          "Authentication": `Bearer ${user.token}`
-        }
+      let config = {};
+
+      if(user.type === 'professional') {
+         config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            'X-Type': 'professional'
+          },
+        };
+      } else {
+         config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
       }
 
-      const response = axios.get(
-        "http://serviya-back.vercel.app/api/v1/chat",
+      const response = await axios.get(
+        "https://serviya-back.vercel.app/api/v1/chat",
         config
       );
 
       const { data } = response;
-      console.log(data);
       setMyChats(data);
       setLoading(false);
     } catch (error) {
-      console.log(error)
+
+      console.log(error);
+      // display toast there was an error
+
     }
-  });
+  };
+
+
+  useEffect(() => {
+    // maybe we will have to do something else here
+    fetchChats();
+  }, []);
 
   const handleSearch = async () => {
     if (!search) {
@@ -71,7 +74,7 @@ function MyChats() {
 
       const { data } = response;
       setSearchChats(data);
-      console.log(data);
+
       setLoading(false);
     } catch (error) {
       // display a toast = fail to load the search reshults
@@ -104,22 +107,38 @@ function MyChats() {
           </button>
         </div>
 
-        {/* {This represents a component "chat"} */}
         {/* {loading ? (<div>Loading...</div>) : (
           searchResult?.map((user) => (
             <ChatListItem></ChatListItem>
           ))
         ) } */}
-        {chats.map((chat) => (
-          <div className="flex w-full h-[80px] p-5 items-center border-b-[#D0D0D0] border-b-[1px]">
-            <ProfilePic pic={chat.user.pic} />
-            {/* {a state should handle if the div is selected or not} */}
-            <div className="flex flex-col ml-3 text-[14px] truncate" selected={chat.selected}>
-              <p>{chat.user.name}</p>
-              <p className="truncate">{chat.latestMessage}</p>
-            </div>
-          </div>
-        ))}
+
+        {myChats.length > 0 ? (
+          myChats.map((chat) => (
+            <MyChatItem
+              key={chat._id}
+              id={chat._id}
+              pic={chat.professional.pic}
+              title={chat.professional.name}
+              subtitle={
+                chat.latestMessage ? (
+                  chat.latestMessage.sender == user._doc._id ? (
+                    `You: ${chat.latestMessage.content}`
+                  ) : (
+                    chat.latestMessage.content
+                  )
+                ) : (
+                  <></>
+                )
+              }
+              setSelectedChatId={() => {
+                setSelectedChatId;
+              }}
+            />
+          ))
+        ) : (
+          <MyChatItem />
+        )}
       </div>
     </div>
   );

@@ -1,13 +1,37 @@
+const generateToken = require("../../config/generateToken");
 const professionalService = require("../services/professionalService");
 const Professional = require("../../database/models").professionalModel;
 
+
 const getAllProfessionals = async (req, res) => {
+
+  // pedido de todos los profesionales en forma provisoria
   const allProfessionals = await professionalService.getAllProfessionals();
-  // res.send("Get all Professionals");
   res.send(allProfessionals);
+  // const keyword = req.query.search
+  //   ? {
+  //       $or: [
+  //         { aptitudes: { $regex: req.query.search, $options: "i" } },
+  //         { description: { $regex: req.query.search, $options: "i" } },
+  //       ],
+  //     }
+  //   : {};
+
+  //   console.log(keyword);
+
+  // if (!req.query.search) {
+  //   const allProfessionals = await professionalService.getAllProfessionals();
+  //   console.log(allProfessionals)
+  //   res.send(allProfessionals);
+  // } else {
+  //   const professionalsSearch = await Professional.find(keyword).find({
+  //     _id: { $ne: req.user._id },
+  //   });
+  //   res.send(professionalsSearch);
+  // }
 };
 
-// const getAllProfessionals = asyncHandler(async (req, res) => {
+// const getAllProfessionals = async (req, res) => {
 //   // const allUsers = usersService.getAllUsers();
 //   // res.send({status: "OK", data: {}});
 //   const keyword = req.query.search
@@ -22,7 +46,7 @@ const getAllProfessionals = async (req, res) => {
 //   const professionals = await Professional.find(keyword).find({ _id: { $ne: req.user._id } });
 //   // console.log(users)
 //   res.status(200).send(professionals);
-// });
+// };
 
 const getOneProfessional = async (req, res) => {
   const id = req.params.professionalId;
@@ -53,10 +77,27 @@ const deleteOneProfessional = async (req, res) => {
   res.send(deletedProfessional);
 };
 
+const authenticateProfessional = async (req, res) => {
+  const { email, password } = req.body;
+
+  const professional = await Professional.findOne({ email });
+
+  if (professional && (await professional.matchPassword(password))) {
+    res.send({
+      ...professional,
+      token: generateToken(professional._id)
+    })
+  } else {
+    res.status(401);
+    throw new Error("Invalid Email or Password")
+  }
+}
+
 module.exports = {
   getAllProfessionals,
   getOneProfessional,
   createNewProfessional,
   updateOneProfessional,
   deleteOneProfessional,
+  authenticateProfessional
 };

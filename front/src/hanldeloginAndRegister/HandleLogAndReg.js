@@ -9,42 +9,73 @@ export const handleLogin = () => {
     const [loading, setLoading] = useState(false);
     const [info, setInfo] = useState();
     const {setLogin} = useStoreLogin();
+    const [openModalProfessional, setOpenModalProfessional] = useState(false);
     const { register, handleSubmit, reset } = useForm();
   
     useEffect(() => {
       if (info) {
         setLoading(true);
-  
+        console.log(info)
         const config = {
           headers: {
             "Content-type": "application/json",
           },
         };
+
+        if(info.type === "user") {
+                  axios
+                    .post(
+                      "https://serviya-back.vercel.app/api/v1/users/login",
+                      {
+                        email: info.email,
+                        password: info.password,
+                      },
+                      config
+                    )
+                    .then((response) => {
+                      console.log(response, "success");
+                      localStorage.setItem(
+                        "info",
+                        JSON.stringify(response.data)
+                      );
+                      setLoading(true);
+                      setOpenModal(false);
+                      setLogin(true);
+                    })
+                    .catch((error) => console.log(error))
+                    .finally(setLoading(false));
+        } else {
+                  axios
+                    .post(
+                      "https://serviya-back.vercel.app/api/v1/professional/login",
+                      {
+                        email: info.email,
+                        password: info.password,
+                      },
+                      config
+                    )
+                    .then((response) => {
+                      console.log(response, "success");
+                      response.data.type = 'professional';
+                      localStorage.setItem(
+                        "info",
+                        JSON.stringify(response.data)
+                      );
+                      setLoading(true);
+                      setOpenModal(false);
+                      setLogin(true);
+                    })
+                    .catch((error) => console.log(error))
+                    .finally(setLoading(false));
+        }
         
-        axios
-          .post(
-            "https://serviya-back.vercel.app/api/v1/users/login",
-            {
-              email: info.email,
-              password: info.password,
-            },
-            config
-          )
-          .then((response) => {
-            console.log(response, "success");
-            localStorage.setItem('info', JSON.stringify(response.data))
-            setLoading(true);
-            setOpenModal(false);
-            setLogin(true)
-          })
-          .catch((error) => console.log(error))
-          .finally(setLoading(false));
+        
       }
     }, [info]);
   
-    const onSubmit = async ({ email, password }) => {
-      console.log(email, password);
-      setInfo({ email, password });
+    const onSubmit = async ({ email, password, type }) => {
+      console.log(email, password, type);
+      setInfo({ email, password, type });
       setLoading(true); 
       reset();
     };
@@ -57,16 +88,18 @@ export const handleLogin = () => {
   
 
 
-    return{
-        setOpenModal,
-        openModal,
-        loading,
-        info,
-        register,
-        handleSubmit,
-        handleModalClick,
-        onSubmit
-    }
+    return {
+      setOpenModal,
+      openModal,
+      loading,
+      info,
+      register,
+      handleSubmit,
+      handleModalClick,
+      onSubmit,
+      openModalProfessional,
+      setOpenModalProfessional,
+    };
 
 }
 

@@ -1,24 +1,33 @@
 // eventually we need the service here
-const asyncHandler = require("express-async-handler");
 const Message = require("../../database/models/message");
 const User = require("../../database/models/user");
 const Chat = require("../../database/models/chat");
+const {isValidObjectId} = require('mongoose')
 
-const getAllMessages = asyncHandler(async (req, res) => {
+const getAllMessages = async (req, res) => {
     const chatId = req.params.chatId
-    try {
-      const messages = await Message.find({chat: chatId})
-      .populate("sender", "name pic email")
-      .populate("chat");
-      res.status(200);
-      res.json(messages)
-    } catch(error) {
-      res.status(400);
-      throw new Error(error.message)
+    console.log(chatId)
+    if (!chatId || !isValidObjectId(chatId)) {
+      // Check if chatId is null or not a valid ObjectId
+      res.status(400).json({ error: "Invalid chatId" });
+      return;
     }
-});
 
-const createNewMessage = asyncHandler(async (req, res) => {
+    if(chatId) {
+      try {
+        const messages = await Message.find({chat: chatId})
+        .populate("sender", "name pic email")
+        .populate("chat");
+        res.status(200);
+        res.json(messages);
+      } catch(error) {
+        res.status(400);
+        throw new Error(error.message)
+      }
+    }
+};
+
+const createNewMessage = async (req, res) => {
   const { content, chatId } = req.body;
 
   if (!content || !chatId) {
@@ -26,12 +35,15 @@ const createNewMessage = asyncHandler(async (req, res) => {
     return res.sendStatus(400);
   }
 
+  console.log(req.user._id);
+
   var newMessage = {
     sender: req.user._id,
     content: content,
     chat: chatId,
   };
 
+  
   try {
     var message = await Message.create(newMessage);
 
@@ -50,7 +62,7 @@ const createNewMessage = asyncHandler(async (req, res) => {
     throw new Error(error.message);
   }
   // res.send("Create a new Message");
-});
+};
 
 module.exports = {
   getAllMessages,
