@@ -6,6 +6,8 @@ import Professional from "../pages/Professional";
 import NotFound from "../pages/NotFound";
 import Reservar from "../pages/Reservar";
 
+import Payment from "../pages/payment";
+
 
 
 export const router = createBrowserRouter([
