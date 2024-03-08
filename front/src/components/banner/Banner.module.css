@@ -22,13 +22,11 @@
     gap: 24px;
     width: 493px;
     height: 144px;
-    /* background-color: aquamarine; */
 }
 
 .photo {
     width: 191px;
     height: 144px;
-    /* background-color: blue; */
     border-radius: 24px;
     overflow: hidden;
 
@@ -46,7 +44,6 @@
     gap: 16px;
     width: 278px;
     height: 134px;
-    /* background-color: blueviolet; */
 }
 
 .name {
@@ -91,7 +88,6 @@
     align-items: end;
     width: 384px;
     height: 122px;
-    /* background-color: aquamarine; */
 }
 
 .containerIdentity {
