@@ -26,7 +26,7 @@ const Catalogo = () => {
 
   useEffect(() => {
     if (!loading && data) {
-      console.log(data, categoria);
+      // console.log(data, categoria);
       data = data.filter(data => data.category === categoria);
       const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
       const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -62,12 +62,22 @@ const Catalogo = () => {
                 <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   {professional.name} {professional.lastName}
                 </h5>
-                <img src="../../../public/catalogo/Novedades/Frame 14182.png" className="object-contain" />
+                <div className="flex object-contain">
+                  <img src="/banner/estrella.svg" alt="" />
+                  <img src="/banner/estrella.svg" alt="" />
+                  <img src="/banner/estrella.svg" alt="" />
+                  <img src="/banner/estrella.svg" alt="" />
+                  <img src="/banner/estrella.svg" alt="" />
+                </div>
+
+                {/* <img src="../../../public/catalogo/Novedades/Frame 14182.png" className="object-contain" /> */}
               </div>
               <div className="flex justify-between">
                 <p className="font-normal text-gray-700 dark:text-gray-400">
                   <b className="flex">
-                    <img src="../../../public/catalogo/Novedades/verified.png" className="object-contain mr-1" /> {professional.aptitudes[0]}
+                    <img className="object-contain mr-1" src="/professional/check.svg" alt="" />
+                    {/* <img src="../../../public/catalogo/Novedades/verified.png" className="object-contain mr-1" /> */}
+                    {professional.aptitudes[0]}
                   </b>
                 </p>
                 <p className="font-normal text-gray-700 dark:text-gray-400">
@@ -75,7 +85,9 @@ const Catalogo = () => {
                 </p>
               </div>
               <p className="font-normal text-gray-700 dark:text-gray-400 flex">
-                <img src="../../../public/catalogo/Novedades/Vector.png" className="object-contain mr-1" /> {professional.timeAvailability}
+                <img className="object-contain mr-1" src="/professional/access_time.svg" alt="" />
+                {/* <img src="../../../public/catalogo/Novedades/Vector.png" className="object-contain mr-1" />  */}
+                {professional.timeAvailability}
               </p>
             </Link>
           </Card>
