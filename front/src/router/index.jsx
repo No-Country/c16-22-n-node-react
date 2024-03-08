@@ -4,6 +4,7 @@ import Catalogo from "../components/catalogo/Catalogo";
 import Chat from "../pages/Chat";
 import Professional from "../pages/Professional";
 import NotFound from "../pages/NotFound";
+import Reservar from "../pages/Reservar";
 
 
 
@@ -24,6 +25,14 @@ export const router = createBrowserRouter([
   {
     path: "/professional/:id",
     element: <Professional />
+  },
+  {
+    path: "/reservar/:id",
+    element: <Reservar />
+  },
+  {
+    path: "/payment/:id",
+    element: <Payment />
   },
   {
     path: "/categorias/:categoria",
