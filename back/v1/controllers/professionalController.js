@@ -8,27 +8,24 @@ const getAllProfessionals = async (req, res) => {
   // pedido de todos los profesionales en forma provisoria
   const allProfessionals = await professionalService.getAllProfessionals();
   res.send(allProfessionals);
-  // const keyword = req.query.search
-  //   ? {
-  //       $or: [
-  //         { aptitudes: { $regex: req.query.search, $options: "i" } },
-  //         { description: { $regex: req.query.search, $options: "i" } },
-  //       ],
-  //     }
-  //   : {};
+};
 
-  //   console.log(keyword);
+const getSearchProfessionals = async (req, res) => {
+  const keyword = req.params.searchQuery
+    ? {
+        $or: [
+          { aptitudes: { $regex: req.params.searchQuery, $options: "i" } },
+          { description: { $regex: req.params.searchQuery, $options: "i" } },
+        ],
+      }
+    : {};
 
-  // if (!req.query.search) {
-  //   const allProfessionals = await professionalService.getAllProfessionals();
-  //   console.log(allProfessionals)
-  //   res.send(allProfessionals);
-  // } else {
-  //   const professionalsSearch = await Professional.find(keyword).find({
-  //     _id: { $ne: req.user._id },
-  //   });
-  //   res.send(professionalsSearch);
-  // }
+  if (!req.params.searchQuery) {
+    throw new Error("There is not a search")
+  } else {
+    const professionalsSearch = await Professional.find(keyword);
+    res.send(professionalsSearch);
+  }
 };
 
 // const getAllProfessionals = async (req, res) => {
@@ -99,5 +96,6 @@ module.exports = {
   createNewProfessional,
   updateOneProfessional,
   deleteOneProfessional,
-  authenticateProfessional
+  authenticateProfessional,
+  getSearchProfessionals
 };

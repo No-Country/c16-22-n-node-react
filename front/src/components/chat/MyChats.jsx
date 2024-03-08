@@ -6,6 +6,9 @@ import axios from 'axios';
 import { handleLogin } from "../../hanldeloginAndRegister/HandleLogAndReg";
 
 function MyChats({ setSelectedChatId }) {
+  // const URL = "https://serviya-back.vercel.app";
+  const URL = "http://localhost:3001";
+
   const { user } = handleLocalStorage();
   const [search, setSearch] = useState("");
   const [searchChats, setSearchChats] = useState([]);
@@ -34,7 +37,7 @@ function MyChats({ setSelectedChatId }) {
       }
 
       const response = await axios.get(
-        "https://serviya-back.vercel.app/api/v1/chat",
+        `${URL}/api/v1/chat`,
         config
       );
 
@@ -65,7 +68,7 @@ function MyChats({ setSelectedChatId }) {
         },
       };
       const response = await axios.get(
-        `http://serviya-back.vercel.app/api/v1/users/?search=${search}`,
+        `${URL}/api/v1/users/?search=${search}`,
         config
       );
 

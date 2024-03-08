@@ -7,6 +7,8 @@ router.get("/",
     //  protect,
     professionalController.getAllProfessionals);
 
+router.get('/search/:searchQuery', protect, professionalController.getSearchProfessionals);
+
 
 router.get("/:professionalId", professionalController.getOneProfessional);
 

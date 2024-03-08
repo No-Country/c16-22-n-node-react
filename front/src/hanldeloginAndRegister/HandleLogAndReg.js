@@ -34,6 +34,7 @@ export const handleLogin = () => {
                     )
                     .then((response) => {
                       console.log(response, "success");
+                      response.data.type = "user";
                       localStorage.setItem(
                         "info",
                         JSON.stringify(response.data)

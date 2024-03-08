@@ -22,7 +22,7 @@ const Categories = () => {
     <Title className={"px-3 text-[#4E4E4E] ml-16 font-medium text-3xl "} text={'Categorias'}></Title>
      <div className="max-w-[1440px] w-full mx-auto gap-3  flex flex-wrap justify-center mt-5 ">
       
-     {categories.map((category) => (
+     {data.map((category) => (
        <div key={category._id} className="card m-4 rounded-2xl border-solid w-[180px] h-[140px] border-2 py-5">
          <Link to={`/categorias/${category.category.toLowerCase()}`}>
          <img src={category.urlImage} alt={category.category} className="colored-img h-20 m-auto"/>

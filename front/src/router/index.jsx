@@ -1,5 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
+import Catalogo from '../components/catalogo/Catalogo';
+import Chat from "../pages/Chat";
+import Professional from "../pages/Professional";
+import NotFound from "../pages/NotFound";
 
 
 
@@ -8,7 +12,11 @@ export const router = createBrowserRouter([
 
   {
     path: "/",
-    element: <Catalogo />,
+    element: <Home />,
+  },
+  {
+    path: "/catalogo",
+    element: <Catalogo/>
   },
   {
     path: "/chat",
@@ -18,7 +26,10 @@ export const router = createBrowserRouter([
     path: "/professional/:id",
     element: <Professional />
   },
-
+  {
+    path: "/categorias/:categoria",
+    element: <Catalogo/>
+  },
   {
     path: "*",
     element: <NotFound />

@@ -2,22 +2,25 @@ import { handleLocalStorage } from "../../localStorage/LocalStorage";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-function NewMessageForm({setMessages}) {
+function NewMessageForm({socketConnected, setMessages, socket}) {
   const { user, selectedChat } = handleLocalStorage();
 
   const [newMessage, setNewMessage] = useState("");
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
+  // const URL = "https://serviya-back.vercel.app";
+  const URL = "http://localhost:3001";
+
   const sendMessage = async () => {
     // if(event.key === "Enter" && newMessage) {
     if (newMessage) {
       try {
-        //socket.emit("stop typing", selectedChat._id);
+        socket.emit("stop typing", selectedChat);
 
         let config = {};
-        console.log(user._doc)
-        console.log(user.type)
+        console.log(user._doc);
+        console.log(user.type);
 
         if (user.type === "professional") {
           config = {
@@ -39,7 +42,7 @@ function NewMessageForm({setMessages}) {
         setNewMessage(""); // it should change the ui async first and then post a new message
 
         const response = await axios.post(
-          "https://serviya-back.vercel.app/api/v1/messages",
+          `${URL}/api/v1/messages`,
           {
             content: newMessage,
             chatId: selectedChat,
@@ -48,7 +51,7 @@ function NewMessageForm({setMessages}) {
         );
         const { data } = response;
 
-        //socket.emit("new message", data);
+        socket.emit("new message", data);
         setMessages((prevMessages) => [...prevMessages, data]);
       } catch {
         // display a toast - error ocurred
@@ -59,11 +62,11 @@ function NewMessageForm({setMessages}) {
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
     // typing indicator logic
-    // if (!socketConnected) return;
+    if (!socketConnected) return;
 
     if (!typing) {
       setTyping(true);
-      //socket.emit("typing", selectedChat._id);
+      socket.emit("typing", selectedChat);
     }
 
     let lastTypingTime = new Date().getTime();
@@ -74,7 +77,7 @@ function NewMessageForm({setMessages}) {
       let timeDiff = timeNow - lastTypingTime;
 
       if (timeDiff >= timerLength && typing) {
-        //socket.emit("stop typing", selectedChat._id);
+        socket.emit("stop typing", selectedChat);
         setTyping(false);
       }
     }, timerLength);
@@ -84,6 +87,11 @@ function NewMessageForm({setMessages}) {
     event.preventDefault();
     sendMessage();
   };
+
+  // useEffect(() => {
+  //   socket.on("typing", () => setIsTyping(true));
+  //   socket.on("stop typing", () => setIsTyping(false));
+  // }, [selectedChat]);
 
   return (
     <div className="self-center justify-items-end mt-3">
