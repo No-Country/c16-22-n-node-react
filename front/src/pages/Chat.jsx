@@ -12,12 +12,12 @@ const Chat = () => {
 
   let user = JSON.parse(localStorage.getItem("info"));
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    if (!user) {
-      navigate("/");
-    }
-  }, [selectedChatId, navigate]);
+  //   if (!user) {
+  //     navigate("/");
+  //   }
+  // }, [selectedChatId, navigate]);
 
   return (
     <div className="scroll-smooth h-screen w-screen">

@@ -65,15 +65,12 @@ const server = app.listen(PORT, () => {
   console.log(`listening on ${PORT}`);
 })
 
-// io.listen(3002, () => {
-//     console.log("Listening WebSocket server on 3002");;
-// });
 
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://serviya-front.vercel.app",
-    credentials: true
+    origin: "http://localhost:5173",
+    credentials: true,
   },
 });
 
@@ -96,15 +93,18 @@ io.on("connection", (socket) => {
   socket.on("new message", (newMessageReceived) => {
     let chat = newMessageReceived.chat;
     console.log("message received")
-    if (!chat.users) return console.log("chat.users not defined");
+    console.log(chat)
+    if (!chat.user && !chat.professional) return console.log("chat users are not defined");
 
     // We will not send message to ourselves
-    chat.users.forEach(user => {
-      if (user._id == newMessageReceived.sender._id) return;
-
+    
+    if (chat.user == newMessageReceived.sender[0]?._id) {
+      return;
       socket.in(user._id).emit("message received", newMessageReceived);
-    });
-
+    } else if (chat.professional) {
+      // if (chat.professional == newMessageReceived.sender[0]?._id) return;
+      socket.in(user._id).emit("message received", newMessageReceived);
+    }
   });
 
   socket.off("setup", () => {

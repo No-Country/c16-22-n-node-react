@@ -5,8 +5,8 @@ import { io } from "socket.io-client";
 import { useState, useEffect } from "react";
 import NewMessageForm from './NewMessageForm';
 
-// const ENDPOINT = "http://localhost:3001"; // change this to the deployed url
-const ENDPOINT = "https://serviya-back.vercel.app";
+const ENDPOINT = "http://localhost:3001"; // change this to the deployed url
+// const ENDPOINT = "https://serviya-back.vercel.app";
 let socket, selectedChatCompare;
 
 function Conversation({selectedChatId}) {
@@ -16,8 +16,8 @@ function Conversation({selectedChatId}) {
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
 
-  const URL = "https://serviya-back.vercel.app";
-  // const URL = "http://localhost:3001";
+  // const URL = "https://serviya-back.vercel.app";
+  const URL = "http://localhost:3001";
 
   useEffect(() => {
     // this is for single message area
@@ -69,13 +69,14 @@ function Conversation({selectedChatId}) {
 
       setLoading(true);
       const response = await axios.get(
-        `${URL}/api/v1/messages/${selectedChatId}`,
+        `${URL}/api/v1/messages/${selectedChat}`,
         config
       );
       const { data } = response;
       setMessages(data);
       setLoading(false);
-      socket.emit("join chat", selectedChat._id);
+      console.log("chat:" , selectedChat)
+      socket.emit("join chat", selectedChat);
     } catch (error) {
       // display toast - error ocurred
     }
@@ -100,7 +101,7 @@ function Conversation({selectedChatId}) {
 
   return (
     <div className="w-3/4 text-white">
-      {selectedChatId && <ChatHeader user={user} />}
+      {selectedChat && <ChatHeader user={user} />}
       <div className=" w-full h-[90%] p-10 bg-[#E0E9EE] flex flex-col justify-between">
         {/* both chats container */}
         <div className="flex flex-col space-y-6 overflow-auto w-full">

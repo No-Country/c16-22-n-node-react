@@ -18,6 +18,7 @@ const Catalogo = () => {
 
   if (searchTerm) {
     DATA = `https://serviya-back.vercel.app/api/v1/professional/search/${searchTerm}`;
+    // DATA = `http://localhost:3001/api/v1/professional/search/${searchTerm}`;
   }
 
 
@@ -25,6 +26,8 @@ const Catalogo = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [paginatedData, setPaginatedData] = useState([]);
   const { categoria } = useParams();
+
+  console.log(data);
 
   useEffect(() => {
     if (!loading && data) {

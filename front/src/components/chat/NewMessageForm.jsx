@@ -51,6 +51,9 @@ function NewMessageForm({socketConnected, setMessages, socket}) {
         );
         const { data } = response;
 
+        // console.log(data);
+        console.log(socket);
+
         socket.emit("new message", data);
         setMessages((prevMessages) => [...prevMessages, data]);
       } catch {
