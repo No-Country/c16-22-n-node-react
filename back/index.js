@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 });
 
 var corsOptions = {
-  origin: ["https://serviya-front.vercel.app", "http://localhost:5173"],
+  origin: ["https://serviya-front.vercel.app", "https://serviya-back.vercel.app/api/v1/users/login", "http://localhost:5173"],
   optionsSuccessStatus: 200,
 };
 
@@ -69,7 +69,7 @@ const server = app.listen(PORT, () => {
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:5173",
+    origin: ["https://serviya-front.vercel.app", "https://serviya-back.vercel.app/api/v1/users/login", "http://localhost:5173"],
     credentials: true,
   },
 });
@@ -97,7 +97,7 @@ io.on("connection", (socket) => {
     if (!chat.user && !chat.professional) return console.log("chat users are not defined");
 
     // We will not send message to ourselves
-    
+
     if (chat.user == newMessageReceived.sender[0]?._id) {
       return;
       socket.in(user._id).emit("message received", newMessageReceived);
