@@ -20,6 +20,26 @@
 
 .imagePaymentcheck {
     /* incluir movimiento */
+    animation: girar 2s linear infinite;
+}
+
+@keyframes girar {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Cambiar la velocidad de la animación */
+.animacion.aceleracion {
+    animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.animacion.deceleracion {
+    animation-timing-function: cubic-bezier(1, 0, 0.4, 1);
 }
 
 .container {

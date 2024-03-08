@@ -41,7 +41,7 @@ function SearchBar() {
 
   // Regresamos un contenedor principal, con el titulo y barra de busqueda dentro
   // La barra de busqueda esta hecha de una input de texto y un boton que envia la request de busqueda al hacer click
-  
+
   // TO-DO: La request de busqueda tambien deberia enviar cuando el usuario presiona "Enter"
   return (
     <div className="max-w-[1440px] w-full mx-auto flex flex-col items-center mt-20 ">
@@ -59,7 +59,7 @@ function SearchBar() {
           className="w-[82px] h-[] bg-[#055286] rounded-r-3xl flex items-center justify-center"
           onClick={handleSearchProfessional}
         >
-          <img src="../../../public/searchbar/lupa.svg" alt="" />
+          <img src="/searchbar/lupa.svg" alt="" />
         </button>
       </div>
     </div>
