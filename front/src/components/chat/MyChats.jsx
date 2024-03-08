@@ -6,8 +6,8 @@ import axios from 'axios';
 import { handleLogin } from "../../hanldeloginAndRegister/HandleLogAndReg";
 
 function MyChats({ setSelectedChatId }) {
-  // const URL = "https://serviya-back.vercel.app";
-  const URL = "http://localhost:3001";
+  const URL = "https://serviya-back.vercel.app";
+  // const URL = "http://localhost:3001";
 
   const { user } = handleLocalStorage();
   const [search, setSearch] = useState("");

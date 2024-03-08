@@ -9,10 +9,10 @@ import { useLocation, useParams } from 'react-router-dom';
 import Footer from "../footer/Footer";
 import Nav from "../nabvar/Navbar";
 
-let DATA = "https://serviya-back.vercel.app/api/v1/professional";
 const ITEMS_PER_PAGE = 9;
 
 const Catalogo = () => {
+  let DATA = "https://serviya-back.vercel.app/api/v1/professional";
   const location = useLocation();
   const searchTerm = new URLSearchParams(location.search).get('search');
 
