@@ -50,6 +50,10 @@ const Reservar = () => {
         navigate(`/payment/${prof?._id}`)
     }
 
+    const volver = () => {
+        navigate(`/`)
+    };
+
     useEffect(() => {
         setProf(professional);
         setFormReserva({
@@ -63,7 +67,11 @@ const Reservar = () => {
 
     useEffect(() => {
         console.log(formReserva)
-    }, [formReserva]);
+        setFormReserva({
+            ...formReserva,
+            professional: prof,
+        });
+    }, [formReserva, prof]);
 
 
     return (
@@ -84,7 +92,9 @@ const Reservar = () => {
                         <div className={s.titleCard}>Servicio</div>
                     </div>
 
-                    <div className={s.containerVolver}>
+                    <div
+                        onClick={volver}
+                        className={s.containerVolver}>
                         <img src="/reserva/arrowLeft.svg" alt="" />
                         <div className={s.volver}>  Volver</div>
                     </div>

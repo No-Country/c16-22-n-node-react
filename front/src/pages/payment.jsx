@@ -79,6 +79,7 @@ const Payment = () => {
                     <div className={s.resumenCard}>
                         <div className={s.titleReserva}>Resumen de reserva</div>
                         <div className={s.bodyReserva}>
+                            {console.log(reserva)}
                             <div className={s.lineReserva}> <img src="/reserva/check.svg" alt="" /> Visita técnica con {reserva?.professional?.name} {reserva?.professional?.lastName}</div>
                             <div className={s.lineReserva}>  <img className={s.imageReserva} src="/reserva/location.svg" alt="" /> {reserva?.address}</div>
                             <div className={s.lineReserva}>  <img className={s.imageReserva} src="/reserva/coin.svg" alt="" /> {reserva?.professional?.consultPrice} ARS</div>
