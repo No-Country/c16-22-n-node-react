@@ -24,8 +24,7 @@ const Categories = () => {
 
         {data.map((category) => (
           <div key={category._id} className="card m-4 rounded-2xl border-solid w-[180px] h-[140px] border-2 py-5">
-            <Link to={`/catalogo/`}
-            // ${category.category.toLowerCase()}`}
+            <Link to={`/categorias/${category.category}`}
             >
               <img src={category.urlImage} alt={category.category} className="colored-img h-20 m-auto" />
             </Link>

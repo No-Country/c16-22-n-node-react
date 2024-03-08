@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
-import {  useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 let DATA = "https://serviya-back.vercel.app/api/v1/professional";
 const ITEMS_PER_PAGE = 9;
@@ -14,17 +14,20 @@ const Catalogo = () => {
   const location = useLocation();
   const searchTerm = new URLSearchParams(location.search).get('search');
 
-  if(searchTerm) {
+  if (searchTerm) {
     DATA = `https://serviya-back.vercel.app/api/v1/professional/search/${searchTerm}`;
   }
-  
 
-  const { data, loading, error } = useFetch(DATA);
+
+  let { data, loading, error } = useFetch(DATA);
   const [currentPage, setCurrentPage] = useState(1);
   const [paginatedData, setPaginatedData] = useState([]);
+  const { categoria } = useParams();
 
   useEffect(() => {
     if (!loading && data) {
+      console.log(data, categoria);
+      data = data.filter(data => data.category === categoria);
       const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
       const endIndex = startIndex + ITEMS_PER_PAGE;
       setPaginatedData(data.slice(startIndex, endIndex));
