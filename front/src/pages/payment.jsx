@@ -7,6 +7,7 @@ import Nav from "../components/nabvar/Navbar";
 import s from './payment.module.css';
 
 const Payment = () => {
+    const navigate = useNavigate();
     // estados locales
     const [isOpen, setIsOpen] = useState(false);
     const [isPayment, setIsPayment] = useState(false);
@@ -26,10 +27,15 @@ const Payment = () => {
         setIsOpen(true);
         setTimeout(() => {
             setIsOpen(false);
+            setIsPayment(true);
             console.log("Retrasado por 1 segundo.");
         }, "2000");
-        setIsPayment(true);
+
     }
+
+    const volver = () => {
+        navigate(`/`)
+    };
 
 
 
@@ -61,7 +67,9 @@ const Payment = () => {
 
                     </div>
 
-                    <div className={s.containerVolver}>
+                    <div
+                        onClick={volver}
+                        className={s.containerVolver}>
                         <img src="/reserva/arrowLeft.svg" alt="" />
                         <div className={s.volver}>  Volver</div>
                     </div>
@@ -79,7 +87,10 @@ const Payment = () => {
 
                     </div>
                     <div>
-                        <img className={s.checkPaymentImage} src="/reserva/checkPayment.svg" alt="" />
+
+                        <img
+                            style={{ display: isPayment ? 'flex' : 'none' }}
+                            className={s.checkPaymentImage} src="/reserva/checkPayment.svg" alt="" />
                     </div>
                 </div>
                 <div
