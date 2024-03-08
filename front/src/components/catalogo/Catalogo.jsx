@@ -29,10 +29,14 @@ const Catalogo = () => {
 
   console.log(data);
 
+
   useEffect(() => {
     if (!loading && data) {
-      // console.log(data, categoria);
-      data = data.filter(data => data.category === categoria);
+      console.log(data, categoria);
+      if (!!categoria) {
+        data = data.filter(data => data.category === categoria);
+      }
+
       const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
       const endIndex = startIndex + ITEMS_PER_PAGE;
       setPaginatedData(data.slice(startIndex, endIndex));
