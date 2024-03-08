@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 
 
 
+
 export const router = createBrowserRouter([
   //  ubicar rutas aqui ejemplo:
 
@@ -18,7 +19,14 @@ export const router = createBrowserRouter([
     path: "/professional/:id",
     element: <Professional />
   },
-
+  {
+    path: "/reservar/:id",
+    element: <Reservar />
+  },
+  {
+    path: "/payment/:id",
+    element: <Payment />
+  },
   {
     path: "*",
     element: <NotFound />

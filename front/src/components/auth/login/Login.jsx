@@ -1,3 +1,4 @@
+
 import Perfil from "../../../../public/login/perfil.svg";
 import Serviya from "../../../../public/login/serviya.svg";
 import Register from "../register/Register";
@@ -6,7 +7,7 @@ import ProfessionalRegisterForm from "../register/ProfessionalRegisterForm";
 import { handleLogin } from "../../../hanldeloginAndRegister/HandleLogAndReg";
 
 const Login = ({typeOfLogin}) => {
-  
+
   const {
     onSubmit,
     handleSubmit,

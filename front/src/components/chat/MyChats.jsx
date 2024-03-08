@@ -42,10 +42,13 @@ function MyChats({ setSelectedChatId }) {
       setMyChats(data);
       setLoading(false);
     } catch (error) {
+
       console.log(error);
       // display toast there was an error
+
     }
   };
+
 
   useEffect(() => {
     // maybe we will have to do something else here
@@ -71,6 +74,7 @@ function MyChats({ setSelectedChatId }) {
 
       const { data } = response;
       setSearchChats(data);
+
       setLoading(false);
     } catch (error) {
       // display a toast = fail to load the search reshults
@@ -99,7 +103,7 @@ function MyChats({ setSelectedChatId }) {
             className="w-[82px] h-[] bg-[#055286] rounded-r-3xl flex items-center justify-center"
             onClick={handleSearch}
           >
-            <img src="../../../public/searchbar/lupa.svg" alt="" />
+            <img src="/searchbar/lupa.svg" alt="" />
           </button>
         </div>
 
