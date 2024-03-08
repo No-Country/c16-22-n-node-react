@@ -6,6 +6,8 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from 'react-router-dom';
+import Footer from "../footer/Footer";
+import Nav from "../nabvar/Navbar";
 
 let DATA = "https://serviya-back.vercel.app/api/v1/professional";
 const ITEMS_PER_PAGE = 9;
@@ -47,6 +49,7 @@ const Catalogo = () => {
   }
   return (
     <>
+      <Nav />
       <div className="grid grid-cols-12 grid-rows-9 m-4 justify-items-center">
         {paginatedData.map((professional) => (
 
@@ -102,6 +105,7 @@ const Catalogo = () => {
           onPageChange={onPageChange}
         />
       </div>
+      <Footer />
     </>
   );
 };
