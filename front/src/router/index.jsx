@@ -25,7 +25,10 @@ export const router = createBrowserRouter([
     path: "/professional/:id",
     element: <Professional />
   },
-
+  {
+    path: "/categorias/:categoria",
+    element: <Catalogo />
+  },
   {
     path: "*",
     element: <NotFound />

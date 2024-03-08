@@ -13,11 +13,11 @@ const Chat = () => {
   let user = JSON.parse(localStorage.getItem("info"));
 
   useEffect(() => {
-    user = JSON.parse(localStorage.getItem("info"));
+    
     if (!user) {
       navigate("/");
     }
-  }, [selectedChatId]);
+  }, [selectedChatId, navigate]);
 
   return (
     <div className="scroll-smooth h-screen w-screen">

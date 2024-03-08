@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Title from '../title/Title';
 import { handleLocalStorage } from '../../localStorage/LocalStorage';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar() {
   // Maneja lo que el usuario quiere buscar
@@ -9,28 +10,31 @@ function SearchBar() {
   // Maneja los profesionales que cumplen con los requisitos de busqueda
   const [searchResult, setSearchResult] = useState([]);
 
+  const navigate = useNavigate();
+
   // Obtenemos los datos del usuario que inicio sesion
 
   const { user } = handleLocalStorage();
   // TO-DO: En caso de no haber iniciado session deberiamos, deberiamos mostrar un mensaje
 
-  const handleSearch = async () => {
+  const handleSearchProfessional = async () => {
     // Para obtener los resultados necesitamos enviar el token del usuario que esta actualmente loggeado
-    const config = {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    };
+    navigate(`/catalogo?search=${search}`)
+    // const config = {
+    //   headers: {
+    //     Authorization: `Bearer ${user.token}`,
+    //   },
+    // };
 
-    // Al momento de hacer la request, enviamos cualquier valor que este almancenado en la barra de busqueda
-    const response = await axios.get(
-      `https://serviya-back.vercel.app/api/v1/professional?search=${search}`,
-      config
-    );
+    // // Al momento de hacer la request, enviamos cualquier valor que este almancenado en la barra de busqueda
+    // const response = await axios.get(
+    //   `https://serviya-back.vercel.app/api/v1/professional?search=${search}`,
+    //   config
+    // );
 
-    const { data } = response;
-    setSearchResult(data);
-      console.log(data);
+    // const { data } = response;
+    // setSearchResult(data);
+    //   console.log(data);
     // TO-DO: Mientras estemos esperando la respuesta, se puede renderizar un estado de carga "Loading..."
     // setLoading(false);
   };
@@ -53,7 +57,7 @@ function SearchBar() {
         />
         <button
           className="w-[82px] h-[] bg-[#055286] rounded-r-3xl flex items-center justify-center"
-          onClick={handleSearch}
+          onClick={handleSearchProfessional}
         >
           <img src="../../../public/searchbar/lupa.svg" alt="" />
         </button>

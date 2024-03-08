@@ -17,7 +17,7 @@ const getAllMessages = async (req, res) => {
       try {
         const messages = await Message.find({chat: chatId})
         .populate("sender", "name pic email")
-        .populate("chat");
+        .populate("chat")
         res.status(200);
         res.json(messages);
       } catch(error) {
@@ -35,14 +35,23 @@ const createNewMessage = async (req, res) => {
     return res.sendStatus(400);
   }
 
-  console.log(req.user._id);
+  let sender = [];
+
+  if (req.user.category) {
+    sender[1] = req.user._id
+  } else {
+    sender[0] = req.user._id; 
+  }
+  
 
   var newMessage = {
-    sender: req.user._id,
+    sender,
     content: content,
     chat: chatId,
   };
 
+
+  console.log(sender)
   
   try {
     var message = await Message.create(newMessage);
