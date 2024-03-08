@@ -32,7 +32,6 @@ const Catalogo = () => {
 
   useEffect(() => {
     if (!loading && data) {
-      console.log(data, categoria);
       if (!!categoria) {
         data = data.filter(data => data.category === categoria);
       }
