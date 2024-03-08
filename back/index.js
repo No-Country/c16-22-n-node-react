@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 });
 
 var corsOptions = {
-  origin: ["https://serviya-front.vercel.app", "https://serviya-back.vercel.app/api/v1/users/login", "http://localhost:5173"],
+  origin: ["https://serviya-front.vercel.app", "http://localhost:5173"],
   optionsSuccessStatus: 200,
 };
 
@@ -69,7 +69,7 @@ const server = app.listen(PORT, () => {
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: ["https://serviya-front.vercel.app", "https://serviya-back.vercel.app/api/v1/users/login", "http://localhost:5173"],
+    origin: ["https://serviya-front.vercel.app", "http://localhost:5173"],
     credentials: true,
   },
 });
