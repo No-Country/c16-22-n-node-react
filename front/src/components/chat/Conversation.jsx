@@ -5,8 +5,8 @@ import { io } from "socket.io-client";
 import { useState, useEffect } from "react";
 import NewMessageForm from './NewMessageForm';
 
-const ENDPOINT = "http://localhost:3001"; // change this to the deployed url
-// const ENDPOINT = "https://serviya-back.vercel.app";
+// const ENDPOINT = "http://localhost:3001"; // change this to the deployed url
+const ENDPOINT = "https://serviya-back.vercel.app";
 let socket, selectedChatCompare;
 
 function Conversation({selectedChatId}) {
@@ -15,9 +15,11 @@ function Conversation({selectedChatId}) {
   const [socketConnected, setSocketConnected] = useState(false);
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [headerPic, setHeaderPic] = useState("");
+  const [headerName, setHeaderName] = useState("");
 
-  // const URL = "https://serviya-back.vercel.app";
-  const URL = "http://localhost:3001";
+  const URL = "https://serviya-back.vercel.app";
+  // const URL = "http://localhost:3001";
 
   useEffect(() => {
     // this is for single message area
@@ -75,6 +77,16 @@ function Conversation({selectedChatId}) {
       const { data } = response;
       setMessages(data);
       setLoading(false);
+      console.log(data)
+
+      if (user.type === 'professional') {
+       setHeaderPic(messages[0].sender[0].pic);
+       setHeaderName(messages[0].sender[0].name);
+      } else if (user.type === 'user') {
+        setHeaderPic(user._doc.pic);
+        setHeaderName(user._doc.name);
+      }
+
       console.log("chat:" , selectedChat)
       socket.emit("join chat", selectedChat);
     } catch (error) {
@@ -101,12 +113,15 @@ function Conversation({selectedChatId}) {
 
   return (
     <div className="w-3/4 text-white">
-      {selectedChat && <ChatHeader user={user} />}
-      <div className=" w-full h-[90%] p-10 bg-[#E0E9EE] flex flex-col justify-between">
+      {selectedChat && <ChatHeader pic={headerPic} name={headerName} />}
+      <div className=" w-full h-[] p-10 bg-[#E0E9EE] flex flex-col justify-between">
         {/* both chats container */}
         <div className="flex flex-col space-y-6 overflow-auto w-full">
           {/* our chat */}
           {/* probably same component but passing different styles based on whether you are a sender or receiver */}
+          {/* {messages.length > 0 && user.type === 'user' && setHeaderName(messages[0].)} */}
+          {/* {messages.length > 0 && user.type === 'user' && setHeaderPic(messages[0].chat.)} */}
+
           {messages.length > 0 ? (
             messages.map((message, index) =>
               user.type === "user" ? (
@@ -131,10 +146,7 @@ function Conversation({selectedChatId}) {
                   </div>
                 )
               ) : message.chat.user === message.sender[0]?._id ? (
-                <div
-                  key={message._id}
-                  className="flex text-black space-x-4"
-                >
+                <div key={message._id} className="flex text-black space-x-4">
                   <div className="flex flex-col space-y-2">
                     <p className="bg-white p-4 rounded-xl shadow-md max-w-[700px]">
                       {message.content}
@@ -142,7 +154,10 @@ function Conversation({selectedChatId}) {
                   </div>
                 </div>
               ) : (
-                <div key={message._id} className="flex text-black space-x-4 self-end">
+                <div
+                  key={message._id}
+                  className="flex text-black space-x-4 self-end"
+                >
                   <div className="flex flex-col space-y-2">
                     <p className="bg-secondary p-4 rounded-xl shadow-md max-w-[700px]">
                       {message.content}
