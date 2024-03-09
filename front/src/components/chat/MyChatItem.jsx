@@ -16,12 +16,13 @@ function MyChatItem({ id, title, subtitle, pic, setSelectedChatId }) {
   if (!pic || !title || !subtitle) {
     pic =
       "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg";
-    title = "Aun no tienes mensajes";
-    subtitle = "Conecta con clientes";
+    title = "Buscando profesionales";
+    subtitle = "Cargando chat existentes";
   }
 
   const handleClick = (id) => {
     setIsSelected(!isSelected);
+    console.log(id);
     setSelectedChatId(id);
     localStorage.setItem("selectedChat", !isSelected ? id : "undefined");
   };
